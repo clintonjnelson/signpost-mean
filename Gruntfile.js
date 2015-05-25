@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             'lib/**/*.js',
             'models/**/*.js',
             'routes/**/*.js',
-            'test/**/*.js']
+            'test/**/*.js'],
       options: {
         verbose: false
       }
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: true
       }
-    }
+    },
     nodemon: {
       dev: {
         script: 'server.js'
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec',
           captureFile: false,
-          quiet: false
+          quiet: false,
           clearRequireCache: false
         },
         src: ['test/**/*_test.js']  // all test files

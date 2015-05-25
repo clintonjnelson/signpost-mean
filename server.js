@@ -7,21 +7,29 @@ var app      = express();
 
 // Routers
 var usersRouter = new express.Router();
-var authrouter  = new express.Router();
+var authRouter  = new express.Router();
 
 // TEMP ENVIRONMENT VARIABLE
 process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
 
 // SETUP: CHANGE APP NAME
 // Set mongoose connection
-mongoose.connect = MONGOLAB_URI || 'mongodb://localhost/someApp_dev';
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/myApp_dev');
 
 // Initialize passport middleware & configure with passport_strategy.js
 app.use(passport.initialize());
 
+// Load passport with strategy
+require('./lib/passport_strategy')(passport);
+
 // Populate Routes
 require('./routes/users_routes.js')(usersRouter);
-require('./routes/auth_routes.js' )(authRouter );
+require('./routes/auth_routes.js' )(authRouter, passport);
+
+// Route middleware
+app.use('', usersRouter);
+app.use('', authRouter );
+
 
 // Start server
 app.listen(process.env.PORT || 3000, function() {
