@@ -1,4 +1,5 @@
-# Node Express Server Template with Users/Auth/Tests
+# MEAN Stack Server Template with Users/Auth/Tests
+
 
 
 ####Contributions:
