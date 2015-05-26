@@ -17,11 +17,11 @@ module.exports = function(router) {
     });
 
     newUser.generateHash(req.body.password, function(err, hash) {
-      if (err) return res.status(500).json({ error: true });
+      if (err) { return res.status(500).json({ error: true }); }
       newUser.basic.password = hash;
 
       newUser.save(function(err, user) {
-        if (err) console.log('Error creating user. Error: ', err);
+        if (err) { console.log('Error creating user. Error: ', err); }
         switch(true) {
           case !!(err && contains(err.errmsg, 'E11000')):
             return res.status(400).json({ error: 'username'  });
@@ -60,7 +60,7 @@ module.exports = function(router) {
     delete updateUserData.eat;
 
     User.update({'_id': req.user._id}, {$set: updateUserData}, {runValidators: true}, function(err, user) {
-      if (err) console.log('Error updating user. Error: ', err);
+      if (err) { console.log('Error updating user. Error: ', err); }
       switch(true) {
         case !!(err && err.code === 11000):  // unique validation
           return res.status(400).json({ error: 'username already exists' });
