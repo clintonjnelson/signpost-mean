@@ -2,7 +2,6 @@
 
 var bodyparser = require('body-parser'       );
 var eatAuth    = require('../lib/eat_auth.js')(process.env.AUTH_SECRET);
-var User       = require('../models/User.js' );
 
 module.exports = function(router, passport) {
   router.use(bodyparser.json());
@@ -21,7 +20,7 @@ module.exports = function(router, passport) {
   // User signout
   router.get('/logout', eatAuth, function(req, res) {
     req.user.invalidateToken(function(err, result) {
-      if (err) return res.status(500).json({ error: true });
+      if (err) { return res.status(500).json({ error: true }); }
 
       res.json({ success: true });
     });
