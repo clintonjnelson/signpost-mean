@@ -1,7 +1,7 @@
 # MEAN Stack Server Template with Users/Auth/Tests
 
-[![travis build status] [travis-image]] [travis-url]
-[![Codacy Badge]        [codacy-image]] [codacy-url]
+![travis status] [travis-image]
+![Codacy status] [codacy-image]
 
 ####Contributions:
 *See package.json for module contributions under "dev-dependencies" & "dependencies" sections
