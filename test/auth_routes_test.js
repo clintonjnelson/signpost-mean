@@ -17,20 +17,16 @@ require('../server.js');
 describe('Authentication', function() {
   describe('GET /login', function() {
     before(function(done) {   // Make a new user in db
-      mongoose.connection.db.dropDatabase(function() {
-        mongoose.connect(process.env.MONGOLAB_URI, {}, function() {
-          chai.request('localhost:3000')
-            .post('/users')
-            .send({username: 'unicorn', email: 'unicorn@example.com', password: 'foobar'})
-            .end(function(err, res) {
-              expect(err).to.eq(null);
-              User.findOne({username: 'unicorn'}, function(err, user) { // verify added
-                expect(err).to.eq(null);
-                done();
-              });
-            });
+      chai.request('localhost:3000')
+        .post('/users')
+        .send({username: 'unicorn', email: 'unicorn@example.com', password: 'foobar'})
+        .end(function(err, res) {
+          expect(err).to.eq(null);
+          User.findOne({username: 'unicorn'}, function(err, user) { // verify added
+            expect(err).to.eq(null);
+            done();
+          });
         });
-      });
     });
     after(function(done) {
       mongoose.connection.db.dropDatabase(function(){ done(); });

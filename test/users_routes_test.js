@@ -65,7 +65,7 @@ describe('User_Routes.js', function() {
     });
 
     // VALIDATIONS FAILING!!!
-    describe.skip('with INvalid input', function() {
+    describe('with INvalid input', function() {
       describe('with existing user', function() {
         it('returns a JSON error for taken email', function(done) {
           chai.request('localhost:3000')
