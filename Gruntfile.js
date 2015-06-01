@@ -3,13 +3,33 @@
 module.exports = function(grunt) {
 
   // Load Tasks
+  grunt.loadNpmTasks('grunt-contrib-clean' );  // webpack: clean folder
+  grunt.loadNpmTasks('grunt-contrib-copy'  );  // webpack: copy assets
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jscs'          );
   grunt.loadNpmTasks('grunt-mocha-test'    );
-  grunt.loadNpmTasks('grunt-nodemon'       );
+  grunt.loadNpmTasks('grunt-nodemon'       );  // avoid server restarts
+  grunt.loadNpmTasks('grunt-webpack'       );
 
   // Configure Tasks
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+    clean: {
+      dev: {
+        src: 'build/' // clean out webpack build folder
+      }
+    },
+    copy: {
+      html: {
+        cwd: 'app/',
+        expand: true,
+        flatten: false,
+        src: '**/*.html',
+        dest: 'build/',
+        filter: 'isFile'
+      }
+    },
     jscs: {
       src: ['Gruntfile.js',
             '*.js',
@@ -18,12 +38,15 @@ module.exports = function(grunt) {
             'routes/**/*.js',
             'test/**/*.js'],
       options: {
+        requireCurlyBraces: [false],
         verbose: false
       }
     },
     jshint: {
       dev: {
         src: ['Gruntfile.js',
+            '!/build/bundle.js',
+            '!/test/client/bundle.js',
             '*.js',
             'lib/**/*.js',
             'models/**/*.js',
@@ -49,10 +72,41 @@ module.exports = function(grunt) {
         },
         src: ['test/**/*_test.js']  // all test files
       }
+    },
+    webpack: {
+      client: { // webpack frontend production
+        entry: __dirname + '/app/js/client.js',
+        output: {
+          path: 'build/',
+          file: 'bundle.js'
+        },
+        stats: {
+          colors: true
+        },
+        failOnError: false,
+        watch: true,
+        keepalive: true
+      },
+      test: { // webpack frontend tests
+        entry: __dirname + '/test/client/test.js',
+        output: {
+          path: 'test/client/',
+          file: 'test_bundle.js'
+        },
+        stats: {
+          colors: true
+        },
+        failOnError: false,
+        watch: false,
+        keepalive: true
+      }
     }
   });
 
   // Custom Task Chains
-  grunt.registerTask('test',    ['jshint:dev', 'jscs', 'mochaTest']);
-  grunt.registerTask('default', ['test']);
+  grunt.registerTask('test',       ['jshint:dev', 'jscs', 'mochaTest']);
+  grunt.registerTask('build:dev',  ['copy:html', 'webpack:client'    ]);
+  grunt.registerTask('build:test', ['copy:html', 'webpack:test'      ]);
+  grunt.registerTask('build',      ['build:dev'                      ]);
+  grunt.registerTask('default',    ['test', 'build'                  ]);
 };

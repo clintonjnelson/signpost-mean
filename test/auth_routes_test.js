@@ -1,14 +1,14 @@
 'use strict';
 
-var chai     = require('chai');
-var chaihttp = require('chai-http');
+var chai     = require('chai'             );
+var chaihttp = require('chai-http'        );
 var expect   = chai.expect;
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'         );
 var User     = require('../models/User.js');
 chai.use(chaihttp);
 
 // Use test db
-process.env.MONGOLAB_URI = 'mongodb://localhost/myApp_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/signpost_test';
 
 // Start api server for testing
 require('../server.js');

@@ -1,4 +1,6 @@
 **/node_modules
-npm-debug.log
 *DB_STORE*
+/build
+/test/client/bundle.js
 .env
+npm-debug.log

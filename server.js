@@ -14,7 +14,7 @@ process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
 
 // SETUP: CHANGE APP NAME
 // Set mongoose connection
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/myApp_dev');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/signpost');
 
 // Initialize passport middleware & configure with passport_strategy.js
 app.use(passport.initialize());
@@ -27,8 +27,11 @@ require('./routes/users_routes.js')(usersRouter);
 require('./routes/auth_routes.js' )(authRouter, passport);
 
 // Route middleware
-app.use('', usersRouter);
-app.use('', authRouter );
+app.use(usersRouter);
+app.use(authRouter );
+
+// Static Resources
+app.use(express.static(__dirname + '/build'));
 
 
 // Start server
