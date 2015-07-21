@@ -1,5 +1,5 @@
 {
-  "name": "signpost-MEAN",
+  "name": "signpost-mean",
   "version": "0.1.0",
   "description": "Signpost app built in the MEAN stack",
   "main": "server.js",

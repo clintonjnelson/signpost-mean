@@ -6,29 +6,31 @@ var passport = require('passport');
 var app      = express();
 
 // Routers
-var usersRouter = new express.Router();
 var authRouter  = new express.Router();
+var oauthRouter = new express.Router();
+var usersRouter = new express.Router();
 
 // TEMP ENVIRONMENT VARIABLE
 process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
 
-// SETUP: CHANGE APP NAME
 // Set mongoose connection
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/signpost');
 
 // Initialize passport middleware & configure with passport_strategy.js
 app.use(passport.initialize());
 
-// Load passport with strategy
-require('./lib/passport_strategy')(passport);
+// Load passport with strategies
+require('./lib/passport_strategies/basic.js'   )(passport);
+require('./lib/passport_strategies/facebook.js')(passport);
 
 // Populate Routes
+require('./routes/auth_routes.js' )(authRouter,  passport);
+require('./routes/oauth_routes.js')(oauthRouter, passport);
 require('./routes/users_routes.js')(usersRouter);
-require('./routes/auth_routes.js' )(authRouter, passport);
 
 // Route middleware
-app.use(usersRouter);
 app.use(authRouter );
+app.use(usersRouter);
 
 // Static Resources
 app.use(express.static(__dirname + '/build'));

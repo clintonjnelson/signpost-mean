@@ -1,9 +1,9 @@
 'use strict';
 
-var bodyparser = require('body-parser');
-var contains   = require('lodash').contains;
-var eatAuth    = require('../lib/eat_auth.js')(process.env.AUTH_SECRET);
-var ownerAuth  = require('../lib/owner_auth.js');
+var bodyparser = require('body-parser'      );
+var contains   = require('lodash'           ).contains;
+var eatAuth    = require('../lib/routes_middleware/eat_auth.js'  )(process.env.AUTH_SECRET);
+var ownerAuth  = require('../lib/routes_middleware/owner_auth.js');
 var User       = require('../models/User.js');
 
 module.exports = function(router) {
@@ -26,9 +26,9 @@ module.exports = function(router) {
           case !!(err && contains(err.errmsg, 'E11000')):
             return res.status(400).json({ error: 'username'  });
           case !!(err && contains(err.errmsg, '.email')):
-            return res.status(400).json({ error: 'email' });
+            return res.status(400).json({ error: 'email'     });
           case !!(err):
-            return res.status(400).json({ error: true    });
+            return res.status(400).json({ error: true        });
         }
 
         user.generateToken(process.env.AUTH_SECRET, function(err, eat) {

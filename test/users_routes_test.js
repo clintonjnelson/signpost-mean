@@ -8,7 +8,7 @@ var User     = require('../models/User.js');
 chai.use(chaihttp);
 
 // Specify db
-process.env.MONGOLAB_URI = 'mongodb://localhost/signpost_test'; // SETUP change this
+process.env.MONGOLAB_URI = 'mongodb://localhost/signpost_test';
 
 // Start test server
 require('../server.js');
@@ -16,7 +16,7 @@ require('../server.js');
 describe('User_Routes.js', function() {
   var testUser;
   var testEat;
-  before(function(done) {
+  beforeEach(function(done) {
     mongoose.connection.db.dropDatabase(function() {
       mongoose.connect(process.env.MONGOLAB_URI, {}, function() {
         chai.request('localhost:3000')
@@ -34,7 +34,7 @@ describe('User_Routes.js', function() {
       });
     });
   });
-  after(function(done) {
+  afterEach(function(done) {
     mongoose.connection.db.dropDatabase(function() {done();});
   });
 
@@ -65,7 +65,7 @@ describe('User_Routes.js', function() {
     });
 
     // VALIDATIONS FAILING!!!
-    describe.skip('with INvalid input', function() {
+    describe('with INvalid input', function() {
       describe('with existing user', function() {
         it('returns a JSON error for taken email', function(done) {
           chai.request('localhost:3000')
@@ -97,7 +97,7 @@ describe('User_Routes.js', function() {
 
   describe('GET /users/:id', function() {
     var unicornUser;
-    before(function(done) {
+    beforeEach(function(done) {
       chai.request('localhost:3000')
         .get('/users/' + testUser._id)
         .send({eat: testEat})
