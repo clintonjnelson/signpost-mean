@@ -12,7 +12,7 @@ function SignSchema() {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }  // needed for ALL Signs
   });
 };
-util.inherits(SignSchema, Schema);  // extend mongoose Schema
+util.inherits(SignSchema, mongoose.Schema);  // extend mongoose Schema
 
 // Export Schema for use
 module.exports = SignSchema;

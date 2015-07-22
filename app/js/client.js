@@ -1,11 +1,28 @@
 'use strict'
 
 require('angular/angular');
+require('angular-route'  );
 
-var signpostApp = angular.module('signpostApp', []);
+var signpostApp = angular.module('signpostApp', ['ngRoute']);
 
-// load controllers into App (via module instead of directly)
-require('./sessions/controllers/sessions_controller.js')(signpostApp);
-require('./users/controllers/users_controller.js'      )(signpostApp);
 
-// Anything else put in here will get bundled
+// Services
+require('./services/sessions.js')(signpostApp);
+
+// Controllers
+require('./controllers/sessions_controller.js')(signpostApp);
+require('./controllers/users_controller.js'   )(signpostApp);
+
+// Directives
+
+// Custom View Routes
+signpostApp.config(['$routeProvider'], function($routeProvider) {
+  $routeProvider
+    .when('login', {
+      templateUrl: 'templates/views/login.html'
+    })
+    .when('/auth', {
+      templateUrl: 'templates/views/auth_view.html'
+    })
+
+});

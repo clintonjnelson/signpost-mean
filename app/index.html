@@ -2,35 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LoginPage</title>
+  <title>Signpost</title>
 </head>
 <body data-ng-app="signpostApp">
-  <h1>Create User Area</h1>
-  <div data-ng-controller="usersController">
-    <p>{{notify}}</p>
-    <p>Eat Token is: {{eat}}</p>
-    <form name="makeUser">
-      <label>Username</label>
-      <input type="text" data-ng-model="newUser.username">
-      <label>Password</label>
-      <input type="password" data-ng-model="newUser.password">
-      <label>Email</label>
-      <input type="text" data-ng-model="newUser.email">
-      <button type="submit" data-ng-click="createUser(newUser)"> make User! </button>
-    </form>
-  </div>
-
-  <h1>Login Area</h1>
-  <div data-ng-controller="sessionsController">
-    <p>{{title}}</p>
-    <form name="userLogin">
-      <label>Username</label>
-      <input type="text" data-ng-model="loginData.email">
-      <label>Password</label>
-      <input type="password" data-ng-model="loginData.password">
-      <button type="submit" data-ng-click="login(loginData)"> login </button>
-    </form>
-  </div>
+  <div data-ng-view></div>
 
   <script src='bundle.js'></script>
 </body>
