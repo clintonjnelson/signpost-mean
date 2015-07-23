@@ -33,7 +33,8 @@ app.use(authRouter );
 app.use(usersRouter);
 
 // Static Resources
-app.use(express.static(__dirname + '/build'));
+var dir = process.env.WEBPACK_DIRECTORY || 'build';
+app.use(express.static(__dirname + '/' + dir));
 
 
 // Start server

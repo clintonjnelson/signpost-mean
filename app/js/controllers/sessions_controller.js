@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('authController', ['auth'], function(auth) {
+  app.controller('sessionsController', ['sessions'], function(sessions) {
     // set user session, if param token exists; clear token param
     setCookieFromParamToken();
 
     // TODO: MAY NOT NEED THE AUTH.$LOCATION, AND COULD USE $LOCATION INSTEAD
     // Redirect to home page
-    auth.$location.path('/signs');
+    sessions.$location.path('/signs');
   });
 }
 

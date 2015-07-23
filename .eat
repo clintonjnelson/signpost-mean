@@ -1,3 +1,0 @@
-AUTH_SECRET=superSecretAuth
-MONGOLAB_URI=mongodb://localhost/myApp_dev
-PORT=3000

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('auth', ['$cookies', '$location', '$routeParams'], function($cookies, $location, $routeParams) {
+  app.factory('sessions', ['$cookies', '$location', '$routeParams'], function($cookies, $location, $routeParams) {
     return {
 
       // Session Helpers
