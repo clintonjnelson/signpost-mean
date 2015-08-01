@@ -7,7 +7,7 @@ module.exports = function(app) {
     $scope.errors = [];
     $scope.clearErrors = function() {
       $scope.errors = [];
-    }
+    };
 
     // Show User
     $scope.getUser = function(user) {
@@ -28,19 +28,19 @@ module.exports = function(app) {
       $http.get('/users')
         .success(function(users) {
           // TODO: need to paginate this
-          $scope.users = users
+          $scope.users = users;
         })
-        .error(function() {
+        .error(function(err) {
           console.log('Error retrieving users: ', err);
           // TODO: show error
         });
-    } ;
+    };
 
     // Create User
     $scope.createUser = function() {
       $http.post('/users', $scope.newUser)
         .success(function(data) {
-          $scope.notify = 'user created'
+          $scope.notify = 'user created';
           $scope.eat    = data.eat;
         })
         .error(function(err) {
@@ -48,7 +48,7 @@ module.exports = function(app) {
           $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error creating user');
           // Display validation errors on error.
         });
-    }
+    };
 
     // Edit & Update User
     $scope.editUser = function(user) {
@@ -72,10 +72,10 @@ module.exports = function(app) {
           // success banner or indicator?
           user.temp = null; // clear the temp
         })
-        .error(function() {
+        .error(function(err) {
           console.log('Error updating user: ', err);
           $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error updating user');
-          user.username = user.temp
+          user.username = user.temp;
         });
     };
 

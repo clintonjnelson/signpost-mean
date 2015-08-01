@@ -11,7 +11,7 @@ function SignSchema() {
   this.add({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }  // needed for ALL Signs
   });
-};
+}
 util.inherits(SignSchema, mongoose.Schema);  // extend mongoose Schema
 
 // Export Schema for use

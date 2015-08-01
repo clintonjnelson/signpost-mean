@@ -6,18 +6,23 @@ var mongoose = require('mongoose'     );
 
 // db schema for User
 var UserSchema = mongoose.Schema({
-  basic: {
-    password: { type: String, required: true               }     },
-  confirmed:       { type: Boolean,  default: false              },
-  deleted:         { type: Date,     default: null               },
-  eat:             { type: Number,   default: null               },
-  email:           { type: String,  required: true, unique: true },
-  prt:             { type: String,   default: null               },
-  role:            { type: String,   default: null               },
-  suspended:       { type: Boolean,  default: false              },
-  termsconditions: { type: Date,     default: null               },
-  updated_at:      { type: Date,     default: Date.now           },
-  username:        { type: String,  required: true, unique: true },
+  auth: {
+    basic: {
+      password:    { type: String,    default: null }             },
+    facebook: {
+      facebookId:          { type: String,   default: null    },
+      facebookAccessToken: { type: String,   default: null    },  },
+                                                                      },
+  confirmed:       { type: Boolean,  default: false                   },
+  deleted:         { type: Date,     default: null                    },
+  eat:             { type: Number,   default: null                    },
+  email:           { type: String,  required: true, unique: true      },
+  prt:             { type: String,   default: null                    },
+  role:            { type: String,   default: null                    },
+  suspended:       { type: Boolean,  default: false                   },
+  termsconditions: { type: Date,     default: null                    },
+  updated_at:      { type: Date,     default: Date.now                },
+  username:        { type: String,   default: null                    },
 
   // ObjectId References
   location_id:     { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: false },
@@ -27,8 +32,8 @@ var UserSchema = mongoose.Schema({
 UserSchema.path('basic.password').required(true);
 UserSchema.path('email'         ).required(true);
 UserSchema.path('email'         ).index( { unique: true } );
-UserSchema.path('username'      ).required(true);
-UserSchema.path('username'      ).index( { unique: true } );
+// UserSchema.path('username'      ).required(true);
+// UserSchema.path('username'      ).index( { unique: true } );
 
 
 // Hooks
@@ -51,7 +56,7 @@ UserSchema.methods.generateHash = function generateHash(password, callback) {
 };
 
 UserSchema.methods.checkPassword = function checkPassword(password, callback) {
-  bcrypt.compare(password, this.basic.password, function validatePassword(err, res) {
+  bcrypt.compare(password, this.auth.basic.password, function validatePassword(err, res) {
     if (err) {
       console.log('Error checking password. Error: ', err);
       return callback(err, null);

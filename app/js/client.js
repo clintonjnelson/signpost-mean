@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 require('angular/angular'                  );
 require('angular-animate/angular-animate'  );
@@ -31,5 +31,5 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
     })
     .otherwise({
       redirectTo: '/login'
-    })
+    });
 }]);

@@ -9,6 +9,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jscs'          );
   grunt.loadNpmTasks('grunt-mocha-test'    );
   grunt.loadNpmTasks('grunt-nodemon'       );  // avoid server restarts
+  grunt.loadNpmTasks('grunt-contrib-watch' );
   grunt.loadNpmTasks('grunt-webpack'       );
 
   // Configure Tasks
@@ -72,6 +73,9 @@ module.exports = function(grunt) {
         },
         src: ['test/**/*_test.js']  // all test files
       }
+    },
+    watch: {
+
     },
     webpack: {
       client: { // webpack frontend production

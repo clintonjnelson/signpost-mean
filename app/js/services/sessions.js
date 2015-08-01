@@ -6,7 +6,7 @@ module.exports = function(app) {
 
       // Session Helpers
       isSignedIn: function isSignedIn() {
-        return !!( cookies.get('eat') && $cookies.get('eat').length );
+        return !!( $cookies.get('eat') && $cookies.get('eat').length );
       },
 
       isSignedOut: function isSignedOut() {
@@ -19,9 +19,9 @@ module.exports = function(app) {
         if ($routeParams.token) {     // set user session & redirect to signs
           this.setEat($routeParams.token);
           this.clearTokenParam();
-          $location.path('/signs')
+          $location.path('/signs');
         } else {                      // if not token to set, redirect to login again
-          $location.path('/login')
+          $location.path('/login');
         }
       },
 
@@ -47,9 +47,6 @@ module.exports = function(app) {
         $cookies.put('eat', '' );
         $location.path('/login');
       },
-
-
-
     };
   });
 };
