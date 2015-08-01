@@ -26,6 +26,7 @@
     - livereload
     - mocha
     - minifyCss
+    - nodemon
     - order
     - print
     - rename
@@ -35,13 +36,13 @@
     - util
 
   Available Gulp Tasks:
-  ---------- JSHINTING ----------
+  ------------- JSHINTING -------------
   $ gulp validate-devserver-scripts OO
   $ gulp validate-app-scripts       OO
   $ gulp validate-partials          OO
   $ gulp validate-index             OO
 
-  ---------- BUILDING ----------
+  ---------- PARTIAL BUILDS -----------
   $ gulp build-app-scripts-dev      OO
   $ gulp build-partials-dev         OO
   $ gulp build-app-scripts-prod     OO
@@ -52,7 +53,7 @@
   $ gulp build-index-dev            OO
   $ gulp build-index-prod           OO*
 
-  ---------- BUILDING ----------
+  ---------- COMPLETE BUILDS ----------
   $ gulp build-app-dev              OO
   $ gulp build-app-prod             OO*
   $ gulp clean-build-app-dev        OO
@@ -65,10 +66,10 @@
 
 
 //-------------------------------- MODULES -------------------------------------
-var bf = require('bower-files');
 var bowerFiles = require('main-bower-files' );
 var del        = require('del'              ); // remove directories in clean tasks
 var es         = require('event-stream'     );
+var fs         = require('fs'               );
 var gulp       = require('gulp'             );
 var plugins    = require('gulp-load-plugins')();  // all plugins loaded at once!
 var print      = require('gulp-print'       );    // doesn't work with plugins...
@@ -93,9 +94,13 @@ var paths = {
   distScriptsProd:   'dist/scripts',    // prod env scripts
   scriptsDevServer: ['./lib/**/*.js', './models/**/*.js', './routes/*.js', './server.js']
 };
-var APP_NAME = 'signpost_mean';
 var pipes = {}; // Objects of pipe transforms (named by their output)
-
+var APP_NAME = 'signpost_mean';
+var DEV_ENV_VARS;
+  fs.readFile('./.env-gulp', 'utf8', function(err, data){
+    if(err) { console.log("ERROR READING ENV VARS FILE: ", err); }
+    DEV_ENV_VARS = JSON.parse(data).DEV;
+  });
 
 //--------------------------------- PIPES --------------------------------------
 // (using 'order' plugin) order scripts from vendors in order listed; mid-stream pipe
@@ -369,12 +374,12 @@ gulp.task('clean-build-app-dev', ['clean-dev'], pipes.builtAppDev);
 gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
 
 // clean, build, and watch for changes
-gulp.task('watch-dev', ['clean-build-app-dev', 'validate-devserver-scripts'], function() {
+gulp.task('watch', ['clean-build-app-dev', 'validate-devserver-scripts'], function() {
   // start nodemon watching server
   plugins.nodemon({ script: 'server.js',                  // run this file as server
                     ext:    'js',                         // watch these extensions
                     watch:  paths.serverScripts,          // watch this file
-                    env:    {NODE_ENV: 'development'} })  // dev environment only
+                    env:    DEV_ENV_VARS })  // dev environment only
     .on('change', ['mocha', 'validate-devserver-scripts'])// lint task on any change
     .on('restart', function() {                           // when server restsrt do this
       console.log('[nodemon] restarted the dev server');

@@ -12,4 +12,5 @@
 
 ## Specific Files
 .env
+.env-gulp
 npm-debug.log

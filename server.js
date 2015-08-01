@@ -36,7 +36,6 @@ app.use(usersRouter);
 var dir = process.env.WEBPACK_DIRECTORY || 'build';
 app.use(express.static(__dirname + '/' + dir));
 
-
 // Start server
 app.listen(process.env.PORT || 3000, function() {
   console.log('server running on port ' + (process.env.PORT || 3000));
