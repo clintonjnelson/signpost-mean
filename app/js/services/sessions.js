@@ -24,6 +24,7 @@ module.exports = function(app) {
         $http.get('/login', { headers: { 'Authorization': 'Basic ' + encoded} })
           .success(function(data) {
             this.setEat(data.eat);        // set cookie in App
+            this.setSession();    // set user session for all http requests
             // TODO: SHOW SUCCESS FEEDBACK TO USER
             callback(data);               // pass data to cb
 
@@ -35,23 +36,26 @@ module.exports = function(app) {
           });
       },
 
-      redirect: function(path) {
-        $location.path(path);
+      redirect: function redirect(path) {
+        $location.path(path);      // redirect view here
+      },
+
+      currPath: function currPath() {
+        return $location.path();   // return current path
       },
 
       //----------------------- OAUTH2 AUTH ----------------
       setCookieFromParamToken: function setCookieFromParamToken() {
-        var currLoc = $location.path();
-        console.log('CURRENT LOCATION IS:', currLoc);
-
-        // if session w/ token, load/clear/redirect
-        if ( ($location.path() === '/session') && $routeParams.token) {     // set user session & redirect to signs
-          this.setEat($routeParams.token);
-          this.clearTokenParam();
-          $location.path('/signs');
-        } else if ( currLoc === '/session') {
-          $location.path('/login');  // if no token, redirect to login again
-        }
+        this.setEat($routeParams.token);
+        this.clearTokenParam();
+        // // if session w/ token, load/clear/redirect
+        // if ( ($location.path() === '/session') && $routeParams.token) {     // set user session & redirect to signs
+        //   this.setEat($routeParams.token);
+        //   this.clearTokenParam();
+        //   $location.path('/signs');
+        // } else if ( currLoc === '/session') {
+        //   $location.path('/login');  // if no token, redirect to login again
+        // }
         // other paths, do nothing
       },
 
@@ -71,6 +75,11 @@ module.exports = function(app) {
 
       resetEat: function resetEat() {
         this.logout();
+      },
+
+      setSession: function setSession() {
+        // set session eat header to current value of EAT
+        $http.defaults.headers.common.eat = this.getEat();
       },
 
       logout: function logout() {

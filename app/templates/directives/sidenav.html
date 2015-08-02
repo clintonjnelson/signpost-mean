@@ -1,17 +1,19 @@
 <div layout="row">
   <md-sidenav md-component-id="left" class="md-sidenav-left">
-    <md-list>
-      <md-list-item>
-        List Item
-      </md-list-item>
+    <md-list data-ng-if="isSignedIn">
+      <md-list-item> <p>You're signed in</p>            </md-list-item>
+      <md-list-item> <a href="/#/logout">Logout</a>     </md-list-item>
+      <md-list-item> <a href="/#/signs">Signs Page</a>  </md-list-item>
+    </md-list>
+
+    <md-list data-ng-if="isSignedOut">
+      <md-list-item> <p>You're signed out</p>           </md-list-item>
+      <md-list-item> <a href="/#/login">Login Page</a>  </md-list-item>
     </md-list>
   </md-sidenav>
 
   <md-content>
-    Center Content
-    <md-button ng-click="openLeftMenu()">
-      Open Left Menu
-    </md-button>
+    <i class="fa fa-bars fa-3" data-ng-click="openLeftMenu()"></i>
   </md-content>
 
   <md-sidenav md-component-id="right" md-is-locked-open="mdMedia('min-width:333px')" class="md-sidenav-right">

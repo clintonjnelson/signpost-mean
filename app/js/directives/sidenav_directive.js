@@ -8,11 +8,25 @@ module.exports = function(app) {
       replace:     true,
       templateUrl: '/templates/directives/sidenav.html',
       // scope:
-      controller:  ['$scope', '$mdSidenav', function($scope, $mdSidenav) {
+      controller:  ['$scope', '$mdSidenav', 'sessions', function($scope, $mdSidenav, sessions) {
         $scope.openLeftMenu = function() {
           $mdSidenav('left').toggle();
         };
-      }]
+        $scope.openRightMenu = function() {
+          $mdSidenav('right').toggle();
+        };
+
+
+        $scope.isSignedIn  = sessions.isSignedIn();
+        $scope.isSignedOut = !$scope.isSignedIn;
+        // Set Props to Watch for Changes in Session Values
+        $scope.$watch(
+          function() {return sessions.isSignedIn();},
+          function(newVal) {
+            $scope.isSignedIn = newVal;
+          }
+        );
+      }],
     };
   });
 };

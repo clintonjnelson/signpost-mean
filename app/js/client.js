@@ -28,18 +28,22 @@ require('./directives/login_directive.js'  )(signpostApp);
 signpostApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/signs', {
-      templateUrl: 'templates/views/signs'
+      templateUrl: 'templates/views/signs/signs_view.html'
     })
     .when('/signup', {
-      templateUrl: 'templates/views/users/new.html',
+      templateUrl: 'templates/views/users/new_view.html',
       controller: 'usersController'
     })
     .when('/login', {
-      templateUrl: 'templates/views/login.html',
+      templateUrl: 'templates/views/sessions/login_view.html',
       controller: 'sessionsController'
     })
-    .when('/session', {
-      templateUrl: 'templates/views/sessions_view.html'
+    .when('/oauth', {
+      templateUrl: 'templates/views/sessions/oauth_view.html'
+    })
+    .when('/logout', {
+      templateUrl: 'templates/views/sessions/logout_view.html',
+      controller: 'sessionsController'
     })
     .otherwise({
       redirectTo: '/login'

@@ -11,20 +11,37 @@
 */
 
 module.exports = function(app) {
-  app.controller('sessionsController', ['sessions', '$scope', '$http', '$location', function(sessions, $scope, $http, $location) {
+  app.controller('sessionsController', ['sessions', '$scope', '$http', function(sessions, $scope, $http) {
+    var currPath = sessions.currPath();
 
+    console.log("IN CONTROLLER");
+    //-------------------- LOGOUT ------------------
+    if ( checkPath('/logout') ) {
+      console.log("MADE IT TO LOGOUT");
+      sessions.logout();             // clear token, redirect login
+    }
+
+    //-------------------- OAUTH ------------------
+    if ( checkPath('/oauth') && $routeParams.token) {
+      sessions.setCookieFromParamToken();   // session+token => load/clear/redirect
+      return sessions.redirect('/signs');
+    }
+    if ( checkPath('/oauth') ) {   // no token? login again
+      return sessions.redirect('/login');
+    }
 
     //--------------------- BASIC AUTH ---------------------
     $scope.title = "HELLO WORLD";
     $scope.user = {};
     $scope.login = function(data) {
       sessions.login($scope.user, function(data) {
-        session.redirect('/signs');
+        sessions.redirect('/signs');
       });
     };
 
-    //-------------------- OAUTH ------------------
-    // set user session, if param token exists; clear token param
-    sessions.setCookieFromParamToken();
+
+    function checkPath(path) {
+      return (currPath === path ? true : false);
+    }
   }]);
 };

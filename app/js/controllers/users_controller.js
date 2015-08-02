@@ -41,7 +41,6 @@ module.exports = function(app) {
       $http.post('/users', $scope.newUser)
         .success(function(data) {
           $scope.notify = 'user created';
-          $scope.eat    = data.eat;
         })
         .error(function(err) {
           console.log('Error creating user: ', err);
@@ -78,8 +77,5 @@ module.exports = function(app) {
           user.username = user.temp;
         });
     };
-
-    // Destroy User
-
   }]);
 };
