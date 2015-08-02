@@ -18,7 +18,7 @@ module.exports = function(router) {
 
     newUser.generateHash(req.body.password, function(err, hash) {
       if (err) { return res.status(500).json({ error: true }); }
-      newUser.basic.password = hash;
+      newUser.auth.basic.password = hash;
 
       newUser.save(function(err, user) {
         if (err) { console.log('Error creating user. Error: ', err); }

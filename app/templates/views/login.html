@@ -1,30 +1,4 @@
 <section id="login">
-  <h1 data-ng-href="/auth/facebook">Facebook Signin</h1>
-  <h2>Normal Login</h2>
-  <h1>Create User Area</h1>
-  <div data-ng-controller="usersController">
-    <p>{{notify}}</p>
-    <p>Eat Token is: {{eat}}</p>
-    <form name="makeUser">
-      <label>Username</label>
-      <input type="text" data-ng-model="newUser.username">
-      <label>Password</label>
-      <input type="password" data-ng-model="newUser.password">
-      <label>Email</label>
-      <input type="text" data-ng-model="newUser.email">
-      <button type="submit" data-ng-click="createUser(newUser)"> make User! </button>
-    </form>
-  </div>
-
   <h1>Login Area</h1>
-  <div>
-    <p>{{title}}</p>
-    <form name="userLogin">
-      <label>Username</label>
-      <input type="text" data-ng-model="loginData.email">
-      <label>Password</label>
-      <input type="password" data-ng-model="loginData.password">
-      <button type="submit" data-ng-click="login(loginData)"> login </button>
-    </form>
-  </div>
+  <div data-login-directive></div>
 </section>
