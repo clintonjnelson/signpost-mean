@@ -10,8 +10,8 @@ var Sign       = require('./Sign.js'      );
 // Extend for Custom Schema
 var facebookSignSchema = new SignSchema({
   facebookId:     { type: String, required: true            },
-  facebookName:   { type: String                            },
   facebookPicUrl: { type: String                            },
+  email:          { type: String                            },
   signtype:       { type: String,  default: 'facebook'      },
   icon:           { type: String,  default: 'facebook-box'  },
   bgColor:        { type: String,  default: '#3b5998'       },

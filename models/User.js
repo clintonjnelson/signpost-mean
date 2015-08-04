@@ -16,7 +16,7 @@ var UserSchema = mongoose.Schema({
   confirmed:       { type: Boolean,  default: false                   },
   deleted:         { type: Date,     default: null                    },
   eat:             { type: Number,   default: null                    },
-  email:           { type: String,  required: true, unique: true      },
+  email:           { type: String,                                    },
   prt:             { type: String,   default: null                    },
   role:            { type: String,   default: null                    },
   suspended:       { type: Boolean,  default: false                   },
@@ -29,11 +29,11 @@ var UserSchema = mongoose.Schema({
 });
 
 // Validations
-UserSchema.path('auth.basic.password').required(true);
-UserSchema.path('email'              ).required(true);
-UserSchema.path('email'              ).index( { unique: true } );
-// UserSchema.path('username'      ).required(true);
-// UserSchema.path('username'      ).index( { unique: true } );
+// UserSchema.path('auth.basic.password').required(true);
+// UserSchema.path('email'              ).required(true);
+// UserSchema.path('email'              ).index( { unique: true } );
+// UserSchema.path('username'           ).required(true);
+// UserSchema.path('username'           ).index( { unique: true } );
 
 
 // Hooks

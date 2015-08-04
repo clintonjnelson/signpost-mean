@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
   app.use(bodyparser.json());
 
   // Facebook
-  app.get('/auth/facebook',
+  app.get('/login/facebook',
     passport.authenticate('facebook',
       { session: false,
         scope:   ['public_profile', 'email']
@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
   );
 
   // Facebook Redirect
-  app.get('/auth/facebook/callback',
+  app.get('/login/facebook/callback',
     passport.authenticate('facebook',
       { session:         false,
         failureRedirect: '/#/login'

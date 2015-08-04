@@ -1,16 +1,18 @@
 <main id="signs" layout="row">
   <section data-ng-controller="signsController" data-ng-init="getSigns()" offset="5" flex="90">
     <md-content class="md-padding" >
+
       <!-- EACH CARD SHOULD BE A DIRECTIVE -->
       <md-card data-ng-repeat="sign in signs" layout="row">
-        <a data-ng-href="sign.url">
-          <ng-md-icon ng-if="sign.icon" icon="{{sign.icon}}" style="fill: {{sign.bgcolor}}" size="{{icons.size}}"></ng-md-icon>
+        <a data-ng-href="{{sign.linkUrl}}">
+          <ng-md-icon ng-if="sign.icon" icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
         </a>
         <p>{{ sign.knownAs }}</p>
         <p>
           <sm>{{sign.description}}</sm>
         </p>
       </md-card>
+
     </md-content>
   </section>
   <div flex="5"></div>

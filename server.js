@@ -25,12 +25,13 @@ require('./lib/passport_strategies/basic.js'   )(passport);
 require('./lib/passport_strategies/facebook.js')(passport);
 
 // Populate Routes
-require('./routes/auth_routes.js' )(authRouter,  passport);
 require('./routes/oauth_routes.js')(oauthRouter, passport);
+require('./routes/auth_routes.js' )(authRouter,  passport);
 require('./routes/signs_routes.js')(signsRouter);
 require('./routes/users_routes.js')(usersRouter);
 
 // Route middleware
+app.use(oauthRouter);
 app.use(authRouter );
 app.use(signsRouter);
 app.use(usersRouter);

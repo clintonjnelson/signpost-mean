@@ -8,7 +8,7 @@ module.exports = function(app) {
     // General settings for sign icons display
     $scope.icons = {
       color: '#808080',
-      size:  '90',
+      size:  '120',
     }
 
     // TODO: TAILOR THIS TO GET THE SIGNS OF USER PASSED IN
