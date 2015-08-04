@@ -2,26 +2,61 @@
   <md-sidenav md-component-id="left" class="md-sidenav-left">
     <md-list data-ng-if="isSignedIn">
       <md-list-item> <p>You're signed in</p>            </md-list-item>
-      <md-list-item> <a href="/#/logout">Logout</a>     </md-list-item>
-      <md-list-item> <a href="/#/signs">Signs Page</a>  </md-list-item>
+      <md-list-item>
+        <a data-ng-href="/#/signs">
+          <ng-md-icon icon="label" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          my signs
+        </a>
+      </md-list-item>
+      <md-list-item>
+        <a data-ng-href="/#/logout">
+          <ng-md-icon icon="logout" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          logout
+        </a>
+      </md-list-item>
+      <md-list-item>
+        <a data-ng-href="/#/logout">
+          <ng-md-icon icon="settings" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          setings
+        </a>
+      </md-list-item>
     </md-list>
 
     <md-list data-ng-if="isSignedOut">
       <md-list-item> <p>You're signed out</p>           </md-list-item>
-      <md-list-item> <a href="/#/login">Login Page</a>  </md-list-item>
+      <md-list-item>
+        <md-list>
+          <md-card>
+            login with signpost:
+            <md-content>
+              <div data-login-directive></div>
+            </md-content>
+          </md-card>
+          <br>
+          OR login with...
+          <br/>
+          <ng-md-icon icon="facebook-box" style="fill: {{iconColor}}" size="40" data-ng-href="/login/facbook"></ng-md-icon>
+          <ng-md-icon icon="linkedin-box" style="fill: {{iconColor}}" size="40" data-ng-href="/login/linkedin"></ng-md-icon>
+          <ng-md-icon icon="github-box" style="fill: {{iconColor}}" size="40" data-ng-href="/login/github"></ng-md-icon>
+          <ng-md-icon icon="twitter" style="fill: {{iconColor}}" size="40" data-ng-href="/login/twitter"></ng-md-icon>
+          <ng-md-icon icon="google-plus-box" style="fill: {{iconColor}}" size="40" data-ng-href="/login/google"></ng-md-icon>
+        </md-list>
+      </md-list-item>
     </md-list>
   </md-sidenav>
 
-  <md-content>
-    <i class="fa fa-bars fa-3" data-ng-click="openLeftMenu()"></i>
+  <md-content class="sidenav-menu">
+    <div data-ng-click="openLeftMenu()" class="bg-gray">
+      <ng-md-icon icon="menu" style="fill: white" size="50"></ng-md-icon>
+    </div>
   </md-content>
 
-  <md-sidenav md-component-id="right" md-is-locked-open="mdMedia('min-width:333px')" class="md-sidenav-right">
+  <!-- <md-sidenav md-component-id="right" md-is-locked-open="mdMedia('min-width:333px')" class="md-sidenav-right">
     <form>
       <md-input-container>
         <label for="testInput">Test input</label>
         <input id="testInput" type="text" ng-model="data" md-sidenav-focus>
       </md-input-container>
     </form>
-  </md-sidenav>
+  </md-sidenav> -->
 </div>

@@ -31,7 +31,6 @@ module.exports = function(app) {
     }
 
     //--------------------- BASIC AUTH ---------------------
-    $scope.title = "HELLO WORLD";
     $scope.user = {};
     $scope.login = function(data) {
       sessions.login($scope.user, function(data) {

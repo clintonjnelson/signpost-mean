@@ -16,6 +16,7 @@ module.exports = function(app) {
           $mdSidenav('right').toggle();
         };
 
+        $scope.iconColor = '#955251';
 
         $scope.isSignedIn  = sessions.isSignedIn();
         $scope.isSignedOut = !$scope.isSignedIn;

@@ -1,3 +1,78 @@
-h1 {
-  color: red;
+
+/*
+http://www.color-hex.com/color/a6a6a6
+5a5a5a    DARK Grey
+676767
+737373
+8d8d8d
+9a9a9a
+a6a6a6
+b7b7b7
+c9c9c9    LIGHT Grey
+e4e4e4
+ffffff    white
+*/
+
+
+body {
+  background-color: #808080;
 }
+
+/*General Background Color*/
+.bg-gray {
+  background-color: #808080;
+}
+
+
+
+/*General In-Page Title Formatting*/
+.view-h2 {
+  color: #a6a6a6;
+  text-align: center;
+}
+
+/*Sidenav Hamburger Menu*/
+.sidenav-menu {
+  left: 50%;
+  /*20top & 25left*/
+}
+.sidenav-menu svg:hover {
+  fill: #955251 !important;
+}
+/*Sidenav Menu (open)*/
+.md-sidenav-left {
+  background-color: #c9c9c9;
+}
+
+/*New Sign Fab*/
+.fab-plus svg {
+  fill: #808080 !important;
+  height: 30px;
+  vertical-align: middle;
+}
+.fab-plus:hover svg {
+  fill: white !important;
+}
+.fab-color-newsign {
+  background-color: white !important;
+}
+.fab-color-newsign:hover {
+  background-color: #955251 !important;
+}
+
+/*Sign Form*/
+.sign-form-types-container {
+  display: inline-block;
+}
+.sign-form-type {
+  float: left;
+}
+/*Create Sign Button*/
+.md-button.md-fab.fab-color-grey {
+  background-color: #676767;
+  color: white;
+}
+.md-button.md-fab.fab-color-grey:hover {
+  background-color: #955251;
+}
+

@@ -8,25 +8,32 @@ require('angular-cookies'                  );
 require('angular-material/angular-material');
 require('angular-route'                    );
 
-var ngModules = ['ngRoute', 'ngCookies', 'ngMaterial', 'base64'];
+var ngModules = ['ngRoute', 'ngCookies', 'ngMaterial', 'base64', 'ngMdIcons'];
 
 var signpostApp = angular.module('signpostApp', ngModules);
 
 
 // Services
-require('./services/sessions.js')(signpostApp);
+require('./services/sessions.js'     )(signpostApp);
+require('./services/rest_resource.js')(signpostApp);
 
 // Controllers
-require('./controllers/sessions_controller.js')(signpostApp);
 require('./controllers/users_controller.js'   )(signpostApp);
+require('./controllers/sessions_controller.js')(signpostApp);
+require('./controllers/signs_controller.js'   )(signpostApp);
+
 
 // Directives
-require('./directives/sidenav_directive.js')(signpostApp);
-require('./directives/login_directive.js'  )(signpostApp);
+require('./directives/login_directive.js'    )(signpostApp);
+require('./directives/sidenav_directive.js'  )(signpostApp);
+require('./directives/sign_form_directive.js')(signpostApp);
 
 // Custom View Routes
 signpostApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
+    .when('/signs/new', {
+      templateUrl: 'templates/views/signs/new_view.html'
+    })
     .when('/signs', {
       templateUrl: 'templates/views/signs/signs_view.html'
     })
@@ -49,3 +56,4 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       redirectTo: '/login'
     });
 }]);
+

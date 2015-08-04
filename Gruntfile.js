@@ -22,11 +22,11 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      html: {
+      htmlcss: {
         cwd: 'app/',
         expand: true,
         flatten: false,
-        src: '**/*.html',
+        src: ['**/*.html', '**/*.css'],
         dest: 'build/',
         filter: 'isFile'
       }
@@ -108,9 +108,9 @@ module.exports = function(grunt) {
   });
 
   // Custom Task Chains
-  grunt.registerTask('test',       ['jshint:dev', 'jscs', 'mochaTest']);
-  grunt.registerTask('build:dev',  ['copy:html', 'webpack:client'    ]);
-  grunt.registerTask('build:test', ['copy:html', 'webpack:test'      ]);
-  grunt.registerTask('build',      ['build:dev'                      ]);
-  grunt.registerTask('default',    ['test', 'build'                  ]);
+  grunt.registerTask('test',       ['jshint:dev', 'jscs', 'mochaTest'   ]);
+  grunt.registerTask('build:dev',  ['copy:htmlcss', 'webpack:client'    ]);
+  grunt.registerTask('build:test', ['copy:htmlcss', 'webpack:test'      ]);
+  grunt.registerTask('build',      ['build:dev'                         ]);
+  grunt.registerTask('default',    ['test', 'build'                     ]);
 };

@@ -8,6 +8,7 @@ var app      = express();
 // Routers
 var authRouter  = new express.Router();
 var oauthRouter = new express.Router();
+var signsRouter = new express.Router();
 var usersRouter = new express.Router();
 
 // TEMP ENVIRONMENT VARIABLE
@@ -26,10 +27,12 @@ require('./lib/passport_strategies/facebook.js')(passport);
 // Populate Routes
 require('./routes/auth_routes.js' )(authRouter,  passport);
 require('./routes/oauth_routes.js')(oauthRouter, passport);
+require('./routes/signs_routes.js')(signsRouter);
 require('./routes/users_routes.js')(usersRouter);
 
 // Route middleware
 app.use(authRouter );
+app.use(signsRouter);
 app.use(usersRouter);
 
 // Static Resources

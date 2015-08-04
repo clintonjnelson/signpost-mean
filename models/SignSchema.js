@@ -9,7 +9,10 @@ function SignSchema() {
 
   // Schema fields
   this.add({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }  // needed for ALL Signs
+    userId:       { type: mongoose.Schema.Types.ObjectId, ref: 'User' },  // needed for ALL Signs
+    knownAs:      { type: String                                      },
+    description:  { type: String                                      },
+    linkUrl:      { type: String                                      },
   });
 }
 util.inherits(SignSchema, mongoose.Schema);  // extend mongoose Schema
