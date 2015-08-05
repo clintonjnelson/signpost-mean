@@ -77,6 +77,19 @@ module.exports = function(app) {
         this.logout();
       },
 
+      // TODO: SEND & SAVE THIS
+      getUser: function getUser() {
+        // return $cookies.get('user');
+        return {
+          permissions: ['user'],
+          _id: 1
+        };
+      },
+
+      setUser: function setUser(user) {
+        $cookies.set('user', user);
+      },
+
       setSession: function setSession() {
         // set session eat header to current value of EAT
         $http.defaults.headers.common.eat = this.getEat();

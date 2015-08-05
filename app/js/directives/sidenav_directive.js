@@ -16,15 +16,17 @@ module.exports = function(app) {
           $mdSidenav('right').toggle();
         };
 
-        $scope.iconColor = '#955251';
+        $scope.iconColor = '#955251';     // TODO: break out to directive later
 
         $scope.isSignedIn  = sessions.isSignedIn();
         $scope.isSignedOut = !$scope.isSignedIn;
+        // $scope.isSignedOut = !$scope.isSignedIn;
         // Set Props to Watch for Changes in Session Values
         $scope.$watch(
           function() {return sessions.isSignedIn();},
           function(newVal) {
             $scope.isSignedIn = newVal;
+            $scope.isSignedOut = !newVal;
           }
         );
       }],

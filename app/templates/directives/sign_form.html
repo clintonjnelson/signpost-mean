@@ -1,5 +1,5 @@
 <aside>
-  <h2 class="view-h2">New Sign</h2>
+  <h2 class="view-h2">new {{sign.type}} sign</h2>
   <!-- <p>Button Selector for Type (FB, LI, TW, G+, Custom, etc)</p>
   <p>Link to your Sign</p>
   <p>Description</p>
@@ -14,9 +14,9 @@
           <div class="sign-form-types-container">
             <!-- TODO: Make this a require input field - button selected-->
             <div data-ng-repeat="type in TYPES" class="sign-form-type">
-              <div data-ng-click="sign.type=type.type">
+              <div data-ng-click="sign.type=type.type" ng-show="{{!type.disabled}}">
                 <md-tooltip>{{type.type}}</md-tooltip>
-                <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{size}}" class="sign-selector"></ng-md-icon>
+                <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{size}}" ng-class="activeColor(type.type)" class="sign-selector"></ng-md-icon>
               </div>
             </div>
           </div>

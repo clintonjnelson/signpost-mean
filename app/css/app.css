@@ -23,6 +23,15 @@ body {
   background-color: #808080;
 }
 
+/*COLORS*/
+.facebook-color {
+  fill: #3b5998 !important;
+}
+.custom-color {
+  fill: #955251 !important;
+}
+
+
 
 
 /*General In-Page Title Formatting*/
@@ -33,8 +42,9 @@ body {
 
 /*Sidenav Hamburger Menu*/
 .sidenav-menu {
-  left: 50%;
-  /*20top & 25left*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sidenav-menu svg:hover {
   fill: #955251 !important;

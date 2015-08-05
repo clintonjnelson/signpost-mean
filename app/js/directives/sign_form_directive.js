@@ -14,27 +14,37 @@ module.exports = function(app) {
 
         //----------------- $scope PROPS ----------------
         $scope.TYPES = [
-          { type: 'facebook',       icon: 'facebook-box'    },
-          { type: 'github',         icon: 'github-box'      },
-          { type: 'twitter',        icon: 'twitter'         },
-          { type: 'google',         icon: 'google-plus-box' },
-          { type: 'instagram',      icon: 'instagram'       },
-          { type: 'linkedin',       icon: 'linkedin-box'    },
-          { type: 'wordpress',      icon: 'wordpress'       },
-          { type: 'tumblr',         icon: 'tumblr'          },
-          { type: 'stackoverflow',  icon: 'stackoverflow'   },
-          { type: 'pintrest',       icon: 'pintrest-box'    },
-          { type: 'custom',         icon: 'add_box'         },
+          { type: 'custom',         icon: 'label'          , disabled: false  },
+          { type: 'facebook',       icon: 'facebook-box'   , disabled: false  },
+          { type: 'github',         icon: 'github-box'     , disabled: true   },
+          { type: 'twitter',        icon: 'twitter'        , disabled: true   },
+          { type: 'google',         icon: 'google-plus-box', disabled: true   },
+          { type: 'instagram',      icon: 'instagram'      , disabled: true   },
+          { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true   },
+          { type: 'wordpress',      icon: 'wordpress'      , disabled: true   },
+          { type: 'tumblr',         icon: 'tumblr'         , disabled: true   },
+          { type: 'stackoverflow',  icon: 'stackoverflow'  , disabled: true   },
+          { type: 'pintrest',       icon: 'pintrest-box'   , disabled: true   },
         ];
 
+        // sign options?
         $scope.options = [
           {name: 'picture', selected: true}
         ];
+
+
         $scope.color = '#5a5a5a';
-        $scope.size = '40';
-        $scope.sign = {};
+        $scope.size  = '40';
+        $scope.sign  = {};
 
+        // set sign name at top
+        $scope.title = $scope.sign.type || '';
 
+        // toggle active color class
+        $scope.activeColor = function(type) {
+          var active = $scope.sign.type
+          return (type === active ? (active + "-color" ) : $scope.color);
+        };
 
         //----------------- $scope FUNCTIONS ----------------
         // Create Sign Action
