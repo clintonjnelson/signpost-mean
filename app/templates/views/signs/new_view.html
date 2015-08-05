@@ -1,3 +1,12 @@
-<section id="newSign">
-  <div data-sign-form-directive></div>
+<section id="newSign" data-ng-controller='signFormController'>
+  <div data-sign-form-directive
+       data-active-color="activeColor(type)"
+       data-button-name="add"
+       data-defaults="defaults"
+       data-form-type="new"
+       data-options="options"
+       data-sign="sign"
+       data-submit-action="createSign(sign)"
+       data-types="types">
+  </div>
 </section>

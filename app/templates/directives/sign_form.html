@@ -1,22 +1,28 @@
+
+
 <aside>
-  <h2 class="view-h2">new {{sign.type}} sign</h2>
-  <!-- <p>Button Selector for Type (FB, LI, TW, G+, Custom, etc)</p>
-  <p>Link to your Sign</p>
-  <p>Description</p>
-  <p>Custom options per type (friend-me, connect, etc)</p>
-  <p>Custom Checkbox for showing info: picture? Etc.</p> -->
+  <!--
+  Icon Selector: Type (FB, LI, TW, G+, Custom, etc)
+  URL Input: to your Sign
+  knownAs input: your username or what you're known as
+  Description Input: short desc
+  Custom options per type (friend-me, connect, etc)
+  Custom Checkbox for showing info: picture? Etc.
+-->
+  <h2 class="view-h2">{{formType}} {{sign.type || ''}} sign</h2>
+
   <div layout="row">
     <md-content layout-padding layout="column" flex="90" offset="5">
-      <form name="signForm" data-ng-Submit="signFormSubmit(sign)">
+      <form name="signForm" data-ng-Submit="submitAction({sign: sign})">
 
         <!-- Sign Type Selection-->
         <md-input-container>
           <div class="sign-form-types-container">
             <!-- TODO: Make this a require input field - button selected-->
-            <div data-ng-repeat="type in TYPES" class="sign-form-type">
+            <div data-ng-repeat="type in types" class="sign-form-type">
               <div data-ng-click="sign.type=type.type" ng-show="{{!type.disabled}}">
                 <md-tooltip>{{type.type}}</md-tooltip>
-                <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{size}}" ng-class="activeColor(type.type)" class="sign-selector"></ng-md-icon>
+                <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon>
               </div>
             </div>
           </div>
@@ -24,22 +30,22 @@
 
         <!-- Sign Url -->
         <md-input-container md-float layout="row">
-          <ng-md-icon icon="public" style="fill: {{color}}" size="40"></ng-md-icon>
+          <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
           <input type="url" data-ng-model="sign.link" placeholder="eg: http://www.somesite.com/...." required>
         </md-input-container>
 
         <!-- Known As -->
         <md-input-container md-float layout="row">
-          <ng-md-icon icon="public" style="fill: {{color}}" size="40"></ng-md-icon>
+          <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
           <input type="text" data-ng-model="sign.knownAs" placeholder="eg: @itsmeee">
         </md-input-container>
 
         <!-- Sign Description -->
         <md-input-container md-no-float layout="row">
-          <ng-md-icon icon="info" style="fill: {{color}}" size="40"></ng-md-icon>
+          <ng-md-icon icon="info" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
           <input type="text" name="desc" data-ng-model="sign.description" placeholder="short sign description" md-maxlength="160">
 
-          <div data-ng-messages="signform.desc.$error" data-ng-show="signForm.desc.$dirty">
+          <div data-ng-messages="signForm.desc.$error" data-ng-show="signForm.desc.$dirty">
             <div data-ng-message="maxlength">Please shorten your description (160 chars max).</div>
           </div>
 
@@ -55,7 +61,7 @@
 
         <!-- Submit Icon Button -->
         <md-button class="md-fab fab-color-grey" type="submit" ng-disabled="signForm.$invalid">
-          add
+          {{buttonName}}
         </md-button>
       </form>
     </md-content>

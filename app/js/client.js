@@ -22,9 +22,10 @@ require('./services/access.js'       )(signpostApp);
 require('./runs/route_access_intercept.js')(signpostApp);
 
 // Controllers
-require('./controllers/users_controller.js'   )(signpostApp);
-require('./controllers/sessions_controller.js')(signpostApp);
-require('./controllers/signs_controller.js'   )(signpostApp);
+require('./controllers/users_controller.js'     )(signpostApp);
+require('./controllers/sessions_controller.js'  )(signpostApp);
+require('./controllers/sign_form_controller.js' )(signpostApp);
+require('./controllers/signs_controller.js'     )(signpostApp);
 
 // Directives
 require('./directives/login_directive.js'    )(signpostApp);
@@ -44,6 +45,10 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
     //------------------- SIGNS ROUTES -----------------
     .when('/signs/new', {
       templateUrl: 'templates/views/signs/new_view.html',
+      access: ownerAccess,
+    })
+    .when('/signs/edit/:signid', {
+      templateUrl: 'templates/views/signs/edit_view.html',
       access: ownerAccess,
     })
     .when('/signs/:username', {
