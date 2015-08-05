@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.controller('sessionsController', ['sessions', '$scope', '$http', '$routeParams', function(sessions, $scope, $http, $routeParams) {
     var currPath = sessions.currPath();
 
-    console.log("IN SESSIONS CONTROLLER");
     //-------------------- LOGOUT ------------------
     if ( checkPath('/logout') ) {
       console.log("MADE IT TO LOGOUT");

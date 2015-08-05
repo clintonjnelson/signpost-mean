@@ -31,19 +31,21 @@ module.exports = function(app) {
         $scope.options = [
           {name: 'picture', selected: true}
         ];
+        // initial sign object
+        $scope.sign  = {};
 
-
+        // defaults
         $scope.color = '#5a5a5a';
         $scope.size  = '40';
-        $scope.sign  = {};
+
 
         // set sign name at top
         $scope.title = $scope.sign.type || '';
 
-        // toggle active color class
-        $scope.activeColor = function(type) {
-          var active = $scope.sign.type
-          return (type === active ? (active + "-color" ) : $scope.color);
+        // toggle clicked color to active class
+        $scope.activeColor = function(type) { // pass type of clicked icon
+          var activeType = $scope.sign.type;  // set current active type
+          return (type === activeType ? (activeType + "-color" ) : 'default-form-icon');
         };
 
         //----------------- $scope FUNCTIONS ----------------
@@ -52,7 +54,6 @@ module.exports = function(app) {
         $scope.signFormSubmit = function(sign) {
           console.log("DATA TO SEND IS: ", sign);
           console.log('HIT ACTION, ABOUT TO SEND...');
-          // sign.type = $scope.sign.type;
           SignHttp.create({sign: sign}, function(err, data) {
             if (err) {return console.log('ERROR IN CREATING: ', err);}
             console.log("SUCCESS! Data here: ", data);
