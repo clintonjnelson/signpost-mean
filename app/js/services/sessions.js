@@ -48,15 +48,6 @@ module.exports = function(app) {
       setCookieFromParamToken: function setCookieFromParamToken() {
         this.setEat($routeParams.token);
         this.clearTokenParam();
-        // // if session w/ token, load/clear/redirect
-        // if ( ($location.path() === '/session') && $routeParams.token) {     // set user session & redirect to signs
-        //   this.setEat($routeParams.token);
-        //   this.clearTokenParam();
-        //   $location.path('/signs');
-        // } else if ( currLoc === '/session') {
-        //   $location.path('/login');  // if no token, redirect to login again
-        // }
-        // other paths, do nothing
       },
 
       clearTokenParam: function clearTokenParam() {
@@ -73,7 +64,7 @@ module.exports = function(app) {
         $cookies.put('eat', eat);
       },
 
-      resetEat: function resetEat() {
+      resetEat: function resetSession() {
         this.logout();
       },
 
@@ -87,7 +78,7 @@ module.exports = function(app) {
       },
 
       setUser: function setUser(user) {
-        $cookies.set('user', user);
+        $cookies.put('user', user);
       },
 
       setSession: function setSession() {
@@ -97,6 +88,7 @@ module.exports = function(app) {
 
       logout: function logout() {
         $cookies.put('eat', '' );
+        $cookies.put('user', '');
         $location.path('/login');
       },
     };

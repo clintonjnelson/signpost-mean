@@ -3,19 +3,26 @@
 // TODO: Restructure this to return promises instead of provide callbacks
 
 module.exports = function(app) {
-  var handleSuccess = function(callback) {
-    return function(data) {
-      callback(null, data);
-    };
-  };
-
-  var handleError = function(callback) {
-    return function(err) {
-      callback(err, null);
-    };
-  };
 
   app.factory('RESTResource', ['$http', 'sessions', function($http, sessions) {
+
+      var handleSuccess = function(callback) {
+        return function(data) {
+          callback(null, data);
+        };
+      };
+
+      var handleError = function(callback) {
+        return function(err) {
+          if (err && err.reset) {
+            // TODO: DISPLAY A NOTICE TO THE USER TO PLEASE LOG BACK IN
+            sessions.resetEat();
+          }
+          callback(err, null);
+        };
+      };
+
+
     return function(resourceName) {
 
       // set session token in req header
