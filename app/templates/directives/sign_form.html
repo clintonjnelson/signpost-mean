@@ -9,62 +9,56 @@
   Custom options per type (friend-me, connect, etc)
   Custom Checkbox for showing info: picture? Etc.
 -->
-  <h2 class="view-h2">{{formType}} {{sign.type || ''}} sign</h2>
+  <md-card>
+    <h2 class="view-h2">{{formType}} {{sign.type || ''}} sign</h2>
 
-  <div layout="row">
-    <md-content layout-padding layout="column" flex="90" offset="5">
-      <form name="signForm" data-ng-Submit="submitAction({sign: sign})">
+    <div layout="row">
+      <md-content layout-padding layout="column" flex="90" offset="5">
+        <form name="signForm" data-ng-Submit="submitAction({sign: newSign})">
 
-        <!-- Sign Type Selection-->
-        <md-input-container>
-          <div class="sign-form-types-container">
-            <!-- TODO: Make this a require input field - button selected-->
-            <div data-ng-repeat="type in types" class="sign-form-type">
-              <div data-ng-click="sign.type=type.type" ng-show="{{!type.disabled}}">
-                <md-tooltip>{{type.type}}</md-tooltip>
-                <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon>
+          <!-- Sign Type Selection-->
+          <md-input-container>
+            <div class="sign-form-types-container">
+              <!-- TODO: Make this a require input field - button selected-->
+              <div data-ng-repeat="type in types" class="sign-form-type">
+                <div data-ng-click="sign.type=type.type" ng-show="{{!type.disabled}}">
+                  <md-tooltip>{{type.type}}</md-tooltip>
+                  <ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon>
+                </div>
               </div>
             </div>
-          </div>
-        </md-input-container>
+          </md-input-container>
 
-        <!-- Sign Url -->
-        <md-input-container md-float layout="row">
-          <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
-          <input type="url" data-ng-model="sign.link" placeholder="eg: http://www.somesite.com/...." required>
-        </md-input-container>
+          <!-- Sign Url -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
+            <input type="url" data-ng-model="sign.link" placeholder="http://www.somesite.com/...." required>
+          </md-input-container>
 
-        <!-- Known As -->
-        <md-input-container md-float layout="row">
-          <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
-          <input type="text" data-ng-model="sign.knownAs" placeholder="eg: @itsmeee">
-        </md-input-container>
+          <!-- Known As -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
+            <input type="text" data-ng-model="sign.knownAs" placeholder="eg: @itsmeee">
+          </md-input-container>
 
-        <!-- Sign Description -->
-        <md-input-container md-no-float layout="row">
-          <ng-md-icon icon="info" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
-          <input type="text" name="desc" data-ng-model="sign.description" placeholder="short sign description" md-maxlength="100">
+          <!-- Sign Description -->
+          <md-input-container md-no-float layout="row">
+            <ng-md-icon icon="info" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
+            <input type="text" name="desc" data-ng-model="sign.description" placeholder="short sign description" md-maxlength="100">
 
-          <div data-ng-messages="signForm.desc.$error" data-ng-show="signForm.desc.$dirty">
-            <div data-ng-message="maxlength">Please shorten your description (160 chars max).</div>
-          </div>
+            <div data-ng-messages="signForm.desc.$error" data-ng-show="signForm.desc.$dirty">
+              <div data-ng-message="maxlength">Description too long</div>
+            </div>
 
-        </md-input-container>
+          </md-input-container>
 
-        <!-- Sign Options. TODO: Apply Filter per Type -->
-   <!--      <label>Options:</label>
-        <div data-ng-repeat="option in options">
-          <label>{{option.name}}</label>
-          <input type="checkbox" data-ng-model="option.selected">{{option.name}}
-        </div>
-        <br> -->
-
-        <!-- Submit Icon Button -->
-        <md-button class="md-fab fab-color-grey" type="submit" ng-disabled="signForm.$invalid">
-          {{buttonName}}
-        </md-button>
-      </form>
-    </md-content>
-    <div flex></div>
-  </div>
+          <!-- Submit Icon Button -->
+          <md-button class="md-fab fab-color-grey" type="submit" ng-disabled="signForm.$invalid">
+            {{buttonName}}
+          </md-button>
+        </form>
+      </md-content>
+      <div flex></div>
+    </div>
+  </md-card>
 </aside>

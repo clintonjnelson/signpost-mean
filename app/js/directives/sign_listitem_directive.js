@@ -10,8 +10,9 @@ module.exports = function(app) {
       scope: {
         icons:          '=',
         sign:           '=',
+        types:          '=',
         toggleEditing:  '&',
-        updateSign:     '&',
+        submitAction:   '&',
       },
     };
 

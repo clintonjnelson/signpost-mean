@@ -1,12 +1,13 @@
 <md-card id="{{'sign_' + sign._id}}" layout="row">
-
     <div class="sign-listitem-icon">
       <a data-ng-href="{{sign.linkUrl}}">
         <ng-md-icon icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
       </a>
     </div>
 
-    <div class="sign-listitem-info" layout="column">
+  <div layout="column">
+
+    <div class="sign-listitem-info" layout="column" flex>
 
       <!-- knownAs form OR input -->
       <div class="sign-listitem-content" ng-if="!sign.isEditing">
@@ -20,7 +21,7 @@
       </div>
 
       <!-- Make this a directive to insert -->
-      <form name="signForm" data-ng-submit="updateSign({sign: sign})" class="sign-listitem-form" layout="column" ng-if="sign.isEditing">
+      <form flex name="signForm" class="sign-listitem-form" layout="column" ng-if="sign.isEditing">
 
         <!-- @username -->
         <md-input-container layout="row">
@@ -41,7 +42,7 @@
         </md-input-container>
 
         <div ng-if="sign.isEditing">
-          <a data-ng-click="updateSign({sign: sign})" type="submit" class="sign-listitem-saveicon" >
+          <a data-ng-click="submitAction({sign: sign})" type="submit" class="sign-listitem-saveicon" >
             <ng-md-icon icon="check" style="fill: green" size="20"></ng-md-icon>
           </a>
           <a data-ng-click="toggleEditing({sign: sign})" class="sign-listitem-cancelicon">
@@ -51,6 +52,7 @@
       </form>
     </div>
 
+  </div>
 
   <!--
     Sign Icon Link (left) w/color of sign or custom

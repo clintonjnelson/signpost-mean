@@ -1,46 +1,44 @@
-<main id="signs" layout="row">
+<div data-ng-controller="signsController" data-ng-init="getSigns()" >
 
-  <section data-ng-controller="signsController" data-ng-init="getSigns()" offset="5" flex="90">
-    <md-content class="md-padding">
+  <main id="signsview" layout="row">
 
-      <!-- Make isolate sign for each  -->
-      <div data-ng-repeat="sign in signs"
-           layout="row"
-           data-sign-listitem-directive
-             data-icons="icons"
-             data-sign="sign"
-             data-toggle-editing="toggleEditing(sign)"
-             data-update-sign="updateSign(sign)">
-      </div>
+    <section offset="5" flex="90">
+      <md-content class="md-padding">
 
-    </md-content>
-  </section>
-  <div flex="5"></div>
-</main>
+        <!-- Make isolate sign for each  -->
+        <div data-ng-repeat="sign in signs"
+             layout="row"
+             data-sign-listitem-directive
+               data-icons="icons"
+               data-sign="sign"
+               data-toggle-editing="toggleEditing(sign)"
+               data-submit-action="updateSign(sign)">
+        </div>
 
-<nav>
-  <!-- Add New Sign -->
-  <md-button class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-href="/#/signs/new">
-    <ng-md-icon icon="add" style="fill: #ffffff" size="40" class="fab-plus"></ng-md-icon>
-  </md-button>
-</nav>
-<!--
-<section data-ng-controller="signsController" data-ng-init="getSigns()" offset="5" flex="90">
-    <md-content class="md-padding" >
+        <div ng-show="newSign.isEditing"
+             data-sign-form-directive
+               data-active-color="activeColor(type)"
+               data-button-name="add"
+               data-defaults="defaults"
+               data-form-type="new"
+               data-options="options"
+               data-sign="newSign"
+               data-submit-action="createSign(sign)"
+               data-toggle-editing="toggleEditing(sign)"
+               data-types="types">
+        </div>
+      </md-content>
+    </section>
+    <div flex="5"></div>
+  </main>
 
-      <md-card data-ng-repeat="sign in signs" layout="row">
-        <a data-ng-href="{{sign.linkUrl}}">
-          <ng-md-icon ng-if="sign.icon" icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
-        </a>
-        <p>{{ sign.knownAs }}</p>
-        <p>
-          <sm>{{sign.description}}</sm>
-        </p>
-        <a data-ng-href="/sign/edit/{{sign._id}}">
-          <ng-md-icon icon="edit" style="fill: black" size="40"></ng-md-icon>
-        </a>
-      </md-card>
+  <nav>
+    <!-- Add New Sign -->
+    <md-button ng-hide="newSign.isEditing" class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-click="toggleEditing(newSign)">
+      <ng-md-icon icon="add" style="fill: #ffffff" size="40" class="fab-plus"></ng-md-icon>
+    </md-button>
 
-    </md-content>
-  </section>
-  <div flex="5"></div> -->
+  </nav>
+
+</div>
+
