@@ -58,6 +58,9 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/views/users/new_view.html',
       controller: 'usersController'
     })
+    .when('/greet', {
+      templateUrl: 'templates/views/greet_view.html'
+    })
     .when('/login', {
       templateUrl: 'templates/views/sessions/login_view.html',
       controller: 'sessionsController',
@@ -72,6 +75,6 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       access: ownerAccess,
     })
     .otherwise({
-      redirectTo: '/login'
+      redirectTo: '/greet'
     });
 }]);

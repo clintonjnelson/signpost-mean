@@ -16,7 +16,7 @@ module.exports = function(app) {
           $mdSidenav('right').toggle();
         };
 
-        $scope.iconColor = '#955251';     // TODO: break out to directive later
+        $scope.iconColor = '#ffffff';     // TODO: break out to directive later
 
         $scope.isSignedIn  = sessions.isSignedIn();
         $scope.isSignedOut = !$scope.isSignedIn;

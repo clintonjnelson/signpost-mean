@@ -2,58 +2,63 @@
   <md-sidenav md-component-id="left" class="md-sidenav-left">
     <md-list data-ng-if="isSignedIn">
       <md-list-item> <p>You're signed in</p>            </md-list-item>
-      <md-list-item>
+
+      <!-- MAKE THIS A NG-REPEAT DIRECTIVE -->
+      <md-list-item class="sidenav-link">
         <a data-ng-href="/#/signs">
-          <ng-md-icon icon="label" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          <ng-md-icon class="sidenav-link-icon" icon="label" style="fill: #ffffff" size="40"></ng-md-icon>
           my signs
         </a>
       </md-list-item>
-      <md-list-item>
+      <md-list-item class="sidenav-link">
         <a data-ng-href="/#/logout">
-          <ng-md-icon icon="logout" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          <ng-md-icon class="sidenav-link-icon" icon="logout" style="fill: #ffffff" size="40"></ng-md-icon>
           logout
         </a>
       </md-list-item>
-      <md-list-item>
+      <md-list-item class="sidenav-link">
         <a data-ng-href="/#/logout">
-          <ng-md-icon icon="settings" style="fill: {{iconColor}}" size="40"></ng-md-icon>
+          <ng-md-icon class="sidenav-link-icon" icon="settings" style="fill: #ffffff" size="40"></ng-md-icon>
           setings
         </a>
       </md-list-item>
     </md-list>
 
+    <!-- MAKE LINKS INTO A NG-REPEAT DIRECTIVE -->
     <md-list data-ng-if="isSignedOut">
-      <md-list-item> <p>You're signed out</p>           </md-list-item>
+      <md-list-item>
+        <h2 class="sidenav-main-title">Welcome to Signpost</h2>
+      </md-list-item>
       <md-list-item>
         <md-list>
-          <md-card>
-            login with signpost:
-            <md-content>
+
+          <!-- Signpost Login Form -->
+          <md-card class="sidenav-login">
+            <h4 class="sidenav-login-title"> login with signpost </h4>
+            <md-content class="md-padding md-default-theme sidenav-login-content">
               <div data-login-directive></div>
             </md-content>
           </md-card>
           <br>
-          OR login with...
+
+          <!-- Oauth Login Links -->
+          Signup or Login with:
           <br/>
-          <a data-ng-href="/login/facebook">
-            <ng-md-icon icon="facebook-box" style="fill: {{iconColor}}" size="40" ></ng-md-icon>
+          <a data-ng-href="/login/facebook" class="sidenav-link">
+            <ng-md-icon class="sidenav-link-icon" icon="facebook-box" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
-          <a data-ng-href="/login/linkedin">
-            <ng-md-icon icon="linkedin-box" style="fill: {{iconColor}}" size="40" ></ng-md-icon>
+          <a data-ng-href="/login/linkedin" class="sidenav-link">
+            <ng-md-icon class="sidenav-link-icon" icon="linkedin-box" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
-          <a data-ng-href="/login/github">
-            <ng-md-icon icon="github-box" style="fill: {{iconColor}}" size="40" ></ng-md-icon>
+          <a data-ng-href="/login/google" class="sidenav-link">
+            <ng-md-icon class="sidenav-link-icon" icon="google-plus-box" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
-          <a data-ng-href="/login/twitter">
-            <ng-md-icon icon="twitter" style="fill: {{iconColor}}" size="40" ></ng-md-icon>
+          <a data-ng-href="/login/github" class="sidenav-link">
+            <ng-md-icon class="sidenav-link-icon" icon="github-box" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
-          <a data-ng-href="/login/google">
-            <ng-md-icon icon="google-plus-box" style="fill: {{iconColor}}" size="40" ></ng-md-icon>
+          <a data-ng-href="/login/twitter" class="sidenav-link">
+            <ng-md-icon class="sidenav-link-icon" icon="twitter" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
-
-
-
-
 
         </md-list>
       </md-list-item>

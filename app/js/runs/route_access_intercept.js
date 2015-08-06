@@ -10,8 +10,8 @@ module.exports = function routeAccessIntercept(app) {
     $rootScope.$on('$routeChangeStart', function(event, next) {
       var authorized;
 
-      // if need to direct & wasn't orig going to /login
-      if (redirectBackAfterLogin && (next.originalPath !== '/login') ) {
+      // if need to direct & wasn't orig going to /greet
+      if (redirectBackAfterLogin && (next.originalPath !== '/greet') ) {
         redirectBackAfterLogin = false;               // set back to false
         $location.path(loginRedirectUrl).replace();   // take to orig intent & replace history
       }
@@ -20,11 +20,12 @@ module.exports = function routeAccessIntercept(app) {
         // authorize returns true/false/
         authorized = access.authorized(next.access.requiresLogin, next.access.requiredPermissions, next.access.permissionType);
 
-        // if NOT logged in, save intended page & prompt login
+        // if NOT logged in, save intended page & prompt greet
+        // TODO: FLASH A LOGIN REQUIRED ERROR MESSAGE TO THE USER
         if (authorized.login) {                       // not logged in?
           redirectBackAfterLogin = true;
           loginRedirectUrl       = next.originalPath;
-          $location.path('/login');                   // redirect to login
+          $location.path('/greet');                   // redirect to greet
         }
         // if auth fails, replace history with reason it failed
         else if (authorized.failReason) {                   // not allowed?

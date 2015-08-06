@@ -1,9 +1,17 @@
 <div ng-controller="sessionsController">
   <form name="loginForm" data-ng-submit="login(user)">
-    <label>Email</label>
-    <input type="text" data-ng-model="user.email">
-    <label>Password</label>
-    <input type="password" data-ng-model="user.password">
-    <button type="submit"> login </button>
+
+    <md-input-container md-no-float layout="row" class="login-input-container">
+      <input type="text" data-ng-model="user.email" placeholder="email">
+    </md-input-container>
+
+    <md-input-container md-no-float layout="row" class="login-input-container">
+      <input type="password" data-ng-model="user.password" placeholder="password">
+    </md-input-container>
+
+    <button type="submit">
+      <ng-md-icon class="login-button" icon="login" style="fill: #808080" size="40"></ng-md-icon>
+    </button>
+    <a href=""></a>
   </form>
 </div>

@@ -57,6 +57,44 @@ body {
   background-color: #c9c9c9;
 }
 
+/*Sidenav Content*/
+.sidenav-main-title {
+  color: #955251;
+}
+
+.sidenav-login-top {
+  background-color: #ffffff;
+}
+.sidenav-login-content {
+  background-color: #e4e4e4;
+}
+.sidenav-login-content .login-input-container {
+  padding-bottom: 10px
+}
+.sidenav-login-title {
+  color: #5a5a5a;
+  margin: 10px auto 10px auto;
+  text-align: center;
+}
+
+a.sidenav-link{
+  text-decoration: none;
+  color: white;
+}
+.sidenav-link:hover {
+  color: #955251;
+}
+.sidenav-link-icon {
+  fill: #ffffff !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+.sidenav-link-icon:hover {
+  fill: #955251 !important;
+}
+
+
+
 /*New Sign Fab*/
 .fab-plus svg {
   fill: #808080 !important;
