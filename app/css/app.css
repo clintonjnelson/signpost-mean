@@ -89,3 +89,16 @@ body {
   background-color: #955251;
 }
 
+/*Sign Listitem*/
+.sign-listitem-knownas {
+  font-size: 1.5em;
+}
+.sign-listitem-cancelicon {
+  position: relative;
+  right: 5px;
+}
+.sign-listitem-editicon {
+  position: relative;
+}.sign-listitem-saveicon {
+  position: relative;
+}

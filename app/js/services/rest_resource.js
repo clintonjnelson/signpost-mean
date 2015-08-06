@@ -53,6 +53,12 @@ module.exports = function(app) {
         },
 
         update: function(resourceData, callback) {
+          $http.patch(('/' + resourceName), resourceData)
+            .success(handleSuccess(callback))
+            .error(handleError(callback));
+        },
+
+        updateId: function(resourceData, callback) {
           $http.patch(('/' + resourceName + '/'+ resourceData._id), resourceData)
             .success(handleSuccess(callback))
             .error(handleError(callback));

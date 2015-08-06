@@ -1,8 +1,33 @@
 <main id="signs" layout="row">
+
   <section data-ng-controller="signsController" data-ng-init="getSigns()" offset="5" flex="90">
+    <md-content class="md-padding">
+
+      <!-- Make isolate sign for each  -->
+      <div data-ng-repeat="sign in signs"
+           layout="row"
+           data-sign-listitem-directive
+             data-icons="icons"
+             data-sign="sign"
+             data-toggle-editing="toggleEditing(sign)"
+             data-update-sign="updateSign(sign)">
+      </div>
+
+    </md-content>
+  </section>
+  <div flex="5"></div>
+</main>
+
+<nav>
+  <!-- Add New Sign -->
+  <md-button class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-href="/#/signs/new">
+    <ng-md-icon icon="add" style="fill: #ffffff" size="40" class="fab-plus"></ng-md-icon>
+  </md-button>
+</nav>
+<!--
+<section data-ng-controller="signsController" data-ng-init="getSigns()" offset="5" flex="90">
     <md-content class="md-padding" >
 
-      <!-- EACH CARD SHOULD BE A DIRECTIVE -->
       <md-card data-ng-repeat="sign in signs" layout="row">
         <a data-ng-href="{{sign.linkUrl}}">
           <ng-md-icon ng-if="sign.icon" icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
@@ -18,12 +43,4 @@
 
     </md-content>
   </section>
-  <div flex="5"></div>
-</main>
-
-<nav>
-  <!-- Add New Sign -->
-  <md-button class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-href="/#/signs/new">
-    <ng-md-icon icon="add" style="fill: #ffffff" size="40" class="fab-plus"></ng-md-icon>
-  </md-button>
-</nav>
+  <div flex="5"></div> -->

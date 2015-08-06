@@ -43,7 +43,7 @@
         <!-- Sign Description -->
         <md-input-container md-no-float layout="row">
           <ng-md-icon icon="info" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
-          <input type="text" name="desc" data-ng-model="sign.description" placeholder="short sign description" md-maxlength="160">
+          <input type="text" name="desc" data-ng-model="sign.description" placeholder="short sign description" md-maxlength="100">
 
           <div data-ng-messages="signForm.desc.$error" data-ng-show="signForm.desc.$dirty">
             <div data-ng-message="maxlength">Please shorten your description (160 chars max).</div>

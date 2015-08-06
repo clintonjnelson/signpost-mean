@@ -1,0 +1,61 @@
+<md-card id="{{'sign_' + sign._id}}" layout="row">
+
+    <div class="sign-listitem-icon">
+      <a data-ng-href="{{sign.linkUrl}}">
+        <ng-md-icon icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
+      </a>
+    </div>
+
+    <div class="sign-listitem-info" layout="column">
+
+      <!-- knownAs form OR input -->
+      <div class="sign-listitem-content" ng-if="!sign.isEditing">
+        <p class="sign-listitem-knownas"> {{ sign.knownAs }} </p>
+        <p class="sign-listitem-desc"> <sm>{{sign.description}}</sm> </p>
+        <div ng-if="!sign.isEditing">
+          <a data-ng-click="toggleEditing({sign: sign})" class="sign-listitem-editicon">
+            <ng-md-icon icon="edit" style="fill: black" size="20"></ng-md-icon>
+          </a>
+        </div>
+      </div>
+
+      <!-- Make this a directive to insert -->
+      <form name="signForm" data-ng-submit="updateSign({sign: sign})" class="sign-listitem-form" layout="column" ng-if="sign.isEditing">
+
+        <!-- @username -->
+        <md-input-container layout="row">
+          <ng-md-icon icon="face" style="fill: grey" size="20"></ng-md-icon>
+          <input type="text" data-ng-model="sign.knownAs" placeholder="@myusername">
+        </md-input-container>
+
+        <!-- description -->
+        <md-input-container layout="row">
+          <ng-md-icon icon="info" style="fill: grey" size="20"></ng-md-icon>
+          <input type="text" name="desc" data-ng-model="sign.description" placeholder="short description" md-maxlength="100">
+        </md-input-container>
+
+        <!-- url -->
+        <md-input-container layout="row">
+          <ng-md-icon icon="public" style="fill: grey" size="20"></ng-md-icon>
+          <input type="url" data-ng-model="sign.linkUrl" placeholder="http://www.somewebsite.com/..."/>
+        </md-input-container>
+
+        <div ng-if="sign.isEditing">
+          <a data-ng-click="updateSign({sign: sign})" type="submit" class="sign-listitem-saveicon" >
+            <ng-md-icon icon="check" style="fill: green" size="20"></ng-md-icon>
+          </a>
+          <a data-ng-click="toggleEditing({sign: sign})" class="sign-listitem-cancelicon">
+            <ng-md-icon icon="close" style="fill: red" size="20"></ng-md-icon>
+          </a>
+        </div>
+      </form>
+    </div>
+
+
+  <!--
+    Sign Icon Link (left) w/color of sign or custom
+    Name
+    Type of Sign (custom ONLY)
+    Small Edit Icon (bott right) if owner: sign.userID === user._id
+  -->
+</md-card>

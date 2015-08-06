@@ -1,9 +1,10 @@
 'use strict';
 
-var bodyparser   = require('body-parser'              );
-var eatAuth      = require('../lib/routes_middleware/eat_auth.js')(process.env.AUTH_SECRET);
-var FacebookSign = require('../models/FacebookSign.js');
-var Sign         = require('../models/Sign.js'        );
+var bodyparser    = require('body-parser'              );
+var eatAuth       = require('../lib/routes_middleware/eat_auth.js')(process.env.AUTH_SECRET);
+var signOwnerAuth = require('..//lib/routes_middleware/sign_owner_auth.js');
+var FacebookSign  = require('../models/FacebookSign.js');
+var Sign          = require('../models/Sign.js'        );
 
 module.exports = function(app) {
   app.use(bodyparser.json());
@@ -37,8 +38,7 @@ module.exports = function(app) {
     if (signData.type === 'facebook') {
       newSign = new FacebookSign({
         facebookId:     Date.now(),                 //CHANGE THIS
-        linkUrl:        signData.link,
-        facebookPicUrl: 'http://www.somepicurl.com',
+        linkUrl:        signData.linkUrl,
         knownAs:        signData.knownAs,
         description:    signData.description,
         userId:         currUser._id,
@@ -56,6 +56,26 @@ module.exports = function(app) {
         res.json({sign: data});
       });
     }
+  });
+
+  // Update after verifying user & owner
+  app.patch('/signs', eatAuth, signOwnerAuth, function(req, res) {
+    console.log('MADE IT TO THE SERVER UPDATE.');
+    console.log('USER IS: ', req.user);
+    console.log('DATA IS: ', req.body);
+
+    var currUser = req.user;
+    var signData = req.body.sign;
+
+    Sign.update({_id: signData._id}, signData, function(err, data) {
+      if(err) {
+        console.log('Database error finding sign to update.');
+        return res.status(500).json({error: true, msg: 'database error'});
+      }
+
+      console.log('UPDATE SUCCESSFUL!');
+      res.json({error: false});
+    })
   });
 };
 

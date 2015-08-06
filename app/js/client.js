@@ -31,6 +31,7 @@ require('./controllers/signs_controller.js'     )(signpostApp);
 require('./directives/login_directive.js'    )(signpostApp);
 require('./directives/sidenav_directive.js'  )(signpostApp);
 require('./directives/sign_form_directive.js')(signpostApp);
+require('./directives/sign_listitem_directive.js')(signpostApp);
 
 // Custom View Routes
 signpostApp.config(['$routeProvider', function($routeProvider) {
