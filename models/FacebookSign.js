@@ -6,10 +6,10 @@ var SignSchema = require('./SignSchema.js');
 var Sign       = require('./Sign.js'      );
 
 
-// new schema from base
+// New schema from base
 var facebookSignSchema = new SignSchema();
 
-// use this approach to extend
+// BaseSchema: customBgColor, description, knownAs, linkUrl, published, userId
 facebookSignSchema.add({
   bgColor:        { type: String,  default: '#3b5998'           },  // fb default color
   email:          { type: String                                },  // fb ref email
@@ -17,7 +17,6 @@ facebookSignSchema.add({
   facebookPicUrl: { type: String                                },  // picture url
   icon:           { type: String,  default: 'facebook-box'      },  // determines icon
   signType:       { type: String,  default: 'facebook'          },  // type reference
-  // userId:      // inherited from SignSchema
 });
 
     // TODO: GET THIS BACK & KEEP IT FROM BLOCKING OTHER SIGN TYPE CREATION DUE TO INDEX

@@ -12,6 +12,9 @@ var UserSchema = mongoose.Schema({
     facebook: {
       facebookId:          { type: String,   default: null    },
       facebookAccessToken: { type: String,   default: null    },  },
+    twitter: {
+      twitterId:           { type: String,   default: null    },
+      twitterAccessToken:  { type: String,   default: null    },  },
                                                                       },
   confirmed:       { type: Boolean,  default: false                   },
   deleted:         { type: Date,     default: null                    },

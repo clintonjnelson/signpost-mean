@@ -16,6 +16,9 @@ function SignSchema() {
     published:      { type: Boolean, default: true                     }, // remove from public
     userId:         { type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true},  // needed for ALL Signs
   });
+  // Fields for CUSTOM schemas: bgColor, signType, icon
+
+
 }
 util.inherits(SignSchema, mongoose.Schema);  // extend mongoose Schema
 
