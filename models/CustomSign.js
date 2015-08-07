@@ -4,8 +4,11 @@ var mongoose   = require('mongoose'       );
 var SignSchema = require('./SignSchema.js');
 var Sign       = require('./Sign.js'      );
 
+// new schema from base
+var customSignSchema = new SignSchema();  // direct extending with attrs DOES NOT WORK
 
-var customSignSchema = new SignSchema({
+// use this approach to extend
+customSignSchema.add({
   bgColor:        { type: String,  default: '#955251'       },  // signpost default color
   customIcon:     { type: String,  default: null            },  // custom icon
   icon:           { type: String,  default: 'label'         },  // default icon
