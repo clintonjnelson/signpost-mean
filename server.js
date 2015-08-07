@@ -23,6 +23,7 @@ app.use(passport.initialize());
 // Load passport with strategies
 require('./lib/passport_strategies/basic.js'   )(passport);
 require('./lib/passport_strategies/facebook.js')(passport);
+require('./lib/passport_strategies/twitter.js' )(passport);
 
 // Populate Routes
 require('./routes/oauth_routes.js')(oauthRouter, passport);
