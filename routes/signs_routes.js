@@ -53,7 +53,7 @@ module.exports = function(app) {
     // build sign according to "type" (see above)
     newSign = signBuilder[type](signData);
     newSign.userId = currUser.id;           // add userId before saving
-    console.log("ABOUT TO SAVE SIGN...": newSign);
+    console.log("ABOUT TO SAVE SIGN...", newSign);
 
     newSign.save(function(err, data) {
       if(err) {
