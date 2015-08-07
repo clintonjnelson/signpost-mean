@@ -7,7 +7,7 @@ var User           = require('../../models/User.js');
 module.exports = function(app, passport) {
   app.use(bodyparser.json());
 
-  // Facebook
+  // Redirect to facebook for auth
   app.get('/login/facebook',
     passport.authenticate('facebook',
       { session: false,
@@ -16,11 +16,11 @@ module.exports = function(app, passport) {
     )
   );
 
-  // Facebook Redirect
+  // Facebook redirects to here after auth
   app.get('/login/facebook/callback',
     passport.authenticate('facebook',
       { session:         false,
-        failureRedirect: '/#/login'
+        failureRedirect: '/#/login'   // only redirect for failure
       }
     ),
     loadSendCookie  // Middleware to load eat cookie & send upon success

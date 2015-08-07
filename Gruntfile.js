@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         cwd: 'app/',
         expand: true,
         flatten: false,
-        src: ['**/*.html', '**/*.css'],
+        src: ['**/*.html', '**/*.css', '**/*.ico'],
         dest: 'build/',
         filter: 'isFile'
       }

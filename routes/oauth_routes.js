@@ -1,10 +1,7 @@
 'use strict';
-// Routes for OAUTH2 Login
-// TODO: Break out each Oauth into separate modules to require in
 
-var bodyparser     = require('body-parser'      );
-// var loadSendCookie = require('../lib/routes_middleware/load_send_cookie.js');
-// var User           = require('../models/User.js');
+var bodyparser = require('body-parser');
+
 
 
 module.exports = function(app, passport) {
@@ -12,7 +9,7 @@ module.exports = function(app, passport) {
 
   // Require routes by provider
   require('./oauth_routes/facebook.js')(app, passport);
-
+  require('./oauth_routes/twitter.js' )(app, passport);
 };
 
 
