@@ -36,7 +36,6 @@ module.exports = function(app) {
   app.post('/signs/:type?', eatAuth, function(req, res) {
     console.log('CREATING SIGN....');
     console.log('DATA IS: ', req.body);
-    console.log("TYPE PARAM IS: ", req.params.type)
 
     var currUser = req.user;
     var signData = req.body.sign;

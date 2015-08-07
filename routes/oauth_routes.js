@@ -3,31 +3,16 @@
 // TODO: Break out each Oauth into separate modules to require in
 
 var bodyparser     = require('body-parser'      );
-var loadSendCookie = require('../lib/routes_middleware/load_send_cookie.js');
-var User           = require('../models/User.js');
+// var loadSendCookie = require('../lib/routes_middleware/load_send_cookie.js');
+// var User           = require('../models/User.js');
 
 
 module.exports = function(app, passport) {
   app.use(bodyparser.json());
 
-  // Facebook
-  app.get('/login/facebook',
-    passport.authenticate('facebook',
-      { session: false,
-        scope:   ['public_profile', 'email']
-      }
-    )
-  );
+  // Require routes by provider
+  require('../oauth_routes/facebook.js')(app, passport);
 
-  // Facebook Redirect
-  app.get('/login/facebook/callback',
-    passport.authenticate('facebook',
-      { session:         false,
-        failureRedirect: '/#/login'
-      }
-    ),
-    loadSendCookie  // Middleware to load eat cookie & send upon success
-  );
 };
 
 
