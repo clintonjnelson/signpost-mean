@@ -1,25 +1,27 @@
 <div layout="row">
   <md-sidenav md-component-id="left" class="md-sidenav-left">
     <md-list data-ng-if="isSignedIn">
-      <md-list-item> <p>You're signed in</p>            </md-list-item>
+      <md-list-item>
+        <!-- <p>You're signed in</p>             -->
+      </md-list-item>
 
       <!-- MAKE THIS A NG-REPEAT DIRECTIVE -->
       <md-list-item class="sidenav-link">
         <a data-ng-href="/#/signs">
           <ng-md-icon class="sidenav-link-icon" icon="label" style="fill: #ffffff" size="40"></ng-md-icon>
-          my signs
+          <strong>my signs</strong>
         </a>
       </md-list-item>
       <md-list-item class="sidenav-link">
         <a data-ng-href="/#/logout">
           <ng-md-icon class="sidenav-link-icon" icon="logout" style="fill: #ffffff" size="40"></ng-md-icon>
-          logout
+          <strong>logout</strong>
         </a>
       </md-list-item>
       <md-list-item class="sidenav-link">
         <a data-ng-href="/#/logout">
           <ng-md-icon class="sidenav-link-icon" icon="settings" style="fill: #ffffff" size="40"></ng-md-icon>
-          setings
+          <strong>setings</strong>
         </a>
       </md-list-item>
     </md-list>
@@ -27,7 +29,7 @@
     <!-- MAKE LINKS INTO A NG-REPEAT DIRECTIVE -->
     <md-list data-ng-if="isSignedOut">
       <md-list-item>
-        <h2 class="sidenav-main-title">Welcome to Signpost</h2>
+        <h2 class="sidenav-main-title">Welcome!</h2>
       </md-list-item>
       <md-list-item>
         <md-list>
