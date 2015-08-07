@@ -14,12 +14,18 @@
 
     <div layout="row">
       <md-content layout-padding layout="column" flex="90" offset="5">
-        <form name="signForm" data-ng-Submit="submitAction({sign: newSign})">
+        <form name="signForm" data-ng-Submit="submitAction({sign: sign})">
 
           <!-- Sign Type Selection-->
           <md-input-container>
             <div class="sign-form-types-container">
               <!-- TODO: Make this a require input field - button selected-->
+              <!-- AS THIS GETS LONGER, MAKE IT SWIPE SCROLL -->
+
+
+
+              <!-- FIX THIS TO CHANGE ICON TYPE AS WELL -->
+
               <div data-ng-repeat="type in types" class="sign-form-type">
                 <div data-ng-click="sign.type=type.type" ng-show="{{!type.disabled}}">
                   <md-tooltip>{{type.type}}</md-tooltip>
@@ -27,19 +33,35 @@
                 </div>
               </div>
             </div>
+            (select sign type)
+            <md-divider></md-divider>
+          </md-input-container>
+
+          <!-- Sign Title -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="star" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
+            <input type="text" name="signName" data-ng-model="sign.signName" placeholder="Sign Title" md-maxlength="30">
+
+            <!-- Title Form Errors -->
+            <div data-ng-messages="signForm.signName.$error" data-ng-show="signForm.signName.$dirty">
+              <div data-ng-message="maxlength">title too long</div>
+            </div>
+
           </md-input-container>
 
           <!-- Sign Url -->
           <md-input-container md-float layout="row">
             <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
-            <input type="url" data-ng-model="sign.link" placeholder="http://www.somesite.com/...." required>
+            <input type="url" data-ng-model="sign.linkUrl" placeholder="http://www.somesite.com/...." required>
           </md-input-container>
 
           <!-- Known As -->
           <md-input-container md-float layout="row">
-            <ng-md-icon icon="public" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
+            <ng-md-icon icon="face" style="fill: {{defaults.color}}" size="{{defaults.size}}"></ng-md-icon>
             <input type="text" data-ng-model="sign.knownAs" placeholder="eg: @itsmeee">
           </md-input-container>
+
+
 
           <!-- Sign Description -->
           <md-input-container md-no-float layout="row">

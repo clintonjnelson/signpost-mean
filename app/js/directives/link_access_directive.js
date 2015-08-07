@@ -1,5 +1,5 @@
 'use strict';
-// TODO: Implement this attribute in links.
+// TODO: Implement this attribute in links. Alternate to ng-if, but only hides.
 
 module.exports = function(app) {
   app.directive('linkAccessDirective', [

@@ -9,11 +9,12 @@ function SignSchema() {
 
   // Schema fields
   this.add({
-    userId:         { type: mongoose.Schema.Types.ObjectId, ref: 'User' },  // needed for ALL Signs
-    knownAs:        { type: String                                      },
-    description:    { type: String                                      },
-    linkUrl:        { type: String                                      },
-    customBgColor:  { type: String, default: null                       },
+    customBgColor:  { type: String,  default: null                     }, // custom sign color
+    description:    { type: String                                     }, // sign desc (opt)
+    knownAs:        { type: String                                     }, // username ref
+    linkUrl:        { type: String                                     }, // link to site
+    published:      { type: Boolean, default: true                     }, // remove from public
+    userId:         { type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true},  // needed for ALL Signs
   });
 }
 util.inherits(SignSchema, mongoose.Schema);  // extend mongoose Schema

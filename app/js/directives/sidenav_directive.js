@@ -20,7 +20,7 @@ module.exports = function(app) {
 
         $scope.isSignedIn  = sessions.isSignedIn();
         $scope.isSignedOut = !$scope.isSignedIn;
-        // $scope.isSignedOut = !$scope.isSignedIn;
+
         // Set Props to Watch for Changes in Session Values
         $scope.$watch(
           function() {return sessions.isSignedIn();},

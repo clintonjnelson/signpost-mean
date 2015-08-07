@@ -104,12 +104,17 @@ module.exports = function(app) {
     $scope.createSign = function(sign) {
       console.log("DATA TO SEND IS: ", sign);
       console.log('HIT ACTION, ABOUT TO SEND...');
-      SignHttp.create({sign: sign}, function(err, data) {
-        if (err) {return console.log('ERROR IN CREATING: ', err);}
+      signHttp.create({sign: sign}, function(err, data) {
+        if (err) {
+          // TODO: FLASH ERROR MESSAGE TO USER
+          return console.log('ERROR IN CREATING: ', err);
+        }
+
         console.log("SUCCESS! Data here: ", data);
 
         // add sign to end
-        // $scope.signs.push(data);
+        $scope.getSigns();
+        $scope.newSign.isEditing = false;
       });
     };
   }]);

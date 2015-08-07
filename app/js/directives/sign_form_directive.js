@@ -3,6 +3,7 @@
 module.exports = function(app) {
   app.directive('signFormDirective', function() {
 
+    // Form to create new signs
     return {
       restrict:     'AE',
       replace:      true,
@@ -16,7 +17,7 @@ module.exports = function(app) {
         submitAction:   '&',  // use action name passed
         buttonName:     '@',  // use name passed
         activeColor:    '&',  // pass action name
-        toggleEditing:  '&',
+        toggleEditing:  '&',  // toggle sign editing
       },
     };
   });

@@ -9,22 +9,19 @@ var Sign       = require('./Sign.js'      );
 
 // Extend for Custom Schema
 var facebookSignSchema = new SignSchema({
-  facebookId:     { type: String, required: true            },
-  facebookPicUrl: { type: String                            },
-  email:          { type: String                            },
-  signtype:       { type: String,  default: 'facebook'      },
-  icon:           { type: String,  default: 'facebook-box'  },
-  bgColor:        { type: String,  default: '#3b5998'       },
-  published:      { type: Boolean, default: true            },
-  // userId:      { type: String                 }  // inherited from SignSchema
+  bgColor:        { type: String,  default: '#3b5998'           },  // fb default color
+  email:          { type: String                                },  // fb ref email
+  facebookId:     { type: String, required: true                },  // fb #id
+  facebookPicUrl: { type: String                                },  // picture url
+  icon:           { type: String,  default: 'facebook-box'      },  // determines icon
+  signType:       { type: String,  default: 'facebook'          },  // type reference
+  // userId:      // inherited from SignSchema
 });
 
+// TODO: GET THIS BACK & KEEP IT FROM BLOCKING OTHER SIGN TYPE CREATION DUE TO INDEX
+// MAYBE VERIFY MANUALLY NO DUPLICATES BEFORE SAVING...
 // Validations
-facebookSignSchema.path('facebookId').index({unique: true});
-
-// // Create base Sign for Discriminator
-// var BaseSignSchema = new SignSchema();
-// var Sign           = mongoose.model('Sign', BaseSignSchema);
+// facebookSignSchema.path('facebookId').index({unique: true});
 
 // Export as Discriminator
 module.exports = Sign.discriminator('FacebookSign', facebookSignSchema);
