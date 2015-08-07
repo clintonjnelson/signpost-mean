@@ -1,7 +1,7 @@
 'use strict';
-var bodyparser     = require('body-parser'      );
-var loadSendCookie = require('../lib/routes_middleware/load_send_cookie.js');
-var User           = require('../models/User.js');
+var bodyparser     = require('body-parser'         );
+var loadSendCookie = require('../../lib/routes_middleware/load_send_cookie.js');
+var User           = require('../../models/User.js');
 
 
 module.exports = function(app, passport) {
