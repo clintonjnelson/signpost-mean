@@ -1,8 +1,9 @@
 'use strict';
 
-var express  = require('express');
-var mongoose = require('mongoose');
-var passport = require('passport');
+var express  = require('express'        );
+var mongoose = require('mongoose'       );
+var passport = require('passport'       );
+var session  = require('express-session');
 var app      = express();
 
 // Routers
@@ -18,7 +19,10 @@ process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/signpost');
 
 // Initialize passport middleware & configure with passport_strategy.js
+app.use(session({secret: 'oauth1sucks', id: 'oauth', maxAge: null}));
 app.use(passport.initialize());
+app.use(passport.session());            // only for oauth1 to work
+
 
 // Load passport with strategies
 require('./lib/passport_strategies/basic.js'   )(passport);

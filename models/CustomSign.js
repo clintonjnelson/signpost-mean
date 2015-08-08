@@ -20,4 +20,4 @@ customSignSchema.add({
 
 
 // Export as Discriminator
-module.exports = Sign.discriminator('CustomSign', customSignSchema)
+module.exports = Sign.discriminator('CustomSign', customSignSchema);

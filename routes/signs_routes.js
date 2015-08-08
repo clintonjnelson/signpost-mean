@@ -13,7 +13,7 @@ module.exports = function(app) {
     //TODO: GET BY A USER VALUE, INSTEAD OF BY TOKEN
   app.get('/signs/:id', eatAuth, function(req, res) {
     // var userId = req.params.id;
-    var userId = req.user._id
+    var userId = req.user._id;
     console.log("ID CAME IN AS: ", userId);
     Sign.find({userId: userId}, function(err, signs) {
       if(err) {
@@ -82,7 +82,7 @@ module.exports = function(app) {
 
       console.log('UPDATE SUCCESSFUL!');
       res.json({error: false});
-    })
+    });
   });
 };
 

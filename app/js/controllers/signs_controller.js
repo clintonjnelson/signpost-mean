@@ -1,5 +1,5 @@
 'use strict';
-_ = require('lodash');
+var _ = require('lodash');
 
 module.exports = function(app) {
   app.controller('signsController', ['$scope', 'RESTResource', function($scope, RESTResource) {
@@ -16,7 +16,7 @@ module.exports = function(app) {
     $scope.icons = {
       color: '#808080',
       size:  '120',
-    }
+    };
 
 
     $scope.getSigns = function() {
@@ -24,7 +24,7 @@ module.exports = function(app) {
           // THIS WILL ENABLE SAME DIRECTIVE TO VIEW OTHER USER's SIGNS
       signHttp.getAll({_id: 'placeholderIdName'}, function(err, data) {
         if(err) {return console.log("ERROR GETTING USERS: ", err);}
-        console.log("SIGNS RETURNED ARE: ", data.signs)
+        console.log("SIGNS RETURNED ARE: ", data.signs);
         $scope.signs = data.signs;
       });
     };
@@ -38,7 +38,7 @@ module.exports = function(app) {
         sign = sign.temp;                       // reset local sign
       } else {
         sign.isEditing = true;               // editing mode
-        sign.temp      = _.cloneDeep(sign); // copy current state
+        sign.temp      = _.cloneDeep(sign);  // copy current state
       }
     };
 
@@ -58,7 +58,7 @@ module.exports = function(app) {
 
         // TODO: Flash success to user
         delete sign.temp;                                 // delete the temp state
-        console.log('Sign update successful.')
+        console.log('Sign update successful.');
       });
     };
 
@@ -89,7 +89,7 @@ module.exports = function(app) {
     $scope.defaults = {
       color: '#5a5a5a',
       size: '40',
-    }
+    };
 
     // toggle clicked color to active class
     $scope.activeColor = function(type) { // pass type of clicked icon
@@ -99,7 +99,7 @@ module.exports = function(app) {
 
     $scope.editAlwaysTrue = function() {
       return true;
-    }
+    };
 
     $scope.createSign = function(sign) {
       console.log("DATA TO SEND IS: ", sign);

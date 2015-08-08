@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 
   // Facebook redirects to here after auth
   app.get('/login/facebook/callback',
-    passport.authenticate('facebook',
+    passport.authenticate('facebook', // try to: hit api, find/make user, find/make sign
       { session:         false,
         failureRedirect: '/#/login'   // only redirect for failure
       }
