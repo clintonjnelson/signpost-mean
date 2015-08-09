@@ -8,7 +8,6 @@ module.exports = function(router, passport) {
 
   // Existing user login
   router.get('/login', passport.authenticate('basic', { session: false }), function(req, res) {
-    console.log('MADE IT INTO AUTH. HERE ARE THE HEADERS:', req.headers);
     req.user.generateToken(process.env.AUTH_SECRET, function(err, eat) {  // passport strat adds req.user
       if (err) {
         console.log('Error logging in user. Error: ', err);
