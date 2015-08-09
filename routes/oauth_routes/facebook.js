@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
 
   //-------------------------------- AUTO SIGN ---------------------------------
   app.get('/auto/facebook',
-    eatAuth,                                // verify & load user
+    eatAuth,                                // verify & load user in req
     passport.authenticate('facebook',
       { session: false,
         scope:   ['public_profile', 'email']
