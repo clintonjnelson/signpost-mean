@@ -11,13 +11,14 @@ module.exports = function(app) {
       scope: {
         sign:           '=',  // allow access to parent sign
         defaults:       '=',  // pass parent defaults
-        options:        '=',  // pass parent options
         types:          '=',  // pass parent types
         formType:       '@',  // pass form type (heading)
         submitAction:   '&',  // use action name passed
         buttonName:     '@',  // use name passed
         activeColor:    '&',  // pass action name
         toggleEditing:  '&',  // toggle sign editing
+        createAutoSign: '&',
+        hrefLink:       '&',
       },
     };
   });

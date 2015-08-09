@@ -12,14 +12,13 @@ module.exports = function(app, passport) {
     done(null, '1');
   });
   passport.deserializeUser(function(user, done) {
-    done(null, '1');
+    done(null, user);
   });
 
   // Redirect to twitter for auth
   app.get('/login/twitter',
     passport.authenticate('twitter',
       {
-        // session: false,            // oauth 1.0a requires session
       }
     )
   );
@@ -27,7 +26,7 @@ module.exports = function(app, passport) {
   // Twitter redirects to here after auth
   app.get('/login/twitter/callback',
     passport.authenticate('twitter',  // try to: hit api, find/make user, find/make sign
-      { // session: false,            // oauth 1.0a requires session
+      {
         failureRedirect: '/#/login'   // only redirect for failure
       }
     ),

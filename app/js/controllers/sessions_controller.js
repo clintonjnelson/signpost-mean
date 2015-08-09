@@ -26,7 +26,7 @@ module.exports = function(app) {
       return sessions.redirect('/signs');
     }
     if ( checkPath('/oauth') ) {   // no token? login again
-      return sessions.redirect('/login');
+      return sessions.redirect('/greet');
     }
 
     //--------------------- BASIC AUTH ---------------------

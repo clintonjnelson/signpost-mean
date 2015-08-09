@@ -16,7 +16,7 @@ var usersRouter = new express.Router();
 process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
 
 // Set mongoose connection
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/signpost');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/signpost');
 
 // Initialize passport middleware & configure with passport_strategy.js
 app.use(session({secret: 'oauth1sucks', id: 'oauth', maxAge: null}));

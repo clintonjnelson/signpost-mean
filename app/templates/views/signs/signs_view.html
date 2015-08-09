@@ -5,7 +5,7 @@
     <section offset="5" flex="90">
       <md-content class="md-padding">
 
-        <!-- Make isolate sign for each  -->
+        <!-- Display Each Sign  -->
         <div data-ng-repeat="sign in signs"
              layout="row"
              data-sign-listitem-directive
@@ -15,16 +15,17 @@
                data-submit-action="updateSign(sign)">
         </div>
 
-        <div ng-show="newSign.isEditing"
-             data-sign-form-directive
+        <!-- New Sign Form -->
+        <div data-sign-form-directive
                data-active-color="activeColor(type)"
                data-button-name="add"
                data-defaults="defaults"
                data-form-type="new"
-               data-options="options"
                data-sign="newSign"
                data-submit-action="createSign(sign)"
                data-toggle-editing="toggleEditing(sign)"
+               data-href-link="hrefLink(type)"
+               data-create-auto-sign="createAutoSign(type)"
                data-types="types">
         </div>
       </md-content>
@@ -34,9 +35,9 @@
 
   <nav>
     <!-- Add New Sign -->
-    <md-button ng-hide="newSign.isEditing" class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-click="toggleEditing(newSign)">
+    <!-- <md-button ng-hide="newSign.newSignForm" class="md-fab md-fab-bottom-right fab-color-newsign" type="button" data-ng-click="toggleEditing(newSign)">
       <ng-md-icon icon="add" style="fill: #ffffff" size="40" class="fab-plus"></ng-md-icon>
-    </md-button>
+    </md-button> -->
 
   </nav>
 

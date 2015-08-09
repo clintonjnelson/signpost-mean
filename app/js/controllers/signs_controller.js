@@ -2,10 +2,9 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('signsController', ['$scope', 'RESTResource', function($scope, RESTResource) {
+  app.controller('signsController', ['$scope', 'RESTResource', '$http', function($scope, RESTResource, $http) {
     // connect with Signs api
     var signHttp = RESTResource('signs');
-
 
 
     //----------------------------- SIGN LISTITEMS -----------------------------
@@ -29,20 +28,6 @@ module.exports = function(app) {
       });
     };
 
-    // Edit/Cancel Editing Sign
-    $scope.toggleEditing = function(sign) {
-      if(sign.isEditing) {
-        var ind             = $scope.signs.indexOf(sign);
-        sign.temp.isEditing = false;            // temp will replace current
-        $scope.signs[ind]   = sign.temp;        // top level: restore former state
-        sign = sign.temp;                       // reset local sign
-      } else {
-        sign.isEditing = true;               // editing mode
-        sign.temp      = _.cloneDeep(sign);  // copy current state
-      }
-    };
-
-
     $scope.updateSign = function(sign) {
       console.log("UPDATING SIGN: ", sign);
       sign.isEditing      = false;
@@ -62,13 +47,26 @@ module.exports = function(app) {
       });
     };
 
+    // Edit/Cancel Editing Sign
+    $scope.toggleEditing = function(sign) {
+      if(sign.isEditing) {
+        var ind             = $scope.signs.indexOf(sign);
+        sign.temp.isEditing = false;            // temp will replace current
+        $scope.signs[ind]   = sign.temp;        // top level: restore former state
+        sign = sign.temp;                       // reset local sign
+      } else {
+        sign.isEditing = true;               // editing mode
+        sign.temp      = _.cloneDeep(sign);  // copy current state
+      }
+    };
+
 
     //------------------------------ NEW SIGN FORM -----------------------------
     $scope.types = [
       { type: 'custom',         icon: 'label'          , disabled: false  },
       { type: 'facebook',       icon: 'facebook-box'   , disabled: false  },
       { type: 'github',         icon: 'github-box'     , disabled: true   },
-      { type: 'twitter',        icon: 'twitter'        , disabled: true   },
+      { type: 'twitter',        icon: 'twitter'        , disabled: false  },
       { type: 'google',         icon: 'google-plus-box', disabled: true   },
       { type: 'instagram',      icon: 'instagram'      , disabled: true   },
       { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true   },
@@ -80,25 +78,32 @@ module.exports = function(app) {
 
     $scope.newSign = {isEditing: false};
 
-    // sign options?
-    $scope.options = [
-      {name: 'picture', selected: true}
-    ];
-
     // defaults
     $scope.defaults = {
       color: '#5a5a5a',
       size: '40',
     };
 
-    // toggle clicked color to active class
-    $scope.activeColor = function(type) { // pass type of clicked icon
-      var activeType = $scope.newSign.type;  // set current active type
+    // watched by all icons for CSS class -  passing their type & comparing active
+    $scope.activeColor = function(type) {    // each passes its type
+      var activeType = $scope.newSign.signType;  // check current type
       return (type === activeType ? (activeType + "-color" ) : 'default-form-icon');
     };
 
-    $scope.editAlwaysTrue = function() {
-      return true;
+    $scope.hrefLink = function(type) {
+      if(type === 'custom') { return '';                  }
+      if(type !== 'custom') { return ('/auto/' + type); }
+    }
+
+    $scope.createAutoSign = function(type) {
+      var autoSignUrl = '/auto/' + type;
+      $http.get(autoSignUrl, function(err, res) {
+        if(err) {
+          // TODO: ALERT USER HERE
+          return console.log('Error creating ' + type + ' sign.');
+        }
+        $scope.getSigns();    // load new signs
+      })
     };
 
     $scope.createSign = function(sign) {
