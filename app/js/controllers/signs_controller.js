@@ -2,7 +2,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('signsController', ['$scope', 'RESTResource', '$http', function($scope, RESTResource, $http) {
+  app.controller('signsController', ['$scope', 'RESTResource', '$http', '$window', function($scope, RESTResource, $http, $window) {
     // connect with Signs api
     var signHttp = RESTResource('signs');
 
@@ -63,17 +63,17 @@ module.exports = function(app) {
 
     //------------------------------ NEW SIGN FORM -----------------------------
     $scope.types = [
-      { type: 'custom',         icon: 'label'          , disabled: false  },
-      { type: 'facebook',       icon: 'facebook-box'   , disabled: false  },
-      { type: 'github',         icon: 'github-box'     , disabled: true   },
-      { type: 'twitter',        icon: 'twitter'        , disabled: false  },
-      { type: 'google',         icon: 'google-plus-box', disabled: true   },
-      { type: 'instagram',      icon: 'instagram'      , disabled: true   },
-      { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true   },
-      { type: 'wordpress',      icon: 'wordpress'      , disabled: true   },
-      { type: 'tumblr',         icon: 'tumblr'         , disabled: true   },
-      { type: 'stackoverflow',  icon: 'stackoverflow'  , disabled: true   },
-      { type: 'pintrest',       icon: 'pintrest-box'   , disabled: true   },
+      { type: 'custom',         icon: 'label'          , disabled: false,  link: ''                   },
+      { type: 'facebook',       icon: 'facebook-box'   , disabled: false,  link: '/auto/facebook'     },
+      { type: 'github',         icon: 'github-box'     , disabled: true,   link: '/auto/github'       },
+      { type: 'twitter',        icon: 'twitter'        , disabled: false,  link: '/auto/twitter'      },
+      { type: 'google',         icon: 'google-plus-box', disabled: true,   link: '/auto/google'       },
+      { type: 'instagram',      icon: 'instagram'      , disabled: true,   link: '/auto/instagram'    },
+      { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true,   link: '/auto/linkedin'     },
+      { type: 'wordpress',      icon: 'wordpress'      , disabled: true,   link: '/auto/wordpress'    },
+      { type: 'tumblr',         icon: 'tumblr'         , disabled: true,   link: '/auto/tumblr'       },
+      { type: 'stackoverflow',  icon: 'stackoverflow'  , disabled: true,   link: '/auto/stackoverflow'},
+      { type: 'pintrest',       icon: 'pintrest-box'   , disabled: true,   link: '/auto/pintrest'     },
     ];
 
     $scope.newSign = {isEditing: false};
@@ -96,14 +96,14 @@ module.exports = function(app) {
     }
 
     $scope.createAutoSign = function(type) {
-      var autoSignUrl = '/auto/' + type;
-      $http.get(autoSignUrl, function(err, res) {
-        if(err) {
-          // TODO: ALERT USER HERE
-          return console.log('Error creating ' + type + ' sign.');
-        }
-        $scope.getSigns();    // load new signs
-      })
+      var signType = type.type;
+      if(type.type === 'custom') {
+        return $scope.newSign.signType = type.type; // trigger custom form
+      }
+
+      // Else redirect browser
+      var autoSignUrl = '/auto/' + type.type;
+      $window.location.href = autoSignUrl;
     };
 
     $scope.createSign = function(sign) {

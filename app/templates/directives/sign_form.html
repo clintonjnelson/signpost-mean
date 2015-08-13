@@ -19,13 +19,14 @@
           <div class="sign-form-types-container">
             <!-- AS THIS GETS LONGER, MAKE IT SWIPE SCROLL -->
 
-            <!-- !!!!!!!!GET RID OF A HREF IF CAN!!!!!!!!  -->
+
 
             <!-- FIX THIS TO CHANGE ICON TYPE AS WELL -->
+
             <div data-ng-repeat="type in types" class="sign-form-type">
-              <div ng-hide="{{type.disabled}}">
+              <div ng-hide="{{type.disabled}}" ng-click="createAutoSign({type: type})">
                 <md-tooltip>{{type.type}}</md-tooltip>
-                <a ng-href="{{'/auto/' + type.type}}"><ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon></a>
+                <a ng-href=""><ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon></a>
               </div>
             </div>
           </div>
