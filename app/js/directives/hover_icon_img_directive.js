@@ -4,15 +4,10 @@ module.exports = function(app) {
   app.directive('hoverIconImgDirective', ['$document', function($document) {
 
     function link(scope, elem, attrs) {
-      var imgHref = elem.find('img')[0]['attributes']['ng-src'];
-      console.log('IMG-HREF IS TRUE?: ', !!imgHref);
-      console.log('ELEMENT IS: ', elem);
-      console.log('ELEM[1]: ', elem[1]);
-      console.log('ATTRS IS: ', attrs);
-      console.log('SCOPE IS: ', scope);
+      var picUrl = scope.sign.picUrl;     // picUrl for Current Elem
 
-      // If href for image exists, link to hover event
-      if(!!imgHref) {
+      // If picUrl for image exists, link to hover event
+      if(picUrl) {
         elem.parent().on('mouseenter mousedown', function() {
           elem.find('svg').css({
             opacity: 0,

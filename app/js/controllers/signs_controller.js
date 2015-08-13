@@ -9,11 +9,6 @@ module.exports = function(app) {
 
     //----------------------------- SIGN LISTITEMS -----------------------------
 
-    /*
-      Make a directive for each icon/image
-      If image exists, hover should transition icon to image
-      If
-    */
 
     // general icon settings for directive
     $scope.icons = {
