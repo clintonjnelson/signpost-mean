@@ -1,27 +1,35 @@
 <div ng-controller="sessionsController">
   <form name="loginForm" data-ng-submit="login(user)">
 
+    <!-- Email Input -->
     <md-input-container md-no-float layout="row" class="login-input-container">
       <input type="text" data-ng-model="user.email" placeholder="email">
     </md-input-container>
 
+    <!-- Password Input -->
     <md-input-container md-no-float layout="row" class="login-input-container">
       <input type="password" data-ng-model="user.password" placeholder="password">
     </md-input-container>
 
+
+    <!-- Submit Form Button -->
     <div layout="row">
       <button type="submit">
         <ng-md-icon class="login-button" icon="login" style="fill: #808080" size="40"></ng-md-icon>
       </button>
 
+      <!-- New User Checkbox -->
       <md-checkbox data-ng-model="user.newAccount" class="sidenav-login-newaccount">
         new here?
       </md-checkbox>
     </div>
 
-    <md-checkbox data-ng-model="user.termsCond" ng-show="user.newAccount" class="sidenav-login-termscond">
-      I agree to the
-      <a href="/#/termsandconditions">terms and conditions</a>
-    </md-checkbox>
+      <!-- Terms & Conditions Checkbox -->
+      <md-input-container>
+        <md-checkbox data-ng-model="user.termsCond" ng-show="user.newAccount" class="sidenav-login-termscond">
+          I agree to the
+          <a href="/#/termsandconditions">terms and conditions</a>
+        </md-checkbox>
+      </md-input-container>
   </form>
 </div>
