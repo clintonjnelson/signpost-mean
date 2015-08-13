@@ -8,15 +8,19 @@ var mongoose = require('mongoose'     );
 var UserSchema = mongoose.Schema({
   auth: {
     basic: {
-      password:            { type: String,   default: null    },
+      password:             { type: String,   default: null },
     },
     facebook: {
-      facebookId:          { type: String,   default: null    },
-      facebookAccessToken: { type: String,   default: null    },
+      facebookId:           { type: String,   default: null },
+      facebookAccessToken:  { type: String,   default: null },
+    },
+    github: {
+      githubId:             { type: String,   default: null },
+      githubAccessToken:    { type: String,   default: null },
     },
     twitter: {
-      twitterId:           { type: String,   default: null    },
-      twitterAccessToken:  { type: String,   default: null    },
+      twitterId:            { type: String,   default: null },
+      twitterAccessToken:   { type: String,   default: null },
     },
                                                                       },
   confirmed:       { type: Boolean,  default: false                   },

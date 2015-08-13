@@ -3,13 +3,21 @@
 ![travis status] [travis-image]
 ![Codacy status] [codacy-image]
 
-####Contributions:
-*See package.json for module contributions under "dev-dependencies" & "dependencies" sections
-Stack Overflow
-  - chovy: using Model.pre for updated_at hook
-  - Pavel Nikolov: getting created_at date from MongoDB ObjectId
 
 
+####Oauth Creation process
+  - Add package via npm
+  - create oauth route
+  - require oauth route into oauth_routes
+  - create account with API: get ID/SECRET & set callback, load ENVs
+  - create passport_strategy
+  - load strategy into server
+  - create sign_build_type
+  - load into sign_builder.js
+  - create get-info requester/parser (sometimes just parse) in api_data_requests
+  - create Sign model
+  - add sign info onto User model auth
+  - profit
 
 
 

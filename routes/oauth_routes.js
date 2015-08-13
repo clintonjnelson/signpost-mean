@@ -9,6 +9,7 @@ module.exports = function(router, passport) {
 
   // Require routes by provider
   require('./oauth_routes/facebook.js')(router, passport);
+  require('./oauth_routes/github.js'  )(router, passport);
   require('./oauth_routes/twitter.js' )(router, passport);
 };
 

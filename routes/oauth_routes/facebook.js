@@ -9,4 +9,4 @@ module.exports = function(app, passport) {
   };
 
   return oauth2Template(app, passport, facebookApiData);
-}
+};

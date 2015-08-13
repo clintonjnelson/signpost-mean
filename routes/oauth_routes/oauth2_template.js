@@ -21,7 +21,7 @@ module.exports = function(app, passport, apiData) {
 
     //---------------------------------- LOGIN -----------------------------------
     // Redirect to API for auth
-    app.get('/login/facebook',
+    app.get('/login/' + apiData.passportType,
       passport.authenticate(apiData.passportType,  // type of passport to use
         { session: false,
           scope:   apiData.scope,
