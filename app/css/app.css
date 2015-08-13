@@ -16,6 +16,8 @@ ffffff    white
 
 body {
   background-color: #808080;
+  height: auto;
+  min-height: 100% !important;
 }
 
 /*General Background Color*/
