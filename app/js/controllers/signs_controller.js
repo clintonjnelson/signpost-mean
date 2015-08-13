@@ -62,10 +62,12 @@ module.exports = function(app) {
 
 
     //------------------------------ NEW SIGN FORM -----------------------------
+    // TODO: THIS DATA SHOULD NOT BE STATIC, BUT SHOULD BE SENT BY SERVER
+    // TODO: THIS DATA SHOULD BE MANAGED BY AN ADMIN ACCOUNT
     $scope.types = [
       { type: 'custom',         icon: 'label'          , disabled: false,  link: ''                   },
       { type: 'facebook',       icon: 'facebook-box'   , disabled: false,  link: '/auto/facebook'     },
-      { type: 'github',         icon: 'github-box'     , disabled: true,   link: '/auto/github'       },
+      { type: 'github',         icon: 'github-box'     , disabled: false,  link: '/auto/github'       },
       { type: 'twitter',        icon: 'twitter'        , disabled: false,  link: '/auto/twitter'      },
       { type: 'google',         icon: 'google-plus-box', disabled: true,   link: '/auto/google'       },
       { type: 'instagram',      icon: 'instagram'      , disabled: true,   link: '/auto/instagram'    },
