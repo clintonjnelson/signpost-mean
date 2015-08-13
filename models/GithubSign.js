@@ -12,9 +12,9 @@ var githubSignSchema = new SignSchema();
 githubSignSchema.add({
   bgColor:         { type: String, default: '#333333'     },
   followersCount:  { type: String                         },
-  githubPicUrl:    { type: String                         },
-  githubId:        { type: String, required: true         },
   icon:            { type: String, default: 'github-box'  },
+  id:              { type: String, required: true         },
+  picUrl:          { type: String                         },
   signType:        { type: String, default: 'github'      },
 });
 

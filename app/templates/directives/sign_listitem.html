@@ -1,11 +1,12 @@
 <md-card id="{{'sign_' + sign._id}}" layout="row">
 
-    <!-- Main Icon -->
-    <div class="sign-listitem-icon">
-      <a data-ng-href="{{sign.linkUrl}}">
-        <ng-md-icon icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
-      </a>
-    </div>
+  <!-- Main Icon -->
+  <div class="sign-listitem-icon">
+    <a data-ng-href="{{sign.linkUrl}}" hover-icon-img-directive>
+      <ng-md-icon icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="{{icons.size}}"></ng-md-icon>
+      <img ng-src="{{sign.picUrl}}" alt="{{sign.signType + ' optional image'}}" class="sign-listitem-image" height="{{icons.size}}" width="{{icons.size}}">
+    </a>
+  </div>
 
   <div layout="column" flex>
 

@@ -28,6 +28,7 @@ require('./controllers/sessions_controller.js'  )(signpostApp);
 require('./controllers/signs_controller.js'     )(signpostApp);
 
 // Directives
+require('./directives/hover_icon_img_directive.js')(signpostApp);
 require('./directives/login_directive.js'        )(signpostApp);
 require('./directives/sidenav_directive.js'      )(signpostApp);
 require('./directives/sign_form_directive.js'    )(signpostApp);

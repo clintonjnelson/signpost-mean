@@ -13,9 +13,9 @@ var facebookSignSchema = new SignSchema();
 facebookSignSchema.add({
   bgColor:        { type: String,  default: '#3b5998'           },  // fb default color
   email:          { type: String                                },  // fb ref email
-  facebookId:     { type: String, required: true                },  // fb #id
-  facebookPicUrl: { type: String                                },  // picture url
   icon:           { type: String,  default: 'facebook-box'      },  // determines icon
+  id:             { type: String, required: true                },  // fb #id
+  picUrl:         { type: String                                },  // picture url
   signType:       { type: String,  default: 'facebook'          },  // type reference
 });
 
