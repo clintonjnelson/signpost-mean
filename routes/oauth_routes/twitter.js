@@ -1,5 +1,4 @@
 'use strict';
-
 var bodyparser     = require('body-parser'         );
 var eatAuth        = require('../../lib/routes_middleware/eat_auth.js')(process.env.AUTH_SECRET);
 var loadEatUser    = require('../../lib/routes_middleware/load_eat_user.js')(process.env.AUTH_SECRET);
