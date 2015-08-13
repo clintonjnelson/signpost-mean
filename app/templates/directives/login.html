@@ -9,8 +9,19 @@
       <input type="password" data-ng-model="user.password" placeholder="password">
     </md-input-container>
 
-    <button type="submit">
-      <ng-md-icon class="login-button" icon="login" style="fill: #808080" size="40"></ng-md-icon>
-    </button>
+    <div layout="row">
+      <button type="submit">
+        <ng-md-icon class="login-button" icon="login" style="fill: #808080" size="40"></ng-md-icon>
+      </button>
+
+      <md-checkbox data-ng-model="user.newAccount" class="sidenav-login-newaccount">
+        new here?
+      </md-checkbox>
+    </div>
+
+    <md-checkbox data-ng-model="user.termsCond" ng-show="user.newAccount" class="sidenav-login-termscond">
+      I agree to the
+      <a href="/#/termsandconditions">terms and conditions</a>
+    </md-checkbox>
   </form>
 </div>

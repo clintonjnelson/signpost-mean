@@ -40,11 +40,11 @@ module.exports = function(app) {
     $scope.createUser = function() {
       $http.post('/users', $scope.newUser)
         .success(function(data) {
-          $scope.notify = 'user created';
+          //TODO: messages like: $scope.notify = 'user created';
         })
         .error(function(err) {
           console.log('Error creating user: ', err);
-          $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error creating user');
+          // TODO: $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error creating user');
           // Display validation errors on error.
         });
     };

@@ -30,11 +30,34 @@ module.exports = function(app) {
     }
 
     //--------------------- BASIC AUTH ---------------------
+
+    // $scope & initial values
     $scope.user = {};
+    $scope.user.newAccount = false;
+    $scope.user.termsCond  = false;
+
+    // Functions
     $scope.login = function(data) {
-      sessions.login($scope.user, function(data) {
-        sessions.redirect('/signs');
-      });
+      if($scope.user.newAccount) {  // new user
+
+        if($scope.user.termsCond) { // agree to T&C?
+          $http.post('/users', $scope.user)
+            .success(function(data) {       // TODO: flash success msg to user
+              sessions.setEat(data.eat);    // set Eat cookie
+              sessions.setSession();        // http auto-send Eat cookie
+              console.log('User created.');
+            })
+            .error(function(err) {  // TODO: flash validation/error to user;
+              console.log('Error creating user.');
+            });
+        } else {  // T&C not agreed to
+          // TODO: FLASH TERMS & CONDITIONS REQUIRED MESSAGE
+        }
+      } else {    //
+        sessions.login($scope.user, function(data) {
+          sessions.redirect('/signs');
+        });
+      }
     };
 
 

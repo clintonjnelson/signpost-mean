@@ -66,6 +66,12 @@ body {
   color: #955251;
 }
 
+md-checkbox.md-checked.sidenav-login-termscond .md-icon {
+  background-color: #955251;
+}
+md-checkbox.md-checked.sidenav-login-newaccount .md-icon {
+  background-color: #955251;
+}
 .sidenav-login-top {
   background-color: #ffffff;
 }

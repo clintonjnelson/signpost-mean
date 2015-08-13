@@ -24,8 +24,8 @@ module.exports = function(app) {
         $http.get('/login', { headers: { 'Authorization': 'Basic ' + encoded} })
           .success(function(data) {
             this.setEat(data.eat);        // set cookie in App
-            this.setSession();    // set user session for all http requests
-            // TODO: SHOW SUCCESS FEEDBACK TO USER
+            this.setSession();            // set user session for all http requests
+            // TODO: SHOW SUCCESS FEEDBACK MSG TO USER
             callback(data);               // pass data to cb
 
           }.bind(this))
@@ -89,7 +89,7 @@ module.exports = function(app) {
       logout: function logout() {
         $cookies.put('eat', '' );
         $cookies.put('user', '');
-        $location.path('/login');
+        $location.path('/greet');
       },
     };
   }]);
