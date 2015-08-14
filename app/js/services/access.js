@@ -16,7 +16,7 @@ module.exports = function accessService(app) {
       var result;                     // object return options library
       var eat  = sessions.getEat();   // session token
       var user = sessions.getUser();  // get current user
-      var userPermissions = lcPermissions(user.permissions);
+      var userPermissions = user ? lcPermissions(user.permissions) : [];
       permissionType = permissionType || 'atLeastOne';  // default type
 
       // login NOT required. DONE.
@@ -36,6 +36,11 @@ module.exports = function accessService(app) {
 
       // permissions requirements. Determine if meets:
       if(requiredPermissions) {
+        // If no userPermissions => access denied
+        if(!user || userPermissions.length === 0) {
+          return setResult(false, false, 'access denied');
+        }
+
         requiredPermissions = Array.isArray(requiredPermissions) ?
           lcPermissions(requiredPermissions) :    // typ array case
           requiredPermissions.toLowerCase();      // handle string case

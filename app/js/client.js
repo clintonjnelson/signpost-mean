@@ -45,7 +45,6 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
     //------------------- SIGNS ROUTES -----------------
-
     .when('/signs/:username', {
       templateUrl: 'templates/views/signs/signs_view.html',
     })

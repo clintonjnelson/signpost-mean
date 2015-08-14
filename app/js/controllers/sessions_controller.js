@@ -15,22 +15,18 @@ module.exports = function(app) {
 
     //-------------------- LOGOUT ------------------
     if ( checkPath('/logout') ) {
-      console.log("MADE IT TO LOGOUT");
-      sessions.logout();             // clear token, redirect login
+      sessions.logout();             // clear token, redirect greet
     }
 
     //-------------------- OAUTH ------------------
     if ( checkPath('/oauth') && $routeParams.token) {
-      sessions.setCookieFromParamToken();   // session+token => load/clear/redirect
-      console.log("SET COOKIE AS: ", sessions.getEat());
-      return sessions.redirect('/signs');
+      sessions.setOauthSession();   // session+token+user => load/clear/redirect
     }
     if ( checkPath('/oauth') ) {   // no token? login again
       return sessions.redirect('/greet');
     }
 
     //--------------------- BASIC AUTH ---------------------
-
     // $scope & initial values
     $scope.user = {};
     $scope.user.newAccount = false;
@@ -43,8 +39,7 @@ module.exports = function(app) {
         if($scope.user.termsCond) { // agree to T&C?
           $http.post('/users', $scope.user)
             .success(function(data) {       // TODO: flash success msg to user
-              sessions.setEat(data.eat);    // set Eat cookie
-              sessions.setSession();        // http auto-send Eat cookie
+              sessions.setBasicSession(data);        // sets: eat, user, http-eat-header
               console.log('User created.');
             })
             .error(function(err) {  // TODO: flash validation/error to user;
@@ -54,8 +49,8 @@ module.exports = function(app) {
           // TODO: FLASH TERMS & CONDITIONS REQUIRED MESSAGE
         }
       } else {    //
-        sessions.login($scope.user, function(data) {
-          sessions.redirect('/signs');
+        sessions.login($scope.user, function(err, data) {
+          sessions.redirect('/signs');            // redirects if not successful
         });
       }
     };

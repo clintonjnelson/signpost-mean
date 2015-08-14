@@ -6,6 +6,11 @@ var eatAuth    = require('../lib/routes_middleware/eat_auth.js')(process.env.AUT
 module.exports = function(router, passport) {
   router.use(bodyparser.json());
 
+  // Send User Info IF logged in
+  router.get('/login/user', eatAuth, function(req, res) {
+    res.json({user: req.user});
+  });
+
   // Existing user login
   router.get('/login', passport.authenticate('basic', { session: false }), function(req, res) {
     req.user.generateToken(process.env.AUTH_SECRET, function(err, eat) {  // passport strat adds req.user
@@ -13,7 +18,7 @@ module.exports = function(router, passport) {
         console.log('Error logging in user. Error: ', err);
         return res.status(500).json({ error: true });
       }
-      res.json({eat: eat});
+      res.json({eat: eat, user: req.user});
     });
   });
 
