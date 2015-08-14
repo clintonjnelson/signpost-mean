@@ -31,7 +31,7 @@ module.exports = function(app) {
       }
 
 
-      // Helper function to return form type
+      // Helper function to return corresponding form type
       function getFormType(signType) {
         var signMap = {
           custom:     'custom',
