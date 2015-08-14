@@ -1,0 +1,40 @@
+<form flex name="signForm" class="sign-listitem-form" layout="column" ng-if="sign.isEditing">
+
+  <!-- sign Title -->
+  <md-input-container layout="row">
+    <ng-md-icon icon="star" style="fill: grey" size="20"></ng-md-icon>
+    <input type="text" data-ng-model="sign.signName" placeholder="Sign Title" md-maxlength="30">
+  </md-input-container>
+
+  <!-- url -->
+  <md-input-container layout="row">
+    <ng-md-icon icon="public" style="fill: grey" size="20"></ng-md-icon>
+    <input type="url" data-ng-model="sign.linkUrl" placeholder="http://www.somewebsite.com/..."/>
+  </md-input-container>
+
+  <!-- knownAs/username -->
+  <md-input-container layout="row">
+    <ng-md-icon icon="face" style="fill: grey" size="20"></ng-md-icon>
+    <input type="text" data-ng-model="sign.knownAs" placeholder="@myusername" md-maxlength="30">
+  </md-input-container>
+
+  <!-- description -->
+  <md-input-container layout="row">
+    <ng-md-icon icon="info" style="fill: grey" size="20"></ng-md-icon>
+    <input type="text" name="desc" data-ng-model="sign.description" placeholder="short description" md-maxlength="30">
+  </md-input-container>
+
+
+  <!-- form buttons -->
+  <div ng-if="sign.isEditing">
+    <!-- ok button -->
+    <a data-ng-click="submitAction({sign: sign})" type="submit" class="sign-listitem-saveicon" >
+      <ng-md-icon icon="check" style="fill: green" size="20"></ng-md-icon>
+    </a>
+    <!-- cancel button -->
+    <a data-ng-click="toggleEditing({sign: sign})" class="sign-listitem-cancelicon">
+      <ng-md-icon icon="close" style="fill: red" size="20"></ng-md-icon>
+    </a>
+  </div>
+
+</form>

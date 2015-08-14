@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
-  app.directive('signFormDirective', function() {
+  app.directive('newSignsAreaDirective', function() {
 
     // Form to create new signs
     return {
       restrict:     'AE',
       replace:      true,
-      templateUrl:  'templates/directives/sign_form.html',
+      templateUrl:  'templates/directives/new_signs_area.html',
       scope: {
         sign:           '=',  // allow access to parent sign
         defaults:       '=',  // pass parent defaults
@@ -17,8 +17,7 @@ module.exports = function(app) {
         buttonName:     '@',  // use name passed
         activeColor:    '&',  // pass action name
         toggleEditing:  '&',  // toggle sign editing
-        createAutoSign: '&',
-        hrefLink:       '&',
+        createAutoSign: '&',  // create matching autosign
       },
     };
   });

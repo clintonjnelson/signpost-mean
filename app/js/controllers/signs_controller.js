@@ -59,6 +59,10 @@ module.exports = function(app) {
       }
     };
 
+    // $scope.getFormUrl = function(sign) {
+    //   return 'templates/directives/dynsignforms/custom_sign_form.html';
+    // }
+
 
     //------------------------------ NEW SIGN FORM -----------------------------
     // TODO: THIS DATA SHOULD NOT BE STATIC, BUT SHOULD BE SENT BY SERVER

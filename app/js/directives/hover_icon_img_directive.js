@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.directive('hoverIconImgDirective', ['$document', function($document) {
+  app.directive('hoverIconImgDirective', [function() {
 
     function link(scope, elem, attrs) {
       var picUrl = scope.sign.picUrl;     // picUrl for Current Elem
@@ -33,7 +33,7 @@ module.exports = function(app) {
           });
         });
       }
-    };
+    }
 
 
     return {

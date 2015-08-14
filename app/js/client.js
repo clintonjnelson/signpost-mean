@@ -24,15 +24,15 @@ require('./runs/route_access_intercept.js')(signpostApp);
 // Controllers
 require('./controllers/users_controller.js'     )(signpostApp);
 require('./controllers/sessions_controller.js'  )(signpostApp);
-// require('./controllers/sign_form_controller.js' )(signpostApp);
 require('./controllers/signs_controller.js'     )(signpostApp);
 
 // Directives
-require('./directives/hover_icon_img_directive.js')(signpostApp);
-require('./directives/login_directive.js'        )(signpostApp);
-require('./directives/sidenav_directive.js'      )(signpostApp);
-require('./directives/sign_form_directive.js'    )(signpostApp);
-require('./directives/sign_listitem_directive.js')(signpostApp);
+require('./directives/dyn_sign_form_directive.js')(signpostApp);
+require('./directives/new_signs_area_directive.js'  )(signpostApp);
+require('./directives/hover_icon_img_directive.js'  )(signpostApp);
+require('./directives/login_directive.js'           )(signpostApp);
+require('./directives/sidenav_directive.js'         )(signpostApp);
+require('./directives/sign_listitem_directive.js'   )(signpostApp);
 
 // Custom View Routes
 signpostApp.config(['$routeProvider', function($routeProvider) {
