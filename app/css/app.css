@@ -141,6 +141,9 @@ md-checkbox.md-checked.sidenav-login-newaccount .md-icon {
 }
 
 /*Sign Listitem*/
+.sign-listitem {
+  /*EXPAND CONTAINER TO FIT CONTENTS - INCLUDING ICONS*/
+}
 .sign-listitem-icon {
   position: relative;
 }

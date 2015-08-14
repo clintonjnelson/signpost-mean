@@ -1,4 +1,4 @@
-<md-card id="{{'sign_' + sign._id}}" layout="row">
+<md-card id="{{'sign_' + sign._id}}" layout="row" class="sign-listitem">
 
   <!-- Main Icon -->
   <div class="sign-listitem-icon">
@@ -30,7 +30,7 @@
       </div>
 
 
-      <!-- Form for Editing Signs - NOT DYNAMIC YET-->
+      <!-- Dynamic Edit Form to match signType -->
       <div data-dyn-sign-form-directive
              data-sign="sign"
              data-submit-action="updateSign(sign)"

@@ -20,7 +20,7 @@ module.exports = function(app) {
 
     function linker(scope, elem, attrs) {
       console.log("SCOPE: ", scope);
-      var base         = 'templates/directives/dynsignforms/';
+      var base         = 'templates/directives/signforms/';
       var end          = '_sign_form.html';
       var formType     = getFormType(scope.sign.signType);
       var templateUrl  = base + formType + end;
@@ -29,19 +29,18 @@ module.exports = function(app) {
       scope.getFormUrl = function() {
         return templateUrl;
       }
-    }
 
 
-    function getFormType(signType) {
-      var signMap = {
-        custom:     'custom',
-        // email:      'email',
-        // phone:      'phone',
-      };
-      console.log('SIGNTYPE IS: ', signType)
-      console.log('MAPPED FORM IS: ', signMap[signType]);
+      // Helper function to return form type
+      function getFormType(signType) {
+        var signMap = {
+          custom:     'custom',
+          email:      'email',
+          phone:      'phone',
+        };
 
-      return signMap[signType] || 'default';
+        return signMap[signType] || 'default';
+      }
     }
   });
 };
