@@ -1,0 +1,18 @@
+<div data-ng-controller="usersController" data-ng-init="getUsers()">
+  <h1>Users View</h1>
+  <ul>
+    <li data-ng-repeat="user in users">
+      <a ng-href="{{'/signs/' + user.username}}">{{user.username}}'s signs</a>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
