@@ -2,7 +2,13 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('signsController', ['$scope', 'RESTResource', '$http', '$window', function($scope, RESTResource, $http, $window) {
+  app.controller('signsController', [
+    '$scope',
+    'RESTResource',
+    '$http',
+    '$window',
+    '$routeParams',
+    function($scope, RESTResource, $http, $window, $routeParams) {
     // connect with Signs api
     var signHttp = RESTResource('signs');
 
@@ -18,13 +24,20 @@ module.exports = function(app) {
 
 
     $scope.getSigns = function() {
-      // TODO: TAILOR THIS TO GET THE SIGNS OF USER PASSED IN
-          // THIS WILL ENABLE SAME DIRECTIVE TO VIEW OTHER USER's SIGNS
-      signHttp.getAll({_id: 'placeholderIdName'}, function(err, data) {
-        if(err) {return console.log("ERROR GETTING USERS: ", err);}
+      var usernameData = {username: $routeParams.username};
+      console.log('ROUTE PARAMS ARE: ', $routeParams);
+
+      $routeParams.username ?
+        signHttp.getBy(usernameData, 'username', getSignsCallback) :
+        signHttp.getAll(getSignsCallback);
+
+      function getSignsCallback(err, data) {
+        // TODO: flash something to the user
+        if(err) {return console.log("Error getting signs from server.");}
+
         console.log("SIGNS RETURNED ARE: ", data.signs);
         $scope.signs = data.signs;
-      });
+      }
     };
 
     $scope.updateSign = function(sign) {

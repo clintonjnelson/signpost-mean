@@ -6,19 +6,42 @@ var signOwnerAuth = require('../lib/routes_middleware/sign_owner_auth.js');
 var FacebookSign  = require('../models/FacebookSign.js');
 var Sign          = require('../models/Sign.js'        );
 var signBuilder   = require('../lib/sign_builder.js'   );
+var User          = require('../models/User.js'        );
 
 module.exports = function(app) {
   app.use(bodyparser.json());
 
-    //TODO: GET BY A USER VALUE, INSTEAD OF BY TOKEN
-  app.get('/signs/:username', eatAuth, function(req, res) {
-    // var userId = req.params.id;
-    var userId = req.user._id;
-    console.log("ID CAME IN AS: ", userId);
-    Sign.find({userId: userId}, function(err, signs) {
+
+  // Get by username (ANYONE)
+  app.get('/signs/:username', function(req, res) {
+    var username = req.params.username;
+    console.log("USERNAME CAME IN AS: ", username);
+
+    User.findOne({username: username}, function(err, user) {
+      if(err) {
+        console.log('Database error getting user by username.');
+        return res.status(500).json({error: true, msg: 'database error'});
+      }
+
+      Sign.find({userId: user._id}, function(err, signs) {
+        if(err) {
+          console.log("Error getting signs: ", err);
+          return res.status(500).json({error: true, msg: 'Database error.'});
+        }
+
+        console.log("SIGNS FOUND: ", signs);
+        res.json({signs: signs, username: user.username});
+      });
+    });
+  });
+
+  // Get users OWN signs (restricted route)
+  app.get('/signs/', eatAuth, function(req, res) {
+
+    Sign.find({userId: req.user._id}, function(err, signs) {
       if(err) {
         console.log("Error getting signs: ", err);
-        return res.status(500).json({error: true, msg: 'Database error finding signs.'});
+        return res.status(500).json({error: true, msg: 'Database error.'});
       }
 
       console.log("SIGNS FOUND: ", signs);
@@ -50,7 +73,7 @@ module.exports = function(app) {
     }
 
     // build sign according to "type" (see above)
-    newSign = signBuilder[type](signData);
+    newSign        = signBuilder[type](signData);
     newSign.userId = currUser.id;           // add userId before saving
     console.log("ABOUT TO SAVE SIGN...", newSign);
 

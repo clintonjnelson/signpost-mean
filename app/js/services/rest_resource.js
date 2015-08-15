@@ -33,7 +33,13 @@ module.exports = function(app) {
       // "id" routes rely on reference id being passed
       return {
         getAll: function(resourceData, callback) {
-          $http.get('/' + resourceName + '/' + resourceData._id)
+          $http.get('/' + resourceName)
+            .success(handleSuccess(callback))
+            .error(handleError(callback));
+        },
+
+        getBy: function(resourceData, ref, callback) {
+          $http.get('/' + resourceName + '/' + resourceData[ref])
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
