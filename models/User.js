@@ -51,14 +51,10 @@ var UserSchema = mongoose.Schema({
 //--------------------------------- HOOKS --------------------------------------
 UserSchema.pre('validate', function(next) {
   var user = this;
-
-  if(this.isNew) {  // On Create
-    makeAndValidateUsername(next);
-  } else {          // All except User creation
-    next();
-  }
+  makeAndValidateUsername(next);
 
 
+  // Helper functions
   function makeAndValidateUsername(next) {
     user.username = user.username || generateUsername();
     user.username = formatUsername(user.username);
