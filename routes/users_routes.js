@@ -9,6 +9,17 @@ var User       = require('../models/User.js');
 module.exports = function(router) {
   router.use(bodyparser.json());
 
+  // Get user
+  router.get('/users', function(req, res) {
+    User.find({}, function(err, users) {
+      if (err) {
+        console.log('Error finding user. Error: ', err);
+        return res.status(500).json({ error: 'user not found' });
+      }
+      res.json({users: users});
+    });
+  });
+
   // Create new user
   router.post('/users', function(req, res) {
     var newUser = new User({  // Explicitly populate to avoid exploit
@@ -39,17 +50,6 @@ module.exports = function(router) {
           res.json({ eat: eat });
         });
       });
-    });
-  });
-
-  // Get user
-  router.get('/users/:id', function(req, res) {
-    User.findOne({'_id': req.params.id}, function(err, user) {
-      if (err) {
-        console.log('Error finding user. Error: ', err);
-        return res.status(500).json({ error: 'user not found' });
-      }
-      res.json(user);
     });
   });
 

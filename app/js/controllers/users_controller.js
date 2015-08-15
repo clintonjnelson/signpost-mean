@@ -26,9 +26,9 @@ module.exports = function(app) {
     // Show Users
     $scope.getUsers = function() {
       $http.get('/users')
-        .success(function(users) {
+        .success(function(data) {
           // TODO: need to paginate this
-          $scope.users = users;
+          $scope.users = data.users;
         })
         .error(function(err) {
           console.log('Error retrieving users: ', err);
