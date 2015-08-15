@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.use(bodyparser.json());
 
     //TODO: GET BY A USER VALUE, INSTEAD OF BY TOKEN
-  app.get('/signs/:id', eatAuth, function(req, res) {
+  app.get('/signs/:username', eatAuth, function(req, res) {
     // var userId = req.params.id;
     var userId = req.user._id;
     console.log("ID CAME IN AS: ", userId);

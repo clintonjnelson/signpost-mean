@@ -33,10 +33,11 @@ var UserSchema = mongoose.Schema({
   suspended:       { type: Boolean,  default: false                   },
   termsconditions: { type: Date,     default: null                    },
   updated_at:      { type: Date,     default: Date.now                },
-  username:        { type: String,   default: null                    },
+  username:        { type: String,     match: /^[a-zA-Z0-9_-]*$/      },
+                                    //match: /^[a-zA-Z0-9_-]*$/
 
   // ObjectId References
-  location_id:     { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: false },
+  // location_id:     { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: false },
 });
 
 // Validations
@@ -47,13 +48,57 @@ var UserSchema = mongoose.Schema({
 // UserSchema.path('username'           ).index( { unique: true } );
 
 
-// Hooks
-UserSchema.pre('save', function(next) { // Update_at Hook
+//--------------------------------- HOOKS --------------------------------------
+UserSchema.pre('validate', function(next) {
+  var user = this;
+
+  if(this.isNew) {  // On Create
+    makeAndValidateUsername(next);
+  } else {          // All except User creation
+    next();
+  }
+
+
+  function makeAndValidateUsername(next) {
+    user.username = user.username || generateUsername();
+    user.username = formatUsername(user.username);
+
+    user.constructor.findOne({username: user.username}, function(err, match) {
+      if(err)  { throw 'database error'; }
+      if(!match || !match.username) {       // no matching user found => NEXT!
+        return next();
+      }
+      user.username = generateUsername(); // already exists => try again
+      makeAndValidateUsername(next);          // recurse to keep async chain
+    });
+  }
+
+  function generateUsername() {
+    var digits = String(Math.floor(Math.random() * 1E12));  // string of 12digits
+    while(digits.length < 12) {
+      digits += '0';
+    }
+    return 'signpost' + digits;
+  }
+
+  // format: only alphanimeric/dash/underscore, trim, lowercase, max20chars
+  function formatUsername(username) {
+    username = username.replace(/[^\w]|_|-/g, "");  // remove all but alphanumeric, dash, underscore
+    username = username.toLowerCase().trim();
+    username = (username.length <= 20 ? username : username.slice(0, 20) );
+    return username;
+  }
+});
+
+UserSchema.pre('save', function(next) {
   this.udpated_at = Date.now();
   next();
 });
 
-// User Methods
+
+
+
+//------------------------------- USER METHODS ----------------------------------
 UserSchema.methods.generateHash = function generateHash(password, callback) {
   bcrypt.genSalt(8, function(err, salt) {
     bcrypt.hash(password, salt, null, function saveHashedPassword(err, hash) {
