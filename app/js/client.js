@@ -53,18 +53,18 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       access: ownerAccess,
     })
 
-    //------------------- AUTH ROUTES -----------------
-    .when('/signup', {
-      templateUrl: 'templates/views/users/new_view.html',
-      controller: 'usersController'
+    //------------------- SIGNS ROUTES -----------------
+    .when('/users/:username', {
+      // should redirect to the signs view with matching username
+      templateUrl: 'templates/views/signs/signs_view.html'
     })
+    .when('/users', {
+      templateUrl: 'templates/views/users/index_view.html'
+    })
+
+    //------------------- AUTH ROUTES -----------------
     .when('/greet', {
       templateUrl: 'templates/views/greet_view.html'
-    })
-    .when('/login', {
-      templateUrl: 'templates/views/sessions/login_view.html',
-      controller: 'sessionsController',
-      // access: { requiresLogout: true }
     })
     .when('/oauth', {
       templateUrl: 'templates/views/sessions/oauth_view.html'
