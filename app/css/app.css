@@ -67,6 +67,8 @@ body {
   padding-bottom: 5px;
 }
 .sidenav-search input {
+  border-color: white;
+  color: white;
   order: 1;
   padding-bottom: 10px;
 }
@@ -126,10 +128,12 @@ md-checkbox.md-checked.sidenav-login-newaccount .md-icon {
   margin: 10px auto 0px auto;
   text-align: center;
 }
-.sidenav-link{
+.sidenav-link a{
   box-sizing: content-box;
-  text-decoration: none;
   color: white;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-decoration: none;
 }
 .sidenav-link:hover {
   color: #955251;

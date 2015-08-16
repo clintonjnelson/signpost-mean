@@ -32,7 +32,7 @@ module.exports = function(app) {
       // standard routes rely ok token or don't require
       // "id" routes rely on reference id being passed
       return {
-        getAll: function(resourceData, callback) {
+        getAll: function(callback) {
           $http.get('/' + resourceName)
             .success(handleSuccess(callback))
             .error(handleError(callback));

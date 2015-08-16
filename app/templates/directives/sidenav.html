@@ -1,5 +1,23 @@
 <div layout="row">
   <md-sidenav md-component-id="left" class="md-sidenav-left">
+
+    <!-- Signed IN OR OUT content -->
+    <md-list>
+    <!-- Search -->
+      <md-list-item class="sidenav-search">
+        <form name="searchForm" ng-submit="searchUsers()">
+          <md-input-container md-float layout="row">
+            <input type="text" data-ng-model="search" placeholder="find someone">
+            <button type="submit" class="sidenav-search-btn-icon">
+              <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
+            </button>
+          </md-input-container>
+        </form>
+      </md-list-item>
+    </md-list>
+
+
+    <!-- Signed IN content -->
     <md-list data-ng-if="isSignedIn">
       <md-list-item>
         <!-- <p>You're signed in</p>             -->
@@ -26,21 +44,9 @@
       </md-list-item>
     </md-list>
 
-    <!-- MAKE LINKS INTO A DIRECTIVE -->
+
+    <!-- Signed OUT content -->
     <md-list data-ng-if="isSignedOut">
-
-      <!-- Search -->
-      <md-list-item class="sidenav-search">
-        <form name="searchForm" ng-submit="searchUsers()">
-          <md-input-container md-float layout="row">
-            <input type="text" data-ng-model="search" placeholder="find someone">
-            <button type="submit" class="sidenav-search-btn-icon">
-              <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
-            </button>
-          </md-input-container>
-        </form>
-      </md-list-item>
-
 
       <md-list-item>
         <md-list>
