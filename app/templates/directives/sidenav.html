@@ -7,7 +7,7 @@
       <md-list-item class="sidenav-search">
         <form name="searchForm" ng-submit="searchUsers()">
           <md-input-container md-float layout="row">
-            <input type="text" data-ng-model="search" placeholder="find someone">
+            <input type="text" data-ng-model="search" data-ng-model="search.searchStr" placeholder="find someone">
             <button type="submit" class="sidenav-search-btn-icon">
               <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
             </button>

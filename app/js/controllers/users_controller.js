@@ -3,6 +3,8 @@
 module.exports = function(app) {
   app.controller('usersController', ['$scope', '$http', function($scope, $http) {
 
+    $scope.users = [{username: '1'},{username: '2'},{username: '3'}];
+
     // Errors
     $scope.errors = [];
     $scope.clearErrors = function() {
@@ -36,18 +38,18 @@ module.exports = function(app) {
         });
     };
 
-    // Create User
-    $scope.createUser = function() {
-      $http.post('/users', $scope.newUser)
-        .success(function(data) {
-          //TODO: messages like: $scope.notify = 'user created';
-        })
-        .error(function(err) {
-          console.log('Error creating user: ', err);
-          // TODO: $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error creating user');
-          // Display validation errors on error.
-        });
-    };
+    // // Create User
+    // $scope.createUser = function() {
+    //   $http.post('/users', $scope.newUser)
+    //     .success(function(data) {
+    //       //TODO: messages like: $scope.notify = 'user created';
+    //     })
+    //     .error(function(err) {
+    //       console.log('Error creating user: ', err);
+    //       // TODO: $scope.errors.push('NEED TO HANDLE THIS ERROR WELL: error creating user');
+    //       // Display validation errors on error.
+    //     });
+    // };
 
     // Edit & Update User
     $scope.editUser = function(user) {

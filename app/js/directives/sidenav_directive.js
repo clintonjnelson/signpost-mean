@@ -8,38 +8,52 @@ module.exports = function(app) {
       replace:     true,
       templateUrl: '/templates/directives/sidenav.html',
       // scope:
-      controller:  ['$scope', '$mdSidenav', 'sessions', function($scope, $mdSidenav, sessions) {
+      controller:  [
+        '$scope',
+        '$mdSidenav',
+        'sessions',
+        function($scope, $mdSidenav, sessions) {
 
-        $scope.iconColor = '#ffffff';     // TODO: break out to directive later
-        $scope.showLogin = false;
-        $scope.isSignedIn  = sessions.isSignedIn();
-        $scope.isSignedOut = !$scope.isSignedIn;
-
-
-        $scope.openLeftMenu = function() {
-          $mdSidenav('left').toggle();
-        };
-        $scope.openRightMenu = function() {
-          $mdSidenav('right').toggle();
-        };
-        $scope.loginToggle = function() {
-          $scope.showLogin = !$scope.showLogin;
-        };
-        $scope.searchUsers = function() {
-          console.log("SEARCHING CLICKED!");
-          sessions.redirect('/users');
-        };
+          $scope.iconColor   = '#ffffff';     // TODO: break out to directive later
+          $scope.showLogin   = false;
+          $scope.isSignedIn  = sessions.isSignedIn();
+          $scope.isSignedOut = !$scope.isSignedIn;
+          $scope.search      = '';
 
 
-        // Set Props to Watch for Changes in Session Values
-        $scope.$watch(
-          function() {return sessions.isSignedIn();},
-          function(newVal) {
-            $scope.isSignedIn = newVal;
-            $scope.isSignedOut = !newVal;
-          }
-        );
-      }],
+          $scope.openLeftMenu = function() {
+            $mdSidenav('left').toggle();
+          };
+          $scope.openRightMenu = function() {
+            $mdSidenav('right').toggle();
+          };
+          $scope.loginToggle = function() {
+            $scope.showLogin = !$scope.showLogin;
+          };
+          $scope.searchUsers = function() {
+            console.log("SEARCHING CLICKED!");
+
+            $http.get('/search', {params: {search: $search.searchStr} })
+              .success(function(data) {
+                console.log("SUCCESSFUL SEARCH. DATA IS: ", data);
+              })
+              .error(function(err) {
+                console.log("Error searching.");
+              })
+            sessions.redirect('/users');
+          };
+
+
+          // Set Props to Watch for Changes in Session Values
+          $scope.$watch(
+            function() {return sessions.isSignedIn();},
+            function(newVal) {
+              $scope.isSignedIn = newVal;
+              $scope.isSignedOut = !newVal;
+            }
+          );
+        }
+      ],
     };
   });
 };
