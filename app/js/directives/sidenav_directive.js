@@ -25,6 +25,10 @@ module.exports = function(app) {
         $scope.loginToggle = function() {
           $scope.showLogin = !$scope.showLogin;
         };
+        $scope.searchUsers = function() {
+          console.log("SEARCHING CLICKED!");
+          sessions.redirect('/users');
+        };
 
 
         // Set Props to Watch for Changes in Session Values

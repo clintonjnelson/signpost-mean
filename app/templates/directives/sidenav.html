@@ -29,12 +29,16 @@
     <!-- MAKE LINKS INTO A DIRECTIVE -->
     <md-list data-ng-if="isSignedOut">
 
-      <!-- Title -->
+      <!-- Search -->
       <md-list-item class="sidenav-search">
-        <md-input-container md-float layout="row">
-          <input type="text" data-ng-model="search" placeholder="find someone">
-          <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
-        </md-input-container>
+        <form name="searchForm" ng-submit="searchUsers()">
+          <md-input-container md-float layout="row">
+            <input type="text" data-ng-model="search" placeholder="find someone">
+            <button type="submit" class="sidenav-search-btn-icon">
+              <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
+            </button>
+          </md-input-container>
+        </form>
       </md-list-item>
 
 

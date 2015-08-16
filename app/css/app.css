@@ -71,11 +71,22 @@ body {
   padding-bottom: 10px;
 }
 .sidenav-search ng-md-icon {
-  order: 2;
+
 }
 .sidenav-search svg {
   position: relative;
   top: 20px;
+}
+.sidenav-search-btn-icon {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  order: 2;
+  padding: 0px;
+}
+.sidenav-search-icon:focus:hover {
+  outline: 0 none !important;
 }
 
 .md-sidenav-left, md-sidenav {
