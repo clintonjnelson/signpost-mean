@@ -26,26 +26,23 @@
       </md-list-item>
     </md-list>
 
-    <!-- MAKE LINKS INTO A NG-REPEAT DIRECTIVE -->
+    <!-- MAKE LINKS INTO A DIRECTIVE -->
     <md-list data-ng-if="isSignedOut">
-      <md-list-item>
-        <h2 class="sidenav-main-title">Welcome!</h2>
+
+      <!-- Title -->
+      <md-list-item class="sidenav-search">
+        <md-input-container md-float layout="row">
+          <input type="text" data-ng-model="search" placeholder="find someone">
+          <ng-md-icon icon="search" style="fill: #ffffff" size="25"></ng-md-icon>
+        </md-input-container>
       </md-list-item>
+
+
       <md-list-item>
         <md-list>
 
-          <!-- Signpost Login Form -->
-          <md-card class="sidenav-login">
-            <h4 class="sidenav-login-title"> login with signpost </h4>
-            <md-content class="md-padding md-default-theme sidenav-login-content">
-              <div data-login-directive></div>
-            </md-content>
-          </md-card>
-          <br>
-
           <!-- Oauth Login Links -->
-          Signup or Login with:
-          <br/>
+          <h4 class="sidenav-oauth-login-title"> login options </h4>
           <a data-ng-href="/login/facebook" class="sidenav-link">
             <ng-md-icon class="sidenav-link-icon" icon="facebook-box" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
@@ -61,6 +58,18 @@
           <a data-ng-href="/login/twitter" class="sidenav-link">
             <ng-md-icon class="sidenav-link-icon" icon="twitter" style="fill: #ffffff" size="40" ></ng-md-icon>
           </a>
+
+
+          <br>
+          <h4 class="sidenav-oauth-login-title"> OR </h4>
+          <!-- Signpost Login Form -->
+          <md-card class="sidenav-login">
+            <h4 class="sidenav-login-title" data-ng-click="loginToggle()"> login with signpost </h4>
+            <md-content ng-show="showLogin" class="md-padding md-default-theme sidenav-login-content">
+              <div data-login-directive></div>
+            </md-content>
+          </md-card>
+          <br>
 
         </md-list>
       </md-list-item>

@@ -60,6 +60,24 @@ body {
 }
 
 /*Sidenav Content*/
+.sidenav-search {
+  margin-top: 15px;
+}
+.sidenav-search md-input-container {
+  padding-bottom: 5px;
+}
+.sidenav-search input {
+  order: 1;
+  padding-bottom: 10px;
+}
+.sidenav-search ng-md-icon {
+  order: 2;
+}
+.sidenav-search svg {
+  position: relative;
+  top: 20px;
+}
+
 .md-sidenav-left, md-sidenav {
   width: 250px;
   min-width: 250px;
@@ -73,6 +91,9 @@ md-checkbox.md-checked.sidenav-login-termscond .md-icon {
 }
 md-checkbox.md-checked.sidenav-login-newaccount .md-icon {
   background-color: #955251;
+}
+.sidenav-login {
+  margin-top: 20px;
 }
 .sidenav-login-top {
   background-color: #ffffff;
@@ -89,7 +110,13 @@ md-checkbox.md-checked.sidenav-login-newaccount .md-icon {
   text-align: center;
 }
 
-.sidenav-link a {
+.sidenav-oauth-login-title {
+  color: #5a5a5a;
+  margin: 10px auto 0px auto;
+  text-align: center;
+}
+.sidenav-link{
+  box-sizing: content-box;
   text-decoration: none;
   color: white;
 }
