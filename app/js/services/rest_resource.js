@@ -14,10 +14,7 @@ module.exports = function(app) {
 
       var handleError = function(callback) {
         return function(err) {
-          if (err && err.reset) {
-            // TODO: DISPLAY A NOTICE TO THE USER TO PLEASE LOG BACK IN
-            sessions.resetEat();
-          }
+          session.checkReset(err);
           callback(err, null);
         };
       };

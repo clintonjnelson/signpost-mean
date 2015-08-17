@@ -5,10 +5,9 @@ module.exports = function(app) {
   app.controller('signsController', [
     '$scope',
     'RESTResource',
-    '$http',
     '$window',
     '$routeParams',
-    function($scope, RESTResource, $http, $window, $routeParams) {
+    function($scope, RESTResource, $window, $routeParams) {
     // connect with Signs api
     var signHttp = RESTResource('signs');
 

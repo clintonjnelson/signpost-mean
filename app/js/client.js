@@ -78,8 +78,8 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/logout', {
       templateUrl: 'templates/views/sessions/logout_view.html',
-      controller: 'sessionsController',
-      access: ownerAccess,
+      controller: 'sessionsController'
+      // access: ownerAccess,
     })
     .otherwise({
       redirectTo: '/greet'

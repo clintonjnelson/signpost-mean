@@ -37,6 +37,7 @@ module.exports = function(app) {
             $scope.signs = data.signs;
           })
           .error(function(err) {
+            // TODO: SHOW ERROR MSG TO USER
             console.log("Error searching.");
           })
       }

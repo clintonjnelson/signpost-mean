@@ -91,10 +91,6 @@ module.exports = function(app) {
         $cookies.put('eat', eat);
       },
 
-      resetEat: function resetSession() {
-        this.logout();
-      },
-
       // TODO: SEND & SAVE THIS
       getUser: function getUser() {
         return $cookies.getObject('user');
@@ -118,13 +114,30 @@ module.exports = function(app) {
 
       setSessionHeader: function setSessionHeader() {
         // set session eat header to current value of EAT
-        $http.defaults.headers.common.eat = this.getEat();
+        $http.defaults.headers.common.eat = $cookies.get('eat');
+      },
+
+      checkReset: function checkReset(err) {
+        if(err & err.reset) { this.resetSession(); }
+      },
+
+      checkResetRedirect: function checkResetRedirect(err) {
+        checkReset(err);
+        $location.path('/greet');
+      },
+
+      resetSession: function resetSession() {
+        console.log("LOGGING OUT EAT & USER. DELETING BOTH COOKIES..");
+        $cookies.remove('user');
+        console.log("USER COOKIE IS NOW DELETED: ", $cookies.get('user'));
+        $cookies.remove('eat' );
+        console.log("USER COOKIE IS NOW DELETED: ", $cookies.get('eat'));
+        $location.path('/greet');
       },
 
       logout: function logout() {
-        $cookies.put('eat', '' );
-        $cookies.put('user', '');
-        $location.path('/greet');
+        console.log("LOGGING OUT EAT & USER");
+        this.resetSession();
       },
     };
   }]);
