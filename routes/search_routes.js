@@ -12,7 +12,7 @@ module.exports = function(router) {
     console.log("SEARCH STRING RECEIVED AS: ", req.query.searchStr);
 
     var searchStr = req.query.searchStr.trim();
-    var regex     = new RegExp('.*' + searchStr + '.*');
+    var regex     = new RegExp('^.*' + searchStr + '.*$', 'i');
     var count     = 0;
     var resCount  = 2;
     var resObj    = {};

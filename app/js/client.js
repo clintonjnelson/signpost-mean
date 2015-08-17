@@ -65,7 +65,7 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
 
     //------------------- SEARCH ROUTES -----------------
     .when('/search', {
-      templateUrl: 'templates/views/users/index_view.html',
+      templateUrl: 'templates/views/search_view.html',
       controller: 'searchController'
     })
 
