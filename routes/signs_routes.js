@@ -13,22 +13,26 @@ module.exports = function(app) {
   app.use(bodyparser.json());
 
 
-  // Get by username (ANYONE)
+  // Get by username OR userId
   app.get('/signs/:usernameOrId', function(req, res) {
 
+    // set query for username OR id
     var paramVal = req.params.usernameOrId;
-    console.log("USERNAME OR ID CAME IN AS: ", paramVal);
     var queryObj = mongoose.Types.ObjectId.isValid(paramVal) ?
       {_id:      paramVal} :
       {username: paramVal};
 
-    // search by either value passed in
     User.findOne(queryObj, function(err, user) {
       if(err) {
         console.log('Database error getting user by username or id:', err);
         return res.status(500).json({error: true, msg: 'database error'});
       }
+      if(!user) {
+        console.log('User could not be found. User is: ', user);
+        return res.status(401).json({msg: 'user not found', signs: []});
+      }
 
+      // user found => get signs
       Sign.find({userId: user._id}, function(err, signs) {
         if(err) {
           console.log("Error getting signs: ", err);
