@@ -29,6 +29,10 @@ module.exports = function(app) {
         $location.path(path);      // redirect view here
       },
 
+      redirectQuery: function redirectQuery(path, queryNameStr, queryValStr) {
+        $location.path(path).search(queryNameStr, queryValStr);
+      },
+
       currPath: function currPath() {
         return $location.path();   // return current path
       },

@@ -22,9 +22,10 @@ require('./services/access.js'       )(signpostApp);
 require('./runs/route_access_intercept.js')(signpostApp);
 
 // Controllers
-require('./controllers/users_controller.js'     )(signpostApp);
+require('./controllers/search_controller.js'    )(signpostApp);
 require('./controllers/sessions_controller.js'  )(signpostApp);
 require('./controllers/signs_controller.js'     )(signpostApp);
+require('./controllers/users_controller.js'     )(signpostApp);
 
 // Directives
 require('./directives/dyn_sign_form_directive.js')(signpostApp);
@@ -53,13 +54,19 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       access: ownerAccess,
     })
 
-    //------------------- SIGNS ROUTES -----------------
+    //------------------- USERS ROUTES -----------------
     .when('/users/:username', {
       // should redirect to the signs view with matching username
       templateUrl: 'templates/views/signs/signs_view.html'
     })
     .when('/users', {
       templateUrl: 'templates/views/users/index_view.html'
+    })
+
+    //------------------- SEARCH ROUTES -----------------
+    .when('/search', {
+      templateUrl: 'templates/views/users/index_view.html',
+      controller: 'searchController'
     })
 
     //------------------- AUTH ROUTES -----------------

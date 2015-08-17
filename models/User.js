@@ -26,7 +26,7 @@ var UserSchema = mongoose.Schema({
   confirmed:       { type: Boolean,  default: false                   },
   deleted:         { type: Date,     default: null                    },
   eat:             { type: Number,   default: null                    },
-  email:           { type: String,                                    },
+  email:           { type: String,   default: null                    },
   permissions:     { type: Array,    default: ['user']                },
   prt:             { type: String,   default: null                    },
   role:            { type: String,   default: null                    },

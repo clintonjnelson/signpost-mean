@@ -4,6 +4,7 @@ var bodyparser    = require('body-parser'              );
 var eatAuth       = require('../lib/routes_middleware/eat_auth.js')(process.env.AUTH_SECRET);
 var signOwnerAuth = require('../lib/routes_middleware/sign_owner_auth.js');
 var FacebookSign  = require('../models/FacebookSign.js');
+var mongoose      = require('mongoose'                 );
 var Sign          = require('../models/Sign.js'        );
 var signBuilder   = require('../lib/sign_builder.js'   );
 var User          = require('../models/User.js'        );
@@ -13,13 +14,18 @@ module.exports = function(app) {
 
 
   // Get by username (ANYONE)
-  app.get('/signs/:username', function(req, res) {
-    var username = req.params.username;
-    console.log("USERNAME CAME IN AS: ", username);
+  app.get('/signs/:usernameOrId', function(req, res) {
 
-    User.findOne({username: username}, function(err, user) {
+    var paramVal = req.params.usernameOrId;
+    console.log("USERNAME OR ID CAME IN AS: ", paramVal);
+    var queryObj = mongoose.Types.ObjectId.isValid(paramVal) ?
+      {_id:      paramVal} :
+      {username: paramVal};
+
+    // search by either value passed in
+    User.findOne(queryObj, function(err, user) {
       if(err) {
-        console.log('Database error getting user by username.');
+        console.log('Database error getting user by username or id:', err);
         return res.status(500).json({error: true, msg: 'database error'});
       }
 
@@ -36,7 +42,7 @@ module.exports = function(app) {
   });
 
   // Get users OWN signs (restricted route)
-  app.get('/signs/', eatAuth, function(req, res) {
+  app.get('/signs', eatAuth, function(req, res) {
 
     Sign.find({userId: req.user._id}, function(err, signs) {
       if(err) {

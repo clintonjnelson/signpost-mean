@@ -1,0 +1,45 @@
+<div>
+  <h1>Search</h1>
+  <md-content layout="column">
+
+    <!-- Users Results Found -->
+    <section data-ng-if="users">
+      <md-subheader class="md-no-sticky">users found:</md-subheader>
+      <md-list>
+        <md-list-item ng-repeat="user in users">
+          <ng-md-icon icon="face" style="fill: #8d8d8d" size="40"></ng-md-icon>
+          <div class="md-list-item-text">
+            <h3>{{ user.username }}</h3>
+            <a ng-href="{{'/#/signs/' + user.username}}">{{user.username}}</a>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </section>
+
+    <!-- Signs Results Found -->
+    <!-- TODO: MAKE DIRECTIVE TO CORRESPOND TO TYPE FOUND -->
+    <section data-ng-if="signs">
+      <md-subheader class="md-no-sticky">signs found:</md-subheader>
+      <md-list>
+        <md-list-item ng-repeat="sign in signs">
+          <ng-md-icon icon="sign.icon" style="fill: #8d8d8d" size="40"></ng-md-icon>
+          <div class="md-list-item-text">
+            <h3>{{ sign.knownAs }}</h3>
+            <a ng-href="{{'/#/signs/' + user.username}}">{{user.username}}</a>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </section>
+    <!-- <md-virtual-repeat-container id="vertical-container">
+      <div md-virtual-repeat="item in items" class="repeated-item" md-item-size="100" flex>
+        <p>
+          Hello {{item.username}}
+        </p>
+        <div layout="row">
+        </div>
+      </div>
+    </md-virtual-repeat-container> -->
+  </md-content>
+</div>

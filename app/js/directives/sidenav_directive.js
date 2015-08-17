@@ -9,16 +9,17 @@ module.exports = function(app) {
       templateUrl: '/templates/directives/sidenav.html',
       // scope:
       controller:  [
+        '$http',
         '$scope',
         '$mdSidenav',
         'sessions',
-        function($scope, $mdSidenav, sessions) {
+        function($http, $scope, $mdSidenav, sessions) {
 
           $scope.iconColor   = '#ffffff';     // TODO: break out to directive later
           $scope.showLogin   = false;
           $scope.isSignedIn  = sessions.isSignedIn();
           $scope.isSignedOut = !$scope.isSignedIn;
-          $scope.search      = '';
+          $scope.searchStr   = '';
 
 
           $scope.openLeftMenu = function() {
@@ -32,15 +33,9 @@ module.exports = function(app) {
           };
           $scope.searchUsers = function() {
             console.log("SEARCHING CLICKED!");
+            console.log("Search string is redirecting with the query: ", $scope.searchStr);
 
-            $http.get('/search', {params: {search: $search.searchStr} })
-              .success(function(data) {
-                console.log("SUCCESSFUL SEARCH. DATA IS: ", data);
-              })
-              .error(function(err) {
-                console.log("Error searching.");
-              })
-            sessions.redirect('/users');
+            sessions.redirectQuery('/search', 'searchStr', $scope.searchStr );
           };
 
 

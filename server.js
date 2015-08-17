@@ -7,10 +7,11 @@ var session  = require('express-session');
 var app      = express();
 
 // Routers
-var authRouter  = new express.Router();
-var oauthRouter = new express.Router();
-var signsRouter = new express.Router();
-var usersRouter = new express.Router();
+var authRouter   = new express.Router();
+var oauthRouter  = new express.Router();
+var searchRouter = new express.Router();
+var signsRouter  = new express.Router();
+var usersRouter  = new express.Router();
 
 // TEMP ENVIRONMENT VARIABLE
 process.env.AUTH_SECRET = process.env.AUTH_SECRET || 'setThisVarInENV';
@@ -33,14 +34,16 @@ require('./lib/passport_strategies/twitter.js' )(passport);
 // Populate Routes
 require('./routes/oauth_routes.js')(oauthRouter, passport);
 require('./routes/auth_routes.js' )(authRouter,  passport);
-require('./routes/signs_routes.js')(signsRouter);
-require('./routes/users_routes.js')(usersRouter);
+require('./routes/search_routes.js')(searchRouter);
+require('./routes/signs_routes.js' )(signsRouter );
+require('./routes/users_routes.js' )(usersRouter );
 
 // Route middleware
-app.use(oauthRouter);
-app.use(authRouter );
-app.use(signsRouter);
-app.use(usersRouter);
+app.use(oauthRouter );
+app.use(authRouter  );
+app.use(searchRouter);
+app.use(signsRouter );
+app.use(usersRouter );
 
 // Static Resources
 var dir = process.env.WEBPACK_DIRECTORY || 'build';
