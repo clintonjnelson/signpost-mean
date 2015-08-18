@@ -15,24 +15,25 @@ module.exports = function(app) {
     '$scope',
     '$http',
     '$routeParams',
-    function(sessions, $scope, $http, $routeParams) {
+    '$window',
+    function(sessions, $scope, $http, $routeParams, $window) {
 
       var currPath = sessions.currPath();
 
-      console.log("CURRENT PATH IS: ", currPath);
-      console.log("CHECKPACH IS: ", checkPath('/logout'));
       //-------------------- LOGOUT ------------------
       if ( checkPath('/logout') ) {
-        console.log("RESETTING THE SESSION NOW: ");
         sessions.resetSession();             // clear token, redirect greet
+        $window.location.reload();
+        sessions.redirect('/greet');
       }
 
       //-------------------- OAUTH ------------------
       if ( checkPath('/oauth') && $routeParams.token) {
+        console.log("ITS TRYING OAUTH", $routeParams.token);
         sessions.setOauthSession();   // session+token+user => load/clear/redirect
       }
       if ( checkPath('/oauth') ) {   // no token? login again
-        return sessions.redirect('/greet');
+        sessions.redirect('/greet');
       }
 
       //--------------------- BASIC AUTH ---------------------
@@ -42,7 +43,7 @@ module.exports = function(app) {
       $scope.user.termsCond  = false;
 
       // Functions
-      $scope.login = function(data) {
+      $scope.login = function() {
         if($scope.user.newAccount) {  // new user
 
           if($scope.user.termsCond) { // agree to T&C?
@@ -59,6 +60,8 @@ module.exports = function(app) {
           }
         } else {    //
           sessions.login($scope.user, function(err, data) {
+            if(err) {return console.log("ERROR LOGGING IN: ", err);}
+            console.log("LOGGED IN.")
             sessions.redirect('/signs');            // redirects if not successful
           });
         }

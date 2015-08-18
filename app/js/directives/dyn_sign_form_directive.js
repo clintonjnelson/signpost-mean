@@ -28,7 +28,7 @@ module.exports = function(app) {
       // define function to get url
       scope.getFormUrl = function() {
         return templateUrl;
-      }
+      };
 
 
       // Helper function to return corresponding form type

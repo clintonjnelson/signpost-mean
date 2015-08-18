@@ -9,7 +9,7 @@ module.exports = function(app) {
     '$routeParams',
     function($scope, RESTResource, $window, $routeParams) {
     // connect with Signs api
-    var signHttp = RESTResource('signs');
+    var signHttp = new RESTResource('signs');
 
 
     //----------------------------- SIGN LISTITEMS -----------------------------
@@ -110,7 +110,7 @@ module.exports = function(app) {
     $scope.hrefLink = function(type) {
       if(type === 'custom') { return '';                  }
       if(type !== 'custom') { return ('/auto/' + type); }
-    }
+    };
 
     $scope.createAutoSign = function(type) {
       var signType = type.type;

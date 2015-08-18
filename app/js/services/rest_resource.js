@@ -14,7 +14,7 @@ module.exports = function(app) {
 
       var handleError = function(callback) {
         return function(err) {
-          session.checkReset(err);
+          sessions.checkReset(err);
           callback(err, null);
         };
       };

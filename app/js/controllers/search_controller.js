@@ -39,8 +39,8 @@ module.exports = function(app) {
           .error(function(err) {
             // TODO: SHOW ERROR MSG TO USER
             console.log("Error searching.");
-          })
+          });
       }
     }
   ]);
-}
+};

@@ -46,6 +46,7 @@ module.exports = function(app) {
         $http.get('/login', { headers: { 'Authorization': 'Basic ' + encoded} })
           .success(function(data) {
             this.setEat(data.eat);              // set cookie in App
+            this.setUser(data.user);
             this.setSessionHeader();            // set user session for all http requests
             // TODO: SHOW SUCCESS FEEDBACK MSG TO USER
             callback(null, data);               // pass data to cb
@@ -69,6 +70,7 @@ module.exports = function(app) {
       // handle separately, since only sends eat. User is separate request.
       setCookieFromParamToken: function setCookieFromParamToken() {
         this.setEat($routeParams.token);
+        this.setSessionHeader();          // needed here????
         this.clearTokenParam();
       },
 
@@ -100,7 +102,7 @@ module.exports = function(app) {
         $cookies.putObject('user', user);
       },
 
-      setUserFromApi: function getUserFromApi() {
+      setUserFromApi: function setUserFromApi() {
         $http.get('/login/user')
           .success(function(data) {
             this.setUser(data.user);
@@ -118,21 +120,25 @@ module.exports = function(app) {
       },
 
       checkReset: function checkReset(err) {
-        if(err & err.reset) { this.resetSession(); }
+        if(err && err.reset) { this.resetSession(); }
       },
 
       checkResetRedirect: function checkResetRedirect(err) {
-        checkReset(err);
+        this.checkReset(err);
         $location.path('/greet');
       },
 
       resetSession: function resetSession() {
         console.log("LOGGING OUT EAT & USER. DELETING BOTH COOKIES..");
+
         $cookies.remove('user');
-        console.log("USER COOKIE IS NOW DELETED: ", $cookies.get('user'));
-        $cookies.remove('eat' );
+        console.log("USER COOKIE IS NOW DELETED: ", $cookies.getObject('user'));
+
+        $cookies.put('eat', '');
         console.log("USER COOKIE IS NOW DELETED: ", $cookies.get('eat'));
-        $location.path('/greet');
+
+        $http.defaults.headers.common.eat = $cookies.get('eat');
+        // $location.path('/greet');
       },
 
       logout: function logout() {
