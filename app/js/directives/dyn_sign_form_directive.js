@@ -19,7 +19,6 @@ module.exports = function(app) {
 
 
     function linker(scope, elem, attrs) {
-      console.log("SCOPE: ", scope);
       var base         = 'templates/directives/signforms/';
       var end          = '_sign_form.html';
       var formType     = getFormType(scope.sign.signType);

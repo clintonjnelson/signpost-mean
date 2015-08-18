@@ -27,12 +27,14 @@ module.exports = function(app) {
         sessions.redirect('/greet');
       }
 
+      console.log("SHOULD NOT HIT THIS ON LOGOUT");
       //-------------------- OAUTH ------------------
       if ( checkPath('/oauth') && $routeParams.token) {
         console.log("ITS TRYING OAUTH", $routeParams.token);
         sessions.setOauthSession();   // session+token+user => load/clear/redirect
       }
-      if ( checkPath('/oauth') ) {   // no token? login again
+
+      else if ( checkPath('/oauth') ) {   // no token? login again
         sessions.redirect('/greet');
       }
 
