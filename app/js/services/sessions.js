@@ -30,8 +30,9 @@ module.exports = function(app) {
         $location.path(path);      // redirect view here
       },
 
-      redirectQuery: function redirectQuery(path, queryNameStr, queryValStr) {
-        $location.path(path).search(queryNameStr, queryValStr);
+      redirectQuery: function redirectQuery(path, searchNameStr, searchValStr) {
+        console.log("IN SESSIONS, ABOUT TO REDIRECT...");
+        $location.path(path).search(searchNameStr, searchValStr);
       },
 
       currPath: function currPath() {

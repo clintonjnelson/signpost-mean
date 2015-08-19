@@ -97,7 +97,7 @@ module.exports = function(app) {
 
 
     var currUser       = sessions.getUser() || {};
-    $scope.isPageOwner = ($routeParams.username === currUser.username);
+    $scope.isPageOwner = ($routeParams.username === currUser.username) || !$routeParams.username;
     $scope.newSign     = {isEditing: false};
     $scope.defaults    = {
       color: '#5a5a5a',

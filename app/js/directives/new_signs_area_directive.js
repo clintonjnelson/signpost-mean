@@ -14,7 +14,7 @@ module.exports = function(app) {
         createAutoSign: '&',  // create matching autosign
         defaults:       '=',  // pass parent defaults
         formType:       '@',  // pass form type (heading)
-        isPageOwner:    '@',  // owner check for content
+        isPageOwner:    '=',  // owner check for content
         sign:           '=',  // allow access to parent sign
         submitAction:   '&',  // use action name passed
         toggleEditing:  '&',  // toggle sign editing
