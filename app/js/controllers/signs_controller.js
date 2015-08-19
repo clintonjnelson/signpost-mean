@@ -76,6 +76,8 @@ module.exports = function(app) {
     };
 
 
+
+
     //------------------------------ NEW SIGN FORM -----------------------------
     // TODO: THIS DATA SHOULD NOT BE STATIC, BUT SHOULD BE SENT BY SERVER
     // TODO: THIS DATA SHOULD BE MANAGED BY AN ADMIN ACCOUNT
@@ -93,10 +95,11 @@ module.exports = function(app) {
       { type: 'pintrest',       icon: 'pintrest-box'   , disabled: true,   link: '/auto/pintrest'     },
     ];
 
-    $scope.newSign = {isEditing: false};
 
-    // defaults
-    $scope.defaults = {
+    var currUser       = sessions.getUser() || {};
+    $scope.isPageOwner = ($routeParams.username === currUser.username);
+    $scope.newSign     = {isEditing: false};
+    $scope.defaults    = {
       color: '#5a5a5a',
       size: '40',
     };

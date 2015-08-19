@@ -9,15 +9,16 @@ module.exports = function(app) {
       replace:      true,
       templateUrl:  'templates/directives/new_signs_area.html',
       scope: {
-        sign:           '=',  // allow access to parent sign
-        defaults:       '=',  // pass parent defaults
-        types:          '=',  // pass parent types
-        formType:       '@',  // pass form type (heading)
-        submitAction:   '&',  // use action name passed
-        buttonName:     '@',  // use name passed
         activeColor:    '&',  // pass action name
-        toggleEditing:  '&',  // toggle sign editing
+        buttonName:     '@',  // use name passed
         createAutoSign: '&',  // create matching autosign
+        defaults:       '=',  // pass parent defaults
+        formType:       '@',  // pass form type (heading)
+        isPageOwner:    '@',  // owner check for content
+        sign:           '=',  // allow access to parent sign
+        submitAction:   '&',  // use action name passed
+        toggleEditing:  '&',  // toggle sign editing
+        types:          '=',  // pass parent types
       },
     };
   });

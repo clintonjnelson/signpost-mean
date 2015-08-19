@@ -24,7 +24,7 @@ module.exports = function(app) {
       var formType     = getFormType(scope.sign.signType);
       var templateUrl  = base + formType + end;
 
-      // define function to get url
+      // page dynamically choose sign template
       scope.getFormUrl = function() {
         return templateUrl;
       };

@@ -21,7 +21,8 @@ module.exports = function(app) {
       },
 
       isOwner: function isOwner(signOwnerId) {
-        var currentUserId = this.getUser()._id;
+        var currentUser   = this.getUser() || {};
+        var currentUserId = currentUser._id;
         return signOwnerId === currentUserId;
       },
 
