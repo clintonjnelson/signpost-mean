@@ -13,7 +13,7 @@ githubSignSchema.add({
   bgColor:         { type: String, default: '#333333'     },
   followersCount:  { type: String                         },
   icon:            { type: String, default: 'github-box'  },
-  id:              { type: String, required: true         },
+  profileId:       { type: String, required: true         },
   picUrl:          { type: String                         },
   signType:        { type: String, default: 'github'      },
 });
