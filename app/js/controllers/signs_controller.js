@@ -7,7 +7,8 @@ module.exports = function(app) {
     'RESTResource',
     '$window',
     '$routeParams',
-    function($scope, RESTResource, $window, $routeParams) {
+    'sessions',
+    function($scope, RESTResource, $window, $routeParams, sessions) {
     // connect with Signs api
     var signHttp = new RESTResource('signs');
 
@@ -20,7 +21,6 @@ module.exports = function(app) {
       color: '#808080',
       size:  '120',
     };
-
 
     $scope.getSigns = function() {
       var usernameData = {username: $routeParams.username};
@@ -71,9 +71,9 @@ module.exports = function(app) {
       }
     };
 
-    // $scope.getFormUrl = function(sign) {
-    //   return 'templates/directives/dynsignforms/custom_sign_form.html';
-    // }
+    $scope.isOwner = function(sign) {
+      return sessions.isOwner(sign.userId);   // current user match sign owner?
+    };
 
 
     //------------------------------ NEW SIGN FORM -----------------------------

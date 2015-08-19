@@ -22,7 +22,7 @@
         <p class="sign-listitem-desc"> <sm>{{sign.description}}</sm> </p>
 
         <!-- edit icon -->
-        <div ng-if="!sign.isEditing">
+        <div ng-show="!sign.isEditing" ng-if="isOwner({sign: sign})">
           <a data-ng-click="toggleEditing({sign: sign})" class="sign-listitem-editicon">
             <ng-md-icon icon="edit" style="fill: black" size="20"></ng-md-icon>
           </a>

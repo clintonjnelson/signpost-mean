@@ -10,10 +10,11 @@ module.exports = function(app) {
       templateUrl: 'templates/directives/sign_listitem.html',
       scope: {
         icons:          '=',
+        isOwner:        '&',
         sign:           '=',
-        types:          '=',
-        toggleEditing:  '&',
         submitAction:   '&',
+        toggleEditing:  '&',
+        types:          '=',
       },
     };
 

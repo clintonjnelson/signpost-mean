@@ -3,7 +3,7 @@
 module.exports = function(app) {
   app.controller('usersController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.users = [{username: '1'},{username: '2'},{username: '3'}];
+    $scope.users = [];
 
     // Errors
     $scope.errors = [];
