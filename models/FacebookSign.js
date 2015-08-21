@@ -1,7 +1,6 @@
 'use strict';
 // TODO: verify capitalization conventions
 
-var mongoose   = require('mongoose'       );
 var SignSchema = require('./SignSchema.js');
 var Sign       = require('./Sign.js'      );
 

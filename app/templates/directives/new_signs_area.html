@@ -22,7 +22,7 @@
             <!-- FIX THIS TO CHANGE ICON TYPE AS WELL -->
 
             <div data-ng-repeat="type in types" class="sign-form-type">
-              <div ng-hide="{{type.disabled}}" ng-click="createAutoSign({type: type})">
+              <div ng-hide="{{type.disabled}}" ng-click="createAutoSign(type)">
                 <md-tooltip>{{type.type}}</md-tooltip>
                 <a ng-href=""><ng-md-icon icon="{{type.icon}}" style="fill: {{type.color}}" size="{{defaults.size}}" ng-class="activeColor({type: type.type})" class="sign-selector"></ng-md-icon></a>
               </div>

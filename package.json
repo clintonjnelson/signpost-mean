@@ -91,6 +91,7 @@
     "passport-facebook": "^2.0.0",
     "passport-github": "^0.1.5",
     "passport-http": "^0.2.2",
+    "passport-instagram": "^0.1.2",
     "passport-twitter": "^1.0.3",
     "superagent": "^1.2.0"
   }

@@ -1,6 +1,5 @@
 'use strict';
 
-var mongoose   = require('mongoose'       );
 var SignSchema = require('./SignSchema.js');
 var Sign       = require('./Sign.js'      );
 

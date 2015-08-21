@@ -18,6 +18,10 @@ var UserSchema = mongoose.Schema({
       githubId:             { type: String,   default: null },
       githubAccessToken:    { type: String,   default: null },
     },
+    instagram: {
+      instagramId:          { type: String,   default: null },
+      instagramAccessToken: { type: String,   default: null },
+    },
     twitter: {
       twitterId:            { type: String,   default: null },
       twitterAccessToken:   { type: String,   default: null },
@@ -34,7 +38,6 @@ var UserSchema = mongoose.Schema({
   termsconditions: { type: Date,     default: null                    },
   updated_at:      { type: Date,     default: Date.now                },
   username:        { type: String,     match: /^[a-zA-Z0-9_-]*$/      },
-                                    //match: /^[a-zA-Z0-9_-]*$/
 
   // ObjectId References
   // location_id:     { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: false },

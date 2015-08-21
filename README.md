@@ -18,8 +18,10 @@
   - create Sign model
   - add sign info onto User model auth
   - profit
-
-
+  - on Angular sign types obj, change disabled to false
+Instagram
+  3:51-4:33pm (end: about to start sign_build_type)
+  10:08-
 
 
 [travis-image]: https://travis-ci.org/clintonjnelson/node_server_template.png?branch=master

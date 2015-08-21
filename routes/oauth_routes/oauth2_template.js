@@ -9,7 +9,7 @@
 
 
 var bodyparser     = require('body-parser'         );
-var eatAuth        = require('../../lib/routes_middleware/eat_auth.js')(process.env.AUTH_SECRET);
+var eatAuth        = require('../../lib/routes_middleware/eat_auth.js'     )(process.env.AUTH_SECRET);
 var loadEatUser    = require('../../lib/routes_middleware/load_eat_user.js')(process.env.AUTH_SECRET);
 var loadSendCookie = require('../../lib/routes_middleware/load_send_cookie.js');
 var User           = require('../../models/User.js');
@@ -46,7 +46,7 @@ module.exports = function(app, passport, apiData) {
       eatAuth,                                    // verify & load user in req
       passport.authenticate(apiData.passportType,
         { session: false,
-          scope:   ['public_profile', 'email']
+          scope:   apiData.scope,
         }
       )
     );

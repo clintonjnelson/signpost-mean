@@ -87,7 +87,7 @@ module.exports = function(app) {
       { type: 'github',         icon: 'github-box'     , disabled: false,  link: '/auto/github'       },
       { type: 'twitter',        icon: 'twitter'        , disabled: false,  link: '/auto/twitter'      },
       { type: 'google',         icon: 'google-plus-box', disabled: true,   link: '/auto/google'       },
-      { type: 'instagram',      icon: 'instagram'      , disabled: true,   link: '/auto/instagram'    },
+      { type: 'instagram',      icon: 'instagram'      , disabled: false,  link: '/auto/instagram'    },
       { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true,   link: '/auto/linkedin'     },
       { type: 'wordpress',      icon: 'wordpress'      , disabled: true,   link: '/auto/wordpress'    },
       { type: 'tumblr',         icon: 'tumblr'         , disabled: true,   link: '/auto/tumblr'       },
@@ -117,12 +117,12 @@ module.exports = function(app) {
 
     $scope.createAutoSign = function(type) {
       var signType = type.type;
-      if(type.type === 'custom') {
-        return $scope.newSign.signType = type.type; // trigger custom form
+      if(signType === 'custom') {
+        return $scope.newSign.signType = signType; // trigger custom form
       }
 
       // Else redirect browser
-      var autoSignUrl = '/auto/' + type.type;
+      var autoSignUrl = '/auto/' + signType;
       $window.location.href = autoSignUrl;
     };
 
