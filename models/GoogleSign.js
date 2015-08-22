@@ -9,7 +9,7 @@ var googleSignSchema = new SignSchema();
 // BaseSchema: customBgColor, description, knownAs, linkUrl, published, userId
 googleSignSchema.add({
   bgColor:         { type: String, default: '#dd4b39'          },
-  followersCount:  { type: String                              },
+  circledByCount:  { type: String                              },
   icon:            { type: String, default: 'google-plus-box'  },
   profileId:       { type: String, required: true              },
   picUrl:          { type: String                              },

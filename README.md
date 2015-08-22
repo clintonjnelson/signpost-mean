@@ -7,6 +7,8 @@
 
 ####Oauth Creation process
   - Add package via npm
+  - create Sign model
+  - add sign info onto User model auth
   - create oauth route
   - require oauth route into oauth_routes
   - create account with API: get ID/SECRET & set callback, load ENVs
@@ -15,15 +17,15 @@
   - create sign_build_type
   - load into sign_builder.js
   - create get-info requester/parser (sometimes just parse) in api_data_requests
-  - create Sign model
-  - add sign info onto User model auth
   - on Angular sign types obj, change disabled to false
   - profit
 Instagram
   3:51-4:33pm (end: about to start sign_build_type)
   10:08-?
 Google
-  7:35-
+  7:35-9:10
+Blogger
+
 
 
 [travis-image]: https://travis-ci.org/clintonjnelson/node_server_template.png?branch=master

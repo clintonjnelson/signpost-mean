@@ -88,7 +88,7 @@ module.exports = function(app) {
       { type: 'twitter',        icon: 'twitter'        , disabled: false,  link: '/auto/twitter'      },
       { type: 'google',         icon: 'google-plus-box', disabled: false,  link: '/auto/google'       },
       { type: 'instagram',      icon: 'instagram'      , disabled: false,  link: '/auto/instagram'    },
-      { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true,   link: '/auto/linkedin'     },
+      { type: 'linkedin',       icon: 'linkedin-box'   , disabled: false,   link: '/auto/linkedin'     },
       { type: 'wordpress',      icon: 'wordpress'      , disabled: true,   link: '/auto/wordpress'    },
       { type: 'tumblr',         icon: 'tumblr'         , disabled: true,   link: '/auto/tumblr'       },
       { type: 'stackoverflow',  icon: 'stackoverflow'  , disabled: true,   link: '/auto/stackoverflow'},

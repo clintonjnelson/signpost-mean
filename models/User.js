@@ -26,6 +26,10 @@ var UserSchema = mongoose.Schema({
       instagramId:          { type: String,   default: null },
       instagramAccessToken: { type: String,   default: null },
     },
+    linkedin: {
+      linkedinId:           { type: String,   default: null },
+      linkedinAccessToken:  { type: String,   default: null },
+    },
     twitter: {
       twitterId:            { type: String,   default: null },
       twitterAccessToken:   { type: String,   default: null },
