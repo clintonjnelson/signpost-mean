@@ -3,7 +3,6 @@
 var SignSchema = require('./SignSchema.js');
 var Sign       = require('./Sign.js'      );
 
-
 // New schema from base
 var githubSignSchema = new SignSchema();
 

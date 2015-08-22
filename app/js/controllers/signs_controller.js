@@ -86,7 +86,7 @@ module.exports = function(app) {
       { type: 'facebook',       icon: 'facebook-box'   , disabled: false,  link: '/auto/facebook'     },
       { type: 'github',         icon: 'github-box'     , disabled: false,  link: '/auto/github'       },
       { type: 'twitter',        icon: 'twitter'        , disabled: false,  link: '/auto/twitter'      },
-      { type: 'google',         icon: 'google-plus-box', disabled: true,   link: '/auto/google'       },
+      { type: 'google',         icon: 'google-plus-box', disabled: false,  link: '/auto/google'       },
       { type: 'instagram',      icon: 'instagram'      , disabled: false,  link: '/auto/instagram'    },
       { type: 'linkedin',       icon: 'linkedin-box'   , disabled: true,   link: '/auto/linkedin'     },
       { type: 'wordpress',      icon: 'wordpress'      , disabled: true,   link: '/auto/wordpress'    },

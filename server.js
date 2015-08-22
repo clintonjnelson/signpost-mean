@@ -29,6 +29,7 @@ app.use(passport.session());            // only for oauth1 to work
 require('./lib/passport_strategies/basic.js'    )(passport);
 require('./lib/passport_strategies/facebook.js' )(passport);
 require('./lib/passport_strategies/github.js'   )(passport);
+require('./lib/passport_strategies/google.js'   )(passport);
 require('./lib/passport_strategies/instagram.js')(passport);
 require('./lib/passport_strategies/twitter.js'  )(passport);
 
