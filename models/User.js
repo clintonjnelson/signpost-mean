@@ -34,6 +34,10 @@ var UserSchema = mongoose.Schema({
       twitterId:            { type: String,   default: null },
       twitterAccessToken:   { type: String,   default: null },
     },
+    wordpress: {
+      wordpressId:          { type: String,   default: null },
+      wordpressAccessToken: { type: String,   default: null },
+    },
                                                                       },
   confirmed:       { type: Boolean,  default: false                   },
   deleted:         { type: Date,     default: null                    },

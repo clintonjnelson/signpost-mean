@@ -16,6 +16,7 @@ module.exports = function(router, passport) {
   require('./oauth_routes/instagram.js')(router, passport);
   require('./oauth_routes/linkedin.js' )(router, passport);
   require('./oauth_routes/twitter.js'  )(router, passport);
+  require('./oauth_routes/wordpress.js')(router, passport);
 };
 
 

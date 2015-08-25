@@ -26,7 +26,7 @@ module.exports = function(app, passport) {
   );
 
   // Twitter redirects to here after auth
-  app.get('/login/twitter/callback',
+  app.get('/auth/twitter/callback',
     loadEatUser,
     passport.authenticate('twitter',  // try to: hit api, find/make user, find/make sign
       {

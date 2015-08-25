@@ -27,6 +27,14 @@ Google
 Blogger
 
 
+Signs
+  - Multi-signs
+    - Have a shared profileId among multiple users
+    - Have to be found via both profileId & userId
+    - Login by MultiSign
+  - Std-signs
+    - Can be found by profileId alone
+
 
 [travis-image]: https://travis-ci.org/clintonjnelson/node_server_template.png?branch=master
 [travis-url  ]: https://travis-ci.org/clintonjnelson/node_server_template

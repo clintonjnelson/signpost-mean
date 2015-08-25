@@ -95,6 +95,7 @@
     "passport-instagram": "^0.1.2",
     "passport-linkedin-oauth2": "^1.2.1",
     "passport-twitter": "^1.0.3",
+    "passport-wordpress": "0.0.3",
     "superagent": "^1.2.0"
   }
 }
