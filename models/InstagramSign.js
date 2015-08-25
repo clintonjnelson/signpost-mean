@@ -8,7 +8,7 @@ var instagramSignSchema = new SignSchema();
 
 // BaseSchema: customBgColor, description, knownAs, linkUrl, published, userId
 instagramSignSchema.add({
-  bgColor:          { type: String, default: '#996752'     },
+  bgColor:          { type: String, default: '#675144'     },
   icon:             { type: String, default: 'instagram'   },
   profileId:        { type: String, required: true         },
   picUrl:           { type: String                         },

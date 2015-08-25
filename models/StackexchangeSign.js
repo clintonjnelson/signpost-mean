@@ -10,7 +10,7 @@ var stackexchangeSignSchema = new SignSchema();
 stackexchangeSignSchema.add({
   badgeCounts:      { type: Object                             },
   bgColor:          { type: String, default: '#5184C1'         },
-  icon:             { type: String, default: 'stackexchange'   },
+  icon:             { type: String, default: 'stackoverflow'   },
   location:         { type: String                             },
   picUrl:           { type: String                             },
   profileId:        { type: String, required: true             },
