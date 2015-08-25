@@ -24,6 +24,10 @@ Instagram
   10:08-?
 Google
   7:35-9:10
+Wordpress
+  dont ask
+Stackexchange
+
 Blogger
 
 

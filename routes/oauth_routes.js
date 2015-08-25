@@ -10,13 +10,14 @@ module.exports = function(router, passport) {
   router.use(removePassptSessions);  // bypass oauth1 sessions
 
   // Require routes by provider
-  require('./oauth_routes/facebook.js' )(router, passport);
-  require('./oauth_routes/github.js'   )(router, passport);
-  require('./oauth_routes/google.js'   )(router, passport);
-  require('./oauth_routes/instagram.js')(router, passport);
-  require('./oauth_routes/linkedin.js' )(router, passport);
-  require('./oauth_routes/twitter.js'  )(router, passport);
-  require('./oauth_routes/wordpress.js')(router, passport);
+  require('./oauth_routes/facebook.js'     )(router, passport);
+  require('./oauth_routes/github.js'       )(router, passport);
+  require('./oauth_routes/google.js'       )(router, passport);
+  require('./oauth_routes/instagram.js'    )(router, passport);
+  require('./oauth_routes/linkedin.js'     )(router, passport);
+  require('./oauth_routes/stackexchange.js')(router, passport);
+  require('./oauth_routes/twitter.js'      )(router, passport);
+  require('./oauth_routes/wordpress.js'    )(router, passport);
 };
 
 

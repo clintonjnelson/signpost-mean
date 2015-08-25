@@ -91,7 +91,7 @@ module.exports = function(app) {
       { type: 'linkedin',       icon: 'linkedin-box'   , disabled: false,  link: '/auto/linkedin'     },
       { type: 'wordpress',      icon: 'wordpress'      , disabled: false,  link: '/auto/wordpress'    },
       { type: 'tumblr',         icon: 'tumblr'         , disabled: true,   link: '/auto/tumblr'       },
-      { type: 'stackoverflow',  icon: 'stackoverflow'  , disabled: true,   link: '/auto/stackoverflow'},
+      { type: 'stackexchange',  icon: 'stackexchange'  , disabled: false,  link: '/auto/stackexchange'},
       { type: 'pintrest',       icon: 'pintrest-box'   , disabled: true,   link: '/auto/pintrest'     },
     ];
 
