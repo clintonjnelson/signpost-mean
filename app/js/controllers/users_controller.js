@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('usersController', ['$scope', '$http', function($scope, $http) {
+  app.controller('usersController', ['$scope', '$http', 'sessions', function($scope, $http, sessions) {
 
     $scope.users = [];
 
@@ -13,15 +13,16 @@ module.exports = function(app) {
 
     // Show User
     $scope.getUser = function(user) {
-      $http.get('/users/' + user._id)
-        .success(function(user) {
-          $scope.user = user;   // load user into $scope.user
-          // do anything else?
-        })
-        .error(function(err) {
-          // TODO: show error
-          console.log('Error retrieving user: ', err);
-        });
+      $scope.user = sessions.getUser();
+      // $http.get('/users/' + user._id)
+      //   .success(function(user) {
+      //     $scope.user = user;   // load user into $scope.user
+      //     // do anything else?
+      //   })
+      //   .error(function(err) {
+      //     // TODO: show error
+      //     console.log('Error retrieving user: ', err);
+      //   });
     };
 
 
@@ -68,8 +69,9 @@ module.exports = function(app) {
       user.editing = false;
       $http.patch( ('/users/' + user._id), user)
         // need to send auth?
-        .success(function() {
-          console.log('update successful');
+        .success(function(data) {
+          console.log('update successful. Returned user is: ', data.user);
+          sessions.setUser(data.user);
           // success banner or indicator?
           user.temp = null; // clear the temp
         })

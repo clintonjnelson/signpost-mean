@@ -47,6 +47,10 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
 
     //------------------- USERS ROUTES -----------------
+    .when('/users/:username/edit', {
+      templateUrl: 'templates/views/users/edit_view.html',
+      access: ownerAccess
+    })
     .when('/users/:username', {
       // should redirect to the signs view with matching username
       templateUrl: 'templates/views/signs/signs_view.html'

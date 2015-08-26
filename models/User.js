@@ -75,6 +75,7 @@ UserSchema.pre('validate', function(next) {
 
   // Helper functions
   function makeAndValidateUsername(next) {
+    console.log("USERNAME IN VALIDATOR IS: ", user.username);
     user.username = user.username || generateUsername();
     user.username = formatUsername(user.username);
 
@@ -83,8 +84,11 @@ UserSchema.pre('validate', function(next) {
       if(!match || !match.username) {       // no matching user found => NEXT!
         return next();
       }
-      user.username = generateUsername(); // already exists => try again
-      makeAndValidateUsername(next);          // recurse to keep async chain
+      if( String(match._id) === String(user._id) ) {
+        return next();                      // found itself
+      }
+      user.username = generateUsername();   // already exists => try again
+      makeAndValidateUsername(next);        // recurse to keep async chain
     });
   }
 

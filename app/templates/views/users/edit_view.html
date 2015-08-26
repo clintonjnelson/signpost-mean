@@ -1,17 +1,55 @@
-<h1 data-ng-href="/auth/facebook">Facebook Signin</h1>
 
 <!-- Incorporate this as a toggle for the sidenav login - same form, different labels & actions -->
-<h1>Sign Up</h1>
-<div data-ng-controller="usersController">
-  <p>{{notify}}</p>
-  <form name="makeUser">
-    <label>Username</label>
-    <input type="text" data-ng-model="newUser.username">
-    <label>Password</label>
-    <input type="password" data-ng-model="newUser.password">
-    <label>Email</label>
-    <input type="text" data-ng-model="newUser.email">
-    <button type="submit" data-ng-click="createUser(newUser)"> make User! </button>
-  </form>
-</div>
+<main id="edit-user" layout="row" ng-controller="usersController" ng-init="getUser()">
+  <section offset="5" flex="90">
+    <md-content class="md-padding">
+      <md-card>
+        <h2 class="view-h2">Settings</h2>
+        <form name="userEditForm" data-ng-Submit="updateUser(user)">
+
+          <!-- Sign Type Selection-->
+          <md-input-container>
+            <!-- ALLOW PICK PROFILE PICTURE FROM FILE OR AMONG OTHER SIGNS -->
+            <md-divider></md-divider>
+          </md-input-container>
+
+          <!-- Username -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="label" style="fill: #5a5a5a" size="35"></ng-md-icon>
+            <input type="text" name="username" data-ng-model="user.username" placeholder="mysignname" md-maxlength="30">
+
+            <!-- Title Form Errors -->
+            <div data-ng-messages="userEditForm.signName.$error" data-ng-show="userEditForm.signName.$dirty">
+              <div data-ng-message="maxlength">title too long</div>
+            </div>
+
+          </md-input-container>
+
+          <!-- Email -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="email" style="fill: #5a5a5a" size="35"></ng-md-icon>
+            <input type="email" data-ng-model="user.email" placeholder="me@example.com" required>
+          </md-input-container>
+
+          <!-- Password -->
+          <md-input-container md-float layout="row">
+            <ng-md-icon icon="vpn_key" style="fill: #5a5a5a" size="35"></ng-md-icon>
+            <input type="password" data-ng-model="user.password" placeholder="supersecret">
+          </md-input-container>
+
+
+          <!-- Submit Icon Button -->
+          <md-button class="md-fab fab-color-grey" type="submit" ng-disabled="userEditForm.$invalid">
+            save
+          </md-button>
+          <md-button class="md-fab fab-color-grey" type="button" ng-click="cancelEdit()">
+            X
+          </md-button>
+        </form>
+      </md-card>
+    </md-content>
+  </section>
+  <div flex="5"></div>
+</main>
+
 

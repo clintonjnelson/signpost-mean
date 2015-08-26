@@ -34,7 +34,7 @@ module.exports = function(app, passport, apiData) {
       loadEatUser,                                // check for eat token, load if valid. For: AUTO-SIGN
       passport.authenticate(apiData.passportType, // try to: hit api, find/make user, find/make sign
         { session:         false,
-          failureRedirect: '/#/'             // TODO: Error handle (client: guest(noEat), user(Eat))
+          failureRedirect: '/#/',                 // TODO: Error handle (client: guest(noEat), user(Eat))
         }
       ),
       loadSendCookie                              // Middleware to load eat cookie & send. For: SIGNUP/LOGIN

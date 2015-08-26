@@ -20,10 +20,11 @@ module.exports = function(app) {
           $scope.isSignedIn  = sessions.isSignedIn();
           $scope.isSignedOut = !$scope.isSignedIn;
           $scope.searchStr   = '';
-
+          $scope.currentUser = sessions.getUser();
 
           $scope.openLeftMenu = function() {
             $mdSidenav('left').toggle();
+            $scope.currentUser = sessions.getUser();  // reload on open
           };
           $scope.openRightMenu = function() {
             $mdSidenav('right').toggle();

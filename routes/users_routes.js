@@ -55,23 +55,46 @@ module.exports = function(router) {
 
   // Update user
   router.patch('/users/:_id', eatAuth, ownerAuth('_id'), function(req, res) {
-    var updateUserData = req.body;
-    delete updateUserData._id;
-    delete updateUserData.eat;
+    var updUserData = req.body;
 
-    User.update({'_id': req.user._id}, {$set: updateUserData}, {runValidators: true}, function(err, user) {
-      if (err) { console.log('Error updating user. Error: ', err); }
-      switch(true) {
-        case !!(err && err.code === 11000):  // unique validation
-          return res.status(400).json({ error: 'username already exists' });
-        case !!(err && err.username): // required error
-          return res.status(400).json({ error: err.username.message.replace('Path', '') });
-        case !!(err):
-          return res.status(500).json({ error: true });
-      }
+    delete updUserData._id;
+    delete updUserData.eat;
 
-      res.json({ success: true });
-    });
+    if(updUserData.password) {
+      console.log("ABOUT TO UPDATE USER & PASS... Current user is: ", updUserData);
+
+      req.user.generateHash(updUserData.password, function(err, hash) {
+        if(err) { return res.status(500).json({error: true}); }
+        updUserData.auth.basic.password = hash;
+
+        updateUser(updUserData);
+      });
+    } else {
+      console.log("ABOUT TO UPDATE USER... Current user is: ", updUserData);
+      updateUser(updUserData);
+    }
+
+    function updateUser(userData) {
+      console.log("ID TO UPDATE IS: ", req.user._id);
+      User.findByIdAndUpdate(
+        req.user._id,                      // id to find
+        {$set: userData},                  // values to update
+        {runValidators: true, new: true},  // mongoose options
+        function(err, user) {              // callback
+          if (err) { console.log('Error updating user. Error: ', err); }
+          switch(true) {
+            case !!(err && err.code === 11000):  // unique validation
+              return res.status(400).json({ error: 'username already exists' });
+            case !!(err && err.username): // required error
+              return res.status(400).json({ error: err.username.message.replace('Path', '') });
+            case !!(err):
+              return res.status(500).json({ error: true });
+          }
+          console.log("Updated user is: ", user);
+          res.json({ success: true, user: user });
+        }
+      );
+    }
   });
 
   // Destroy User (soft destroy)
