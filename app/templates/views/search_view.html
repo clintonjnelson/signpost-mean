@@ -11,7 +11,7 @@
             <md-list-item ng-repeat="user in users">
               <ng-md-icon icon="face" style="fill: #8d8d8d" size="40"></ng-md-icon>
               <div class="md-list-item-text">
-                <a ng-href="{{'/#/signs/' + user.username}}">
+                <a ng-href="{{'/#/' + user.username}}">
                   <h3>{{ user.username }}</h3>
                 </a>
               </div>
@@ -28,7 +28,7 @@
             <md-list-item ng-repeat="sign in signs">
               <ng-md-icon icon="{{sign.icon}}" style="fill: {{sign.bgColor}}" size="40"></ng-md-icon>
               <div class="md-list-item-text">
-                <a ng-href="{{'/#/signs/' + sign.userId}}">
+                <a ng-href="{{'/#/' + sign.userId}}">
                   <h3>{{ sign.knownAs }}</h3>
                 </a>
               </div>

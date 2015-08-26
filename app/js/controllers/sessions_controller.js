@@ -64,7 +64,7 @@ module.exports = function(app) {
           sessions.login($scope.user, function(err, data) {
             if(err) {return console.log("ERROR LOGGING IN: ", err);}
             console.log("LOGGED IN.")
-            sessions.redirect('/signs');            // redirects if not successful
+            sessions.redirect('/');            // redirects if not successful
           });
         }
       };

@@ -45,14 +45,6 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
 
 
   $routeProvider
-    //------------------- SIGNS ROUTES -----------------
-    .when('/signs/:username', {
-      templateUrl: 'templates/views/signs/signs_view.html',
-    })
-    .when('/signs', {
-      templateUrl: 'templates/views/signs/signs_view.html',
-      access: ownerAccess,
-    })
 
     //------------------- USERS ROUTES -----------------
     .when('/users/:username', {
@@ -80,6 +72,22 @@ signpostApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/views/sessions/logout_view.html',
       controller: 'sessionsController'
       // access: ownerAccess,
+    })
+
+    //------------------- SIGNS ROUTES -----------------
+    .when('/signs/:username', {
+      templateUrl: 'templates/views/signs/signs_view.html',
+    })
+    .when('/signs', {
+      templateUrl: 'templates/views/signs/signs_view.html',
+      access: ownerAccess,
+    })
+    .when('/:username', {
+      templateUrl: 'templates/views/signs/signs_view.html'
+    })
+    .when('/', {
+      templateUrl: '/templates/views/signs/signs_view.html',
+      access: ownerAccess
     })
     .otherwise({
       redirectTo: '/greet'

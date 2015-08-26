@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
     loadEatUser,
     passport.authenticate('twitter',  // try to: hit api, find/make user, find/make sign
       {
-        failureRedirect: '/#/signs'   // only redirect for failure
+        failureRedirect: '/#/'   // only redirect for failure
       }
     ),
     loadSendCookie    // Middleware to load Eat cookie & send upon success

@@ -108,7 +108,7 @@ module.exports = function(app) {
         $http.get('/login/user')
           .success(function(data) {
             this.setUser(data.user);
-            this.redirect('/signs');   // TODO: VERIFY redirect back if user was not at /greet
+            this.redirect('/');   // TODO: VERIFY redirect back if user was not at /greet
           }.bind(this))
           .error(function(err) {
             // TODO: HANDLE WITH ERROR MESSAGE TO USER
